@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.gds.dao.UserDao">
+
+    <parameterMap id="parameterMap" type="com.gds.entity.User"></parameterMap>
+    <resultMap id="resultMap" type="com.gds.entity.User">
+        <result property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="sex" column="sex"/>
+    </resultMap>
+
+    <sql id="columnSql">
+        <trim suffixOverrides=",">
+            t.id,
+            t.username,
+            t.password,
+            t.sex,
+        </trim>
+    </sql>
+
+    <select id="findByUsernameAndPwd" resultMap="resultMap">
+        SELECT
+        <include refid="columnSql"></include>
+        FROM t_user t
+        WHERE t.username = #{username} and t.password = #{password}
+    </select>
+
+
+</mapper>
