@@ -1,30 +1,46 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>无标题文档</title>
+<title>网站后台管理系统HTML模板--模板之家 www.cssmoban.com</title>
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/jquery.js"></script>
-<script language="javascript">
-$(function(){	
-	//导航切换
-	$(".imglist li").click(function(){
-		$(".imglist li.selected").removeClass("selected")
-		$(this).addClass("selected");
-	})	
-})	
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $(".click").click(function(){
+  $(".tip").fadeIn(200);
+  });
+  
+  $(".tiptop a").click(function(){
+  $(".tip").fadeOut(200);
+});
+
+  $(".sure").click(function(){
+  $(".tip").fadeOut(100);
+});
+
+  $(".cancel").click(function(){
+  $(".tip").fadeOut(100);
+});
+
+});
 </script>
+
+
 </head>
 
 
 <body>
+
 	<div class="place">
     <span>位置：</span>
     <ul class="placeul">
     <li><a href="#">首页</a></li>
-    <li><a href="#">模块设计</a></li>
-    <li><a href="#">图片</a></li>
+    <li><a href="#">数据表</a></li>
+    <li><a href="#">基本内容</a></li>
     </ul>
     </div>
     
@@ -47,70 +63,37 @@ $(function(){
     </div>
     
     
-    <ul class="imglist">
-    
-    <li class="selected">
-    <span><img src="images/img01.png" /></span>
-    <h2><a href="#">软件界面设计下载</a></h2>
-    <p><a href="#">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">删除</a></p>
-    </li>
-    
-    <li>
-    <span><img src="images/img02.png" /></span>
-    <h2><a href="#">界面样式素材下载</a></h2>
-    <p><a href="#">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">删除</a></p>
-    </li>
-    
-    <li>
-    <span><img src="images/img03.png" /></span>
-    <h2><a href="#">弹出小窗口界面设计教程</a></h2>
-    <p><a href="#">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">删除</a></p>
-    </li>
-    
-    <li>
-    <span><img src="images/img04.png" /></span>
-    <h2><a href="#">羽毛图标设计教程</a></h2>
-    <p><a href="#">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">删除</a></p>
-    </li>
-    
-    <li>
-    <span><img src="images/img05.png" /></span>
-    <h2><a href="#">日历组件样式设计</a></h2>
-    <p><a href="#">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">删除</a></p>
-    </li>
-    
-    <li>
-    <span><img src="images/img06.png" /></span>
-    <h2><a href="#">羽毛图标设计教程</a></h2>
-    <p><a href="#">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">删除</a></p>
-    </li>
-    
-    <li>
-    <span><img src="images/img07.png" /></span>
-    <h2><a href="#">弹出小窗口界面设计教程</a></h2>
-    <p><a href="#">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">删除</a></p>
-    </li>
-    
-    <li>
-    <span><img src="images/img08.png" /></span>
-    <h2><a href="#">弹出小窗口界面设计教程</a></h2>
-    <p><a href="#">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">删除</a></p>
-    </li>
-    
-    <li>
-    <span><img src="images/img09.png" /></span>
-    <h2><a href="#">弹出小窗口界面设计教程</a></h2>
-    <p><a href="#">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">删除</a></p>
-    </li>
-    
-    <li>
-    <span><img src="images/img10.png" /></span>
-    <h2><a href="#">软件界面设计下载</a></h2>
-    <p><a href="#">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">删除</a></p>
-    </li>
-    
-    </ul>
-    
+    <table class="tablelist">
+    	<thead>
+    	<tr>
+        <th><input name="" type="checkbox" value="" checked="checked"/></th>
+        <th>编号<i class="sort"><img src="images/px.gif" /></i></th>
+        <th>标题</th>
+        <th>用户</th>
+        <th>籍贯</th>
+        <th>发布时间</th>
+        <th>是否审核</th>
+        <th>操作</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <c:forEach items="${list}" var="Student">
+            <option value="${item.dict_id}"<c:if test="${item.dict_id == custSource}"> selected</c:if>>${item.dict_item_name }</option>
+            <tr>
+                <td><input name="" type="checkbox" value="" /></td>
+                <td>${Student.stu_name}</td>
+                <td>王金平幕僚：马英九声明字字见血 人活着没意思</td>
+                <td>admin</td>
+                <td>江苏南京</td>
+                <td>2013-09-09 15:05</td>
+                <td>已审核</td>
+                <td><a href="#" class="tablelink">查看</a>     <a href="#" class="tablelink"> 删除</a></td>
+            </tr>
+        </c:forEach>
+
+        </tbody>
+    </table>
     
    
     <div class="pagin">
@@ -151,5 +134,9 @@ $(function(){
     
     
     </div>
+    
+    <script type="text/javascript">
+	$('.tablelist tbody tr:odd').addClass('odd');
+	</script>
 </body>
 </html>

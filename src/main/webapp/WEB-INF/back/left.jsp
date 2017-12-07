@@ -53,7 +53,7 @@
         </div>
         <ul class="menuson">
             <li><cite></cite><a href="${BasePath}/back/index.do" target="rightFrame">首页模版</a><i></i></li>
-            <li class="active"><cite></cite><a href="${BasePath}/back/right.do" target="rightFrame">数据列表</a><i></i></li>
+            <li><cite></cite><a href="${BasePath}/back/stuMag.do" target="rightFrame">社员管理</a><i></i></li>
             <li><cite></cite><a href="${BasePath}/back/imgtable.do" target="rightFrame">图片数据表</a><i></i></li>
             <li><cite></cite><a href="${BasePath}/back/form.do" target="rightFrame">添加编辑</a><i></i></li>
             <li><cite></cite><a href="${BasePath}/back/imglist.do" target="rightFrame">图片列表</a><i></i></li>

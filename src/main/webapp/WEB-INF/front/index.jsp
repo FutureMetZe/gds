@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-<title>Home</title>
+<title>首页</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="" />
@@ -38,8 +38,8 @@
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-right">
-						<li class="active"><a href="index.do"><span data-hover="Home">Home</span></a></li>
-						<li><a href="about.do"><span data-hover="About">About</span></a><span class="line1">|</span></li>
+						<li class="active"><a href="index.do"><span data-hover="家">家</span></a></li>
+						<li><a href="about.do"><span data-hover="About">媒体展示</span></a><span class="line1">|</span></li>
 						<li><a href="gallery.do"><span data-hover="Gallery">Gallery</span></a><span class="line1">|</span></li>
 						<li><a href="service.do"><span data-hover="Services">Services</span></a><span class="line1">|</span></li>
 						<li><a href="icons.do" data-toggle="dropdown"><span data-hover="ShortCodes">Short Codes</span><span class="caret"></span></a><span class="line1">|</span>

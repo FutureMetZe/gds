@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.gds.dao.StudentDao">
+
+    <resultMap id="resultMap" type="com.gds.entity.Student">
+        <!--    /*
+      `user_id` int(11) NOT NULL AUTO_INCREMENT,
+      `stu_num` int(11) DEFAULT NULL COMMENT '学号',
+      `login_count` int(11) NOT NULL DEFAULT '0' COMMENT '登录次数',
+      `rank` int(1) NOT NULL DEFAULT '0' COMMENT '管理员级别',
+      `is_admin` int(1) NOT NULL DEFAULT '0' COMMENT '是否管理员',
+      `is_disabled` int(1) NOT NULL DEFAULT '0' COMMENT '是否禁用',
+     */-->
+        <result property="user_id" column="user_id"/>
+        <result property="stu_num" column="stu_num"/>
+        <result property="login_count" column="login_count"/>
+        <result property="rank" column="rank"/>
+        <result property="is_admin" column="is_admin"/>
+        <result property="is_disabled" column="is_disabled"/>
+    <!--    /*
+        `username` varchar(50) NOT NULL COMMENT '用户名',
+        `password` varchar(50) NOT NULL, 密码
+        `stu_name` varchar(50) DEFAULT NULL COMMENT '姓名',
+        `mobile` varchar(32) DEFAULT NULL, 电话
+        `wx_number` varchar(20) DEFAULT NULL COMMENT '微信',
+        `email` varchar(50) DEFAULT NULL COMMENT '邮箱',
+        */-->
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="stu_name" column="stu_name"/>
+        <result property="mobile" column="mobile"/>
+        <result property="wx_number" column="wx_number"/>
+        <result property="email" column="email"/>
+
+        <!--  /*
+      `register_time` varchar(50) DEFAULT NULL COMMENT '注册时间',
+      `register_ip` varchar(50) DEFAULT '127.0.0.1' COMMENT '注册IP',
+      `last_login_time` varchar(50) DEFAULT NULL COMMENT '最后登录时间',
+      `last_login_ip` varchar(50) DEFAULT '127.0.0.1' COMMENT '最后登录IP',
+      `standby001` varchar(50) DEFAULT NULL COMMENT '备用字段001',
+      `standby002` varchar(50) DEFAULT NULL COMMENT '备用字段002',
+     */-->
+        <result property="register_time" column="register_time"/>
+        <result property="register_ip" column="register_ip"/>
+        <result property="last_login_time" column="last_login_time"/>
+        <result property="last_login_ip" column="last_login_ip"/>
+        <result property="standby001" column="standby001"/>
+        <result property="standby002" column="standby002"/>
+
+    </resultMap>
+
+    <select id="findAllStudent" resultMap="resultMap">
+        SELECT * from gds_student
+    </select>
+
+
+</mapper>
