@@ -16,8 +16,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>无标题文档</title>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <script language="JavaScript" src="js/jquery.js"></script>
+    <link href="${BasePath}/back/css/style.css" rel="stylesheet" type="text/css" />
+    <script language="JavaScript" src="${BasePath}/back/js/jquery.js"></script>
 
     <script type="text/javascript">
         $(function(){
@@ -49,7 +49,7 @@
 
     <dd>
         <div class="title">
-            <span><img src="images/leftico01.png" /></span>管理信息
+            <span><img src="${BasePath}/back/images/leftico01.png" /></span>管理信息
         </div>
         <ul class="menuson">
             <li><cite></cite><a href="${BasePath}/back/index.do" target="rightFrame">首页模版</a><i></i></li>
@@ -68,7 +68,7 @@
 
     <dd>
         <div class="title">
-            <span><img src="images/leftico02.png" /></span>其他设置
+            <span><img src="${BasePath}/back/images/leftico02.png" /></span>其他设置
         </div>
         <ul class="menuson">
             <li><cite></cite><a href="#">编辑内容</a><i></i></li>
@@ -78,7 +78,7 @@
     </dd>
 
 
-    <dd><div class="title"><span><img src="images/leftico03.png" /></span>编辑器</div>
+    <dd><div class="title"><span><img src="${BasePath}/back/images/leftico03.png" /></span>编辑器</div>
         <ul class="menuson">
             <li><cite></cite><a href="#">自定义</a><i></i></li>
             <li><cite></cite><a href="#">常用资料</a><i></i></li>
@@ -88,7 +88,7 @@
     </dd>
 
 
-    <dd><div class="title"><span><img src="images/leftico04.png" /></span>日期管理</div>
+    <dd><div class="title"><span><img src="${BasePath}/back/images/leftico04.png" /></span>日期管理</div>
         <ul class="menuson">
             <li><cite></cite><a href="#">自定义</a><i></i></li>
             <li><cite></cite><a href="#">常用资料</a><i></i></li>

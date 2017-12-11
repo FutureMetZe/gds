@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.gds.dao.StudentDao">
+
+
+    <!--插入 “学生-社团”关联
+    `id` int(100) NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) DEFAULT NULL COMMENT '学生id',
+  `dict_club_id` int(10) DEFAULT NULL COMMENT '所属社团id',
+    -->
+    <insert id="insertRelation" parameterType="Map">
+        insert into gds_stu_relation
+        ( id,user_id,dict_club_id )
+        values
+        ( #{id}, #{user_id}, #{club_id} )
+    </insert>
+
+
+</mapper>

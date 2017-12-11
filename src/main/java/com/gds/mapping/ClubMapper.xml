@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.gds.dao.ClubDao">
+
+
+    <!--查询所有社团列表-->
+    <select id="selectAll" resultType="com.gds.entity.Club">
+        SELECT * from gds_club
+    </select>
+
+    <!--&lt;!&ndash;查询社员总数&ndash;&gt;
+    <select id="selectTotalCount" resultType="java.lang.Integer">
+        select count(1) from gds_student
+    </select>
+
+    &lt;!&ndash;分页查询&ndash;&gt;
+    <select id="selectPageList"  resultType="com.gds.entity.Student" parameterType="Map">
+        select * from gds_student
+        &lt;!&ndash; 可加入where分页条件  &ndash;&gt;
+        LIMIT #{startRow},#{size}
+    </select>
+
+-->
+</mapper>

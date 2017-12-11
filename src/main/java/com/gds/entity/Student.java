@@ -14,7 +14,7 @@ public class Student implements Serializable {
       `is_disabled` int(1) NOT NULL DEFAULT '0' COMMENT '是否禁用',
      */
     private Integer user_id;
-    private Integer stu_num;
+    private String stu_num;
     private Integer login_count;
     private Integer rank;
     private Integer is_admin;
@@ -57,11 +57,11 @@ public class Student implements Serializable {
         this.user_id = user_id;
     }
 
-    public Integer getStu_num() {
+    public String getStu_num() {
         return stu_num;
     }
 
-    public void setStu_num(Integer stu_num) {
+    public void setStu_num(String stu_num) {
         this.stu_num = stu_num;
     }
 
