@@ -76,10 +76,11 @@ public class StuSysController {
 
     @RequestMapping("/stuSave.do")
     public String stuSave(HttpServletRequest request, HttpServletResponse response, ModelMap model,
-                          Student student, @RequestParam(value = "club_id", required = false)Integer club_id){
+                          Student student, @RequestParam(value = "club01", required = false)Integer club01){
         logger.info("访问【stuSave.do】接口；接收到的数据为："+student.toString());
         studentService.insertStudent(student);
-        stuAndClubService.insertRelation(student.getUser_id(),club_id);
+        Integer stuNum = Integer.parseInt(student.getStu_num());
+        stuAndClubService.insertRelation(stuNum,club01);
         return stuMag(request,response,model,null,null);
     }
 
