@@ -41,19 +41,6 @@ public class StuSysController {
     @Resource(name="StuAndClubService")
     private StuAndClubService stuAndClubService;
 
-    /**
-     * 条件查询
-     */
-    @RequestMapping("/stuFind.do")
-    public String stuFind(HttpServletRequest request, HttpServletResponse response, ModelMap model,
-                          @RequestParam(value = "username", required = false)String username,
-                          @RequestParam(value = "stu_name", required = false)String stu_name,
-                          @RequestParam(value = "standby001", required = false)String standby001 ){
-        logger.info("访问【stuFind.do】接口；接收到的数据为：username="+username+"；stu_name="+stu_name+"；standby001="+standby001);
-        Map<String,String> map = new HashMap<String, String>();
-      //  List<Student> list = studentService.selectStuByCondition(map);
-        return stuMag(request,response,model,null,null);
-    }
 
     /**
      * 社员(学生)列表
@@ -61,10 +48,18 @@ public class StuSysController {
     @RequestMapping("/stuMag.do")
     public String stuMag(HttpServletRequest request, HttpServletResponse response, ModelMap model,
                          @RequestParam(value = "pageSize", required = false)Integer pageSize,
-                         @RequestParam(value = "currentPage", required = false)Integer currentPage ){
-        PageBean<Student> pageBeans = studentService.findAllStudent(currentPage,pageSize);
+                         @RequestParam(value = "currentPage", required = false)Integer currentPage,
+                         @RequestParam(value = "username", required = false)String username,
+                         @RequestParam(value = "stu_name", required = false)String stu_name,
+                         @RequestParam(value = "standby001", required = false)String standby001 ){
+        PageBean<Student> pageBeans = studentService.selectPageList(currentPage,pageSize,username,stu_name,standby001);
+
         model.addAttribute("page",pageBeans);
         model.addAttribute("beans",pageBeans.getBeans());
+        model.addAttribute("username",username);
+        model.addAttribute("stu_name",stu_name);
+        model.addAttribute("standby001",standby001);
+
         logger.info("访问【stuMag.do】接口；返回数据为："+pageBeans.toString());
         return "back/stu/stuMag";
     }
@@ -101,7 +96,7 @@ public class StuSysController {
         String stuNum = student.getStu_num();
         //添加学号--社团id映射关系
         stuAndClubService.insertRelation(stuNum,club01);
-        return stuMag(request,response,model,null,null);
+        return stuMag(request,response,model,null,null,null,null,null);
     }
 
     /**
@@ -112,7 +107,7 @@ public class StuSysController {
                           @RequestParam(value = "user_id", required = false)Integer user_id){
         logger.info("访问【stuDelete.do】接口；接收到的数据为：user_id="+user_id);
         studentService.deleteStuByUserId(user_id);
-        return stuMag(request,response,model,null,null);
+        return stuMag(request,response,model,null,null,null,null,null);
     }
 
 

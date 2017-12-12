@@ -21,12 +21,18 @@ public class StudentServiceImpl implements StudentService {
      * 查询分页对象（beans为社员）
      * @param currentPage
      * @param pageSize
-     * @return
+     * @param username
+     *@param stu_name
+     * @param standby001 @return
      */
     @Override
-    public PageBean<Student> findAllStudent(Integer currentPage,Integer pageSize) {
+    public PageBean<Student> selectPageList(Integer currentPage, Integer pageSize, String username, String stu_name, String standby001) {
+        Map<String,Object> map = new HashMap<String,Object>();
+        map.put("username",username);
+        map.put("stu_name",stu_name);
+        map.put("standby001",standby001);
         //1 调用Dao查询总记录数
-        Integer totalCount = studentDao.selectTotalCount();
+        Integer totalCount = studentDao.selectTotalCount(map);
 
         //2 创建PageBean对象
         PageBean<Student> pb = new PageBean(currentPage, totalCount, pageSize);
@@ -34,9 +40,11 @@ public class StudentServiceImpl implements StudentService {
         //3 调用Dao查询分页列表数据
         Integer startRow = pb.getStart();
         Integer size = pb.getPageSize();
-        Map<String,Object> map = new HashMap<String,Object>();
+
         map.put("startRow",startRow);
         map.put("size",size);
+
+
         List<Student> students = studentDao.selectPageList(map);
 
         //4 列表数据放入pageBean中.并返回

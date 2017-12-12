@@ -4,11 +4,9 @@ import com.gds.entity.Student;
 import com.gds.utils.PageBean;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service("StudentService")
 public interface StudentService {
-    PageBean<Student> findAllStudent(Integer currentPage, Integer pageSize);
+    PageBean<Student> selectPageList(Integer currentPage, Integer pageSize, String username, String stu_name, String standby001);
 
     void insertStudent(Student student);
 

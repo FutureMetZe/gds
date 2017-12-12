@@ -83,10 +83,14 @@ $(document).ready(function(){
     <div class="tools">
     
     	<ul class="toolbar">
-            <form action="${pageContext.request.contextPath }/back/stuFind.do">
-                <li><label>用户名：</label><input name="username" type="text" class="dfinput" value=""  style="width:110px;"/></li>&nbsp;&nbsp;
-                <li><label>姓名：</label><input name="stu_name" type="text" class="dfinput" value=""  style="width:110px;"/></li>&nbsp;&nbsp;
-                <li><label>学院：</label><input name="standby001" type="text" class="dfinput" value=""  style="width:130px;"/></li>&nbsp;&nbsp;
+            <form action="${pageContext.request.contextPath }/back/stuMag.do">
+                <li><label>用户名：</label><input name="username" type="text" class="dfinput" value="${username}"  style="width:110px;"/></li>&nbsp;&nbsp;
+                <li><label>姓名：</label><input name="stu_name" type="text" class="dfinput" value="${stu_name}"  style="width:110px;"/></li>&nbsp;&nbsp;
+                <li><label>学院：</label><input name="standby001" type="text" class="dfinput" value="${standby001}"  style="width:130px;"/></li>&nbsp;&nbsp;
+                <!-- 隐藏域.当前页码 -->
+                <input type="hidden" name="currentPage" value="${page.totalPage}" />
+                <!-- 隐藏域.每页显示条数 -->
+                <input type="hidden" name="pageSize" value="${page.pageSize}" />
                 <li><label>&nbsp;</label><input type="submit" class="findbtn" value="查找"/></li>
             </form>
 
@@ -115,7 +119,7 @@ $(document).ready(function(){
         <th>电话</th>
         <th>邮箱</th>
         <th>注册时间</th>
-        <th>上次登录</th>
+        <th>上次登录时间</th>
         <th>操作</th>
         </tr>
         </thead>

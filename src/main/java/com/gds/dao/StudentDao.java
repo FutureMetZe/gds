@@ -10,9 +10,7 @@ import java.util.Map;
 @Repository("StudentDao")
 public interface StudentDao {
 
-    List<Student> findAllStudent();
-
-    Integer selectTotalCount();
+    Integer selectTotalCount(Map map);
 
     List<Student> selectPageList(Map<String,Object> map);
 

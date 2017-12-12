@@ -10,14 +10,36 @@
     </select>
 
     <!--查询社员总数-->
-    <select id="selectTotalCount" resultType="java.lang.Integer">
+    <select id="selectTotalCount" resultType="java.lang.Integer" parameterType="Map">
         select count(1) from gds_student
+        <where>
+            <if test="stu_name != null and stu_name != ''">
+                stu_name like "%"#{stu_name}"%"
+            </if>
+            <if test="username != null and username != ''">
+                and username like "%"#{username}"%"
+            </if>
+            <if test="standby001 != null and standby001 != ''">
+                and standby001 like "%"#{standby001}"%"
+            </if>
+        </where>
     </select>
 
     <!--分页查询-->
     <select id="selectPageList"  resultType="com.gds.entity.Student" parameterType="Map">
         select * from gds_student
-        <!-- 可加入where分页条件  -->
+        <!-- 加入查询条件  -->
+        <where>
+            <if test="stu_name != null and stu_name != ''">
+                stu_name like "%"#{stu_name}"%"
+            </if>
+            <if test="username != null and username != ''">
+                and username like "%"#{username}"%"
+            </if>
+            <if test="standby001 != null and standby001 != ''">
+                and standby001 like "%"#{standby001}"%"
+            </if>
+        </where>
         LIMIT #{startRow},#{size}
     </select>
 
