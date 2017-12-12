@@ -42,4 +42,8 @@
         )
     </insert>
 
+    <delete id="deleteStuByUserId" parameterType="java.lang.Integer">
+        delete from gds_student
+        where user_id = #{user_id,jdbcType=INTEGER}
+    </delete>
 </mapper>

@@ -15,10 +15,10 @@ public class StuAndClubServiceImpl implements StuAndClubService{
     private StuAndClubDao stuAndClubDao;
 
     @Override
-    public void insertRelation(Integer user_id, Integer club_id) {
+    public void insertRelation(String stu_num, Integer club_id) {
 
-        Map<String,Integer> map = new HashMap<String, Integer>();
-        map.put("user_id",user_id);
+        Map map = new HashMap();
+        map.put("stu_num",stu_num);
         map.put("club_id",club_id);
 
         stuAndClubDao.insertRelation(map);

@@ -17,7 +17,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/back")
@@ -38,19 +42,27 @@ public class StuSysController {
     private StuAndClubService stuAndClubService;
 
     /**
+     * 条件查询
+     */
+    @RequestMapping("/stuFind.do")
+    public String stuFind(HttpServletRequest request, HttpServletResponse response, ModelMap model,
+                          @RequestParam(value = "username", required = false)String username,
+                          @RequestParam(value = "stu_name", required = false)String stu_name,
+                          @RequestParam(value = "standby001", required = false)String standby001 ){
+        logger.info("访问【stuFind.do】接口；接收到的数据为：username="+username+"；stu_name="+stu_name+"；standby001="+standby001);
+        Map<String,String> map = new HashMap<String, String>();
+      //  List<Student> list = studentService.selectStuByCondition(map);
+        return stuMag(request,response,model,null,null);
+    }
+
+    /**
      * 社员(学生)列表
-     * @param request
-     * @param response
-     * @param model
-     * @return
      */
     @RequestMapping("/stuMag.do")
     public String stuMag(HttpServletRequest request, HttpServletResponse response, ModelMap model,
                          @RequestParam(value = "pageSize", required = false)Integer pageSize,
                          @RequestParam(value = "currentPage", required = false)Integer currentPage ){
-
         PageBean<Student> pageBeans = studentService.findAllStudent(currentPage,pageSize);
-
         model.addAttribute("page",pageBeans);
         model.addAttribute("beans",pageBeans.getBeans());
         logger.info("访问【stuMag.do】接口；返回数据为："+pageBeans.toString());
@@ -58,14 +70,13 @@ public class StuSysController {
     }
 
     /**
-     *  跳转到新增页面，将社团列表发送出去
-     * @return
+     *  跳转到新增页面
      */
     @RequestMapping("/stuAdd.do")
     public String add(HttpServletRequest request, HttpServletResponse response, ModelMap model ){
         //查询所有社团
         List<Club> clubs = clubService.selectAll();
-        // 002 学院
+        //从字典中获取 002学院
         List<Dict> facultys = dictService.selectAllFaculty("002");
         model.addAttribute("clubs",clubs);
         model.addAttribute("facultys",facultys);
@@ -74,14 +85,36 @@ public class StuSysController {
         return "back/stu/add";
     }
 
+    /**
+     * 保存学生信息，保存学号--社团id映射
+     */
     @RequestMapping("/stuSave.do")
     public String stuSave(HttpServletRequest request, HttpServletResponse response, ModelMap model,
                           Student student, @RequestParam(value = "club01", required = false)Integer club01){
+
         logger.info("访问【stuSave.do】接口；接收到的数据为："+student.toString());
+        Date day=new Date();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        student.setRegister_time(df.format(day));
+
         studentService.insertStudent(student);
-        Integer stuNum = Integer.parseInt(student.getStu_num());
+        String stuNum = student.getStu_num();
+        //添加学号--社团id映射关系
         stuAndClubService.insertRelation(stuNum,club01);
         return stuMag(request,response,model,null,null);
     }
+
+    /**
+     * 删除操作
+     */
+    @RequestMapping("/stuDelete.do")
+    public String stuDelete(HttpServletRequest request, HttpServletResponse response, ModelMap model,
+                          @RequestParam(value = "user_id", required = false)Integer user_id){
+        logger.info("访问【stuDelete.do】接口；接收到的数据为：user_id="+user_id);
+        studentService.deleteStuByUserId(user_id);
+        return stuMag(request,response,model,null,null);
+    }
+
+
 
 }

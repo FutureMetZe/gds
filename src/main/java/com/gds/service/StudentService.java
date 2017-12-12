@@ -12,4 +12,5 @@ public interface StudentService {
 
     void insertStudent(Student student);
 
+    void deleteStuByUserId(Integer user_id);
 }

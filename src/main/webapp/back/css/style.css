@@ -99,8 +99,8 @@ h2{font-weight:normal;}
 .rightinfo{padding:8px;}
 .tools{clear:both; height:35px; margin-bottom:8px;}
 .toolbar{float:left;}
-.toolbar li{background:url(../images/toolbg.gif) repeat-x; line-height:33px; height:33px; border:solid 1px #d3dbde; float:left; padding-right:10px; margin-right:5px;border-radius: 3px; behavior:url(../js/pie.htc); cursor:pointer;}
-.toolbar li span{float:left; margin-left:10px; margin-right:5px; margin-top:5px;}
+.toolbar li{background:url(../images/toolbg.gif) repeat-x; line-height:33px; height:33px; border:solid 1px #d3dbde; float:left; padding-right:3px; margin-right:3px;border-radius: 3px; behavior:url(../js/pie.htc); }
+.toolbar li span{float:left; margin-left:3px; margin-right:3px; margin-top:3px;}
 .toolbar1{float:right;}
 .toolbar1 li{background:url(../images/toolbg.gif) repeat-x; line-height:33px; height:33px; border:solid 1px #d3dbde; float:left; padding-right:10px; margin-right:5px;border-radius: 3px; behavior:url(../js/pie.htc); cursor:pointer;}
 .toolbar1 li span{float:left; margin-left:10px; margin-right:5px; margin-top:5px;}
@@ -194,6 +194,7 @@ h2{font-weight:normal;}
 .dfinput{width:345px; height:32px; line-height:32px; border-top:solid 1px #a7b5bc; border-left:solid 1px #a7b5bc; border-right:solid 1px #ced9df; border-bottom:solid 1px #ced9df; background:url(../images/inputbg.gif) repeat-x; text-indent:10px;}
 .textinput{border-top:solid 1px #a7b5bc; border-left:solid 1px #a7b5bc; border-right:solid 1px #ced9df; border-bottom:solid 1px #ced9df; background:url(../images/inputbg.gif) repeat-x; padding:10px; width:504px; height:135px; line-height:20px; overflow:hidden;}
 .btn{width:137px;height:35px; background:url(../images/btnbg.png) no-repeat; font-size:14px;font-weight:bold;color:#fff; cursor:pointer;}
+.findbtn{width:80px;height:30px; background:url(../images/btnbg.png) no-repeat; font-size:14px;font-weight:bold;color:#fff; cursor:pointer;}
 
 
 /*tip*/

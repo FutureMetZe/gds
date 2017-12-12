@@ -14,9 +14,9 @@ public interface StudentDao {
 
     Integer selectTotalCount();
 
-//    List<Student> selectPageList(@Param("startRow") Integer startRow, @Param("size") Integer size);
     List<Student> selectPageList(Map<String,Object> map);
 
     void insertStudent(Student student);
 
+    void deleteStuByUserId(Integer user_id);
 }

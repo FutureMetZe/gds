@@ -83,10 +83,13 @@ $(document).ready(function(){
     <div class="tools">
     
     	<ul class="toolbar">
-            <li ><span><img src="${pageContext.request.contextPath }/back/images/t03.png" /></span>AAA</li>
-            <li><span><img src="images/t04.png" /></span>BBB</li>
-            <li class="click"><span><img src="images/t01.png" /></span>CCC</li>
-            <li class="click"><span><img src="images/t02.png" /></span>DDD</li>
+            <form action="${pageContext.request.contextPath }/back/stuFind.do">
+                <li><label>用户名：</label><input name="username" type="text" class="dfinput" value=""  style="width:110px;"/></li>&nbsp;&nbsp;
+                <li><label>姓名：</label><input name="stu_name" type="text" class="dfinput" value=""  style="width:110px;"/></li>&nbsp;&nbsp;
+                <li><label>学院：</label><input name="standby001" type="text" class="dfinput" value=""  style="width:130px;"/></li>&nbsp;&nbsp;
+                <li><label>&nbsp;</label><input type="submit" class="findbtn" value="查找"/></li>
+            </form>
+
         </ul>
         
         
@@ -105,9 +108,10 @@ $(document).ready(function(){
     <table class="tablelist">
     	<thead>
     	<tr>
-        <th><input name="" type="checkbox" value="" checked="checked"/></th>
         <th>用户名<i class="sort"><img src="${pageContext.request.contextPath }/back/images/px.gif" /></i></th>
         <th>姓名</th>
+        <th>学号</th>
+        <th>学院</th>
         <th>电话</th>
         <th>邮箱</th>
         <th>注册时间</th>
@@ -120,14 +124,16 @@ $(document).ready(function(){
         <c:forEach items="${beans}" var="Student">
          <%--   <option value="${item.dict_id}"<c:if test="${item.dict_id == custSource}"> selected</c:if>>${item.dict_item_name }</option>--%>
             <tr>
-                <td><input name="" type="checkbox" value="" /></td>
+
                 <td>${Student.username}</td>
                 <td>${Student.stu_name}</td>
+                <td>${Student.stu_num}</td>
+                <td>${Student.standby001}</td>
                 <td>${Student.mobile}</td>
                 <td>${Student.email}</td>
                 <td>${Student.register_time}</td>
                 <td>${Student.last_login_time}</td>
-                <td><a href="#" class="tablelink">查看</a>     <a href="#" class="tablelink"> 删除</a></td>
+                <td><a href="#" class="tablelink">查看</a>     <a href="${pageContext.request.contextPath }/back/stuDelete.do?user_id=${Student.user_id}" class="tablelink" > 删除</a></td>
             </tr>
         </c:forEach>
         </tbody>
@@ -150,7 +156,7 @@ $(document).ready(function(){
             <input type="text" size="3" id="page" name="page" value="${page.currentPage}"/>
             页
 
-            <input type="button" value="提交" onclick="changePage($('#page').val())"/>
+            <li><label>&nbsp;</label><input name="" type="submit" class="btn" value="提交"/></li>
         </DIV>
 
     
@@ -160,7 +166,7 @@ $(document).ready(function(){
       <div class="tipinfo">
         <span><img src="images/ticon.png" /></span>
         <div class="tipright">
-        <p>是否确认对信息的修改 ？</p>
+        <p>是否确认对信息的删除 ？</p>
         <cite>如果是请点击确定按钮 ，否则请点取消。</cite>
         </div>
         </div>
@@ -180,5 +186,6 @@ $(document).ready(function(){
     <script type="text/javascript">
 	$('.tablelist tbody tr:odd').addClass('odd');
 	</script>
+
 </body>
 </html>

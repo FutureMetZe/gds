@@ -7,7 +7,7 @@ public class StuAndClub {
   `dict_club_id` int(10) DEFAULT NULL COMMENT '所属社团id',
      */
     private Integer id;
-    private Integer user_id;
+    private String stu_num;
     private Integer dict_club_id;
 
     public Integer getId() {
@@ -18,13 +18,7 @@ public class StuAndClub {
         this.id = id;
     }
 
-    public Integer getUser_id() {
-        return user_id;
-    }
 
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
-    }
 
     public Integer getDict_club_id() {
         return dict_club_id;
@@ -34,12 +28,21 @@ public class StuAndClub {
         this.dict_club_id = dict_club_id;
     }
 
+    public String getStu_num() {
+        return stu_num;
+    }
+
+    public void setStu_num(String stu_num) {
+        this.stu_num = stu_num;
+    }
+
     @Override
     public String toString() {
         return "StuAndClub{" +
                 "id=" + id +
-                ", user_id=" + user_id +
+                ", stu_num='" + stu_num + '\'' +
                 ", dict_club_id=" + dict_club_id +
                 '}';
     }
+
 }
