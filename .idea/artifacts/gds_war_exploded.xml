@@ -7,6 +7,8 @@
           <element id="module-output" name="gds" />
         </element>
         <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: junit:junit:4.9" />
+          <element id="library" level="project" name="Maven: org.hamcrest:hamcrest-core:1.1" />
           <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:4.1.1.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-expression:4.1.1.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-core:4.1.1.RELEASE" />

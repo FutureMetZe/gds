@@ -3,13 +3,13 @@
 
 <mapper namespace="com.gds.dao.StudentDao">
 
-
-    <!--查询所有社员列表-->
-    <select id="findAllStudent" resultType="com.gds.entity.Student">
+    <!--根据id查询社员-->
+    <select id="selectByUserId" resultType="com.gds.entity.Student" parameterType="java.lang.Integer">
         SELECT * from gds_student
+        WHERE user_id = #{user_id}
     </select>
 
-    <!--查询社员总数-->
+    <!--根据条件查询社员总数-->
     <select id="selectTotalCount" resultType="java.lang.Integer" parameterType="Map">
         select count(1) from gds_student
         <where>
@@ -25,7 +25,7 @@
         </where>
     </select>
 
-    <!--分页查询-->
+    <!--根据条件进行分页查询-->
     <select id="selectPageList"  resultType="com.gds.entity.Student" parameterType="Map">
         select * from gds_student
         <!-- 加入查询条件  -->
@@ -43,6 +43,7 @@
         LIMIT #{startRow},#{size}
     </select>
 
+    <!-- 新增 -->
     <insert id="insertStudent" parameterType="com.gds.entity.Student">
         insert into gds_student
         (
@@ -64,8 +65,10 @@
         )
     </insert>
 
+    <!-- 根据user_id删除 -->
     <delete id="deleteStuByUserId" parameterType="java.lang.Integer">
         delete from gds_student
         where user_id = #{user_id,jdbcType=INTEGER}
     </delete>
+
 </mapper>

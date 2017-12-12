@@ -9,6 +9,11 @@
         SELECT * from gds_club
     </select>
 
+    <!--根据ID查询-->
+    <select id="selectClubById" resultType="com.gds.entity.Club" parameterType="java.lang.Integer">
+        SELECT * from gds_club
+        WHERE club_id = #{club_id}
+    </select>
     <!--&lt;!&ndash;查询社员总数&ndash;&gt;
     <select id="selectTotalCount" resultType="java.lang.Integer">
         select count(1) from gds_student

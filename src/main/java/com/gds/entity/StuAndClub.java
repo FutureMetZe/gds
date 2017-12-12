@@ -18,7 +18,13 @@ public class StuAndClub {
         this.id = id;
     }
 
+    public String getStu_num() {
+        return stu_num;
+    }
 
+    public void setStu_num(String stu_num) {
+        this.stu_num = stu_num;
+    }
 
     public Integer getDict_club_id() {
         return dict_club_id;
@@ -26,14 +32,6 @@ public class StuAndClub {
 
     public void setDict_club_id(Integer dict_club_id) {
         this.dict_club_id = dict_club_id;
-    }
-
-    public String getStu_num() {
-        return stu_num;
-    }
-
-    public void setStu_num(String stu_num) {
-        this.stu_num = stu_num;
     }
 
     @Override

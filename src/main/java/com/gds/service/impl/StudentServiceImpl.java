@@ -44,7 +44,6 @@ public class StudentServiceImpl implements StudentService {
         map.put("startRow",startRow);
         map.put("size",size);
 
-
         List<Student> students = studentDao.selectPageList(map);
 
         //4 列表数据放入pageBean中.并返回
@@ -61,5 +60,10 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public void deleteStuByUserId(Integer user_id) {
         studentDao.deleteStuByUserId(user_id);
+    }
+
+    @Override
+    public Student selectByUserId(Integer user_id) {
+        return studentDao.selectByUserId(user_id);
     }
 }

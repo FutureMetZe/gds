@@ -17,4 +17,6 @@ public interface StudentDao {
     void insertStudent(Student student);
 
     void deleteStuByUserId(Integer user_id);
+
+    Student selectByUserId(Integer user_id);
 }

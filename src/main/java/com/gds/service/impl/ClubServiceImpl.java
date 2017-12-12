@@ -3,6 +3,7 @@ package com.gds.service.impl;
 import com.gds.dao.ClubDao;
 import com.gds.entity.Club;
 import com.gds.service.ClubService;
+import org.junit.Test;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -18,4 +19,10 @@ public class ClubServiceImpl implements ClubService{
     public List<Club> selectAll() {
         return clubDao.selectAll();
     }
+
+    @Override
+    public Club selectClubById(Integer stuClubId) {
+        return clubDao.selectClubById(stuClubId);
+    }
+
 }

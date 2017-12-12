@@ -110,6 +110,33 @@ public class StuSysController {
         return stuMag(request,response,model,null,null,null,null,null);
     }
 
+    /**
+     *  跳转到修改页面
+     */
+    @RequestMapping("/stuEdit.do")
+    public String stuEdit(HttpServletRequest request, HttpServletResponse response, ModelMap model ,
+                          @RequestParam(value = "user_id", required = false)Integer user_id){
+        logger.info("访问【stuEdit.do】接口；接收到的数据为：user_id="+user_id);
+        Student student = studentService.selectByUserId(user_id);
+        //查询所有社团
+        List<Club> clubs = clubService.selectAll();
+        //从字典中获取 002学院
+        List<Dict> facultys = dictService.selectAllFaculty("002");
+        //获取制定学生绑定的社团关系列表
+//        List<Club> stuClub = stuAndClubService.selectStudentClubByStu_num(student.getStu_num());
+//        Integer stuClubId = null;
+//        Club club01 = clubService.selectClubById(stuClubId);
+//        if(stuClub.size()>0){
+//            stuClubId = stuClub.get(0).getClub_id();
+//        }
+
+        model.addAttribute("clubs",clubs);
+        model.addAttribute("facultys",facultys);
+        model.addAttribute("student",student);
+
+        return "back/stu/edit";
+    }
+
 
 
 }

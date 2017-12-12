@@ -137,7 +137,7 @@ $(document).ready(function(){
                 <td>${Student.email}</td>
                 <td>${Student.register_time}</td>
                 <td>${Student.last_login_time}</td>
-                <td><a href="#" class="tablelink">查看</a>     <a href="${pageContext.request.contextPath }/back/stuDelete.do?user_id=${Student.user_id}" class="tablelink" > 删除</a></td>
+                <td><a href="${pageContext.request.contextPath }/back/stuEdit.do?user_id=${Student.user_id}" class="tablelink">修改</a>     <a href="${pageContext.request.contextPath }/back/stuDelete.do?user_id=${Student.user_id}" class="tablelink" > 删除</a></td>
             </tr>
         </c:forEach>
         </tbody>

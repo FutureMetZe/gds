@@ -9,4 +9,6 @@ import java.util.List;
 public interface ClubService {
 
     List<Club> selectAll();
+
+    Club selectClubById(Integer stuClubId);
 }

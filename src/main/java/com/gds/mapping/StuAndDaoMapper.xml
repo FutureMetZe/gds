@@ -15,4 +15,13 @@
         ( #{id}, #{stu_num}, #{club_id} )
     </insert>
 
+    <select id="selectStudentClubByStu_num" parameterType="java.lang.String" resultType="com.gds.entity.Club">
+      SELECT * FROM gds_club
+      <where>
+          <if test="stu_num != null and stu_num != ''">
+              stu_num = #{stu_num}
+          </if>
+      </where>
+    </select>
+
 </mapper>

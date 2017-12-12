@@ -10,4 +10,5 @@ public interface ClubDao {
 
     List<Club> selectAll();
 
+    Club selectClubById(Integer club_id);
 }
