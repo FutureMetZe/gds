@@ -14,17 +14,53 @@
         SELECT * from gds_club
         WHERE club_id = #{club_id}
     </select>
-    <!--&lt;!&ndash;查询社员总数&ndash;&gt;
-    <select id="selectTotalCount" resultType="java.lang.Integer">
-        select count(1) from gds_student
+
+    <!--按条件查询社团总数-->
+    <select id="selectClubCount" resultType="java.lang.Integer" parameterType="Map">
+        select count(1) from gds_club
+        <where>
+            <if test="club_name != null and club_name != ''">
+                club_name like "%"#{club_name}"%"
+            </if>
+            <if test="club_faculty != null and club_faculty != ''">
+                and club_faculty like "%"#{club_faculty}"%"
+            </if>
+        </where>
     </select>
 
-    &lt;!&ndash;分页查询&ndash;&gt;
-    <select id="selectPageList"  resultType="com.gds.entity.Student" parameterType="Map">
-        select * from gds_student
-        &lt;!&ndash; 可加入where分页条件  &ndash;&gt;
-        LIMIT #{startRow},#{size}
-    </select>
+    <!--分页查询  -->
+      <select id="selectClubList"  resultType="com.gds.entity.Club" parameterType="Map">
+          select * from gds_club
+          <where>
+              <if test="club_name != null and club_name != ''">
+                  club_name like "%"#{club_name}"%"
+              </if>
+              <if test="club_faculty != null and club_faculty != ''">
+                  and club_faculty like "%"#{club_faculty}"%"
+              </if>
+          </where>
+          LIMIT #{startRow},#{size}
+      </select>
 
--->
+    <!--  新增-->
+    <insert id="insertClub" parameterType="com.gds.entity.Club">
+        insert into gds_club
+        (
+          club_id,club_status,club_name,
+          club_type,club_faculty,club_createtime,
+          club_introduce,club_standby001,club_standby002
+        )
+        values
+        (
+          #{club_id}, #{club_status}, #{club_name},#{club_type}, #{club_faculty},
+          #{club_createtime}, #{club_introduce}, #{club_standby001},#{club_standby002}
+        )
+
+    </insert>
+
+    <delete id="deleteByClubId" parameterType="java.lang.Integer">
+      DELETE from gds_club
+      where club_id = #{club_id}
+    </delete>
+
 </mapper>

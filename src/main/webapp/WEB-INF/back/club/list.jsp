@@ -23,7 +23,7 @@
     };
 
     function forAddPage(){
-        window.location.href="${pageContext.request.contextPath }/back/stuAdd.do";
+        window.location.href="${pageContext.request.contextPath }/back/clubAdd.do";
     };
 
 </script>
@@ -60,8 +60,8 @@ $(document).ready(function(){
     <span>位置：</span>
     <ul class="placeul">
     <li><a href="#">管理信息</a></li>
-    <li><a href="#">社员管理</a></li>
-    <li><a href="#">社员列表</a></li>
+    <li><a href="#">组织架构</a></li>
+    <li><a href="#">社团列表</a></li>
     </ul>
     </div>
     
@@ -70,10 +70,9 @@ $(document).ready(function(){
     <div class="tools">
     
     	<ul class="toolbar">
-            <form action="${pageContext.request.contextPath }/back/stuMag.do">
-                <li><label>用户名：</label><input name="username" type="text" class="dfinput" value="${username}"  style="width:110px;"/></li>&nbsp;&nbsp;
-                <li><label>姓名：</label><input name="stu_name" type="text" class="dfinput" value="${stu_name}"  style="width:110px;"/></li>&nbsp;&nbsp;
-                <li><label>学院：</label><input name="standby001" type="text" class="dfinput" value="${standby001}"  style="width:130px;"/></li>&nbsp;&nbsp;
+            <form action="${pageContext.request.contextPath }/back/clubList.do">
+                <li><label>组织名称：</label><input name="club_name" type="text" class="dfinput" value="${club_name}"  style="width:110px;"/></li>&nbsp;&nbsp;
+                <li><label>所属学院：</label><input name="club_faculty" type="text" class="dfinput" value="${club_faculty}"  style="width:130px;"/></li>&nbsp;&nbsp;
                 <!-- 隐藏域.当前页码 -->
                 <input type="hidden" name="currentPage" value="${page.totalPage}" />
                 <!-- 隐藏域.每页显示条数 -->
@@ -89,7 +88,7 @@ $(document).ready(function(){
     
     </div>
 
-<FORM id="pageForm" name="customerForm" action="${pageContext.request.contextPath }/back/stuMag.do" method=post>
+<FORM id="pageForm" name="customerForm" action="${pageContext.request.contextPath }/back/clubList.do" method=post>
     <!-- 隐藏域.当前页码 -->
     <input type="hidden" name="currentPage" id="currentPageInput" value="${page.totalPage}" />
     <!-- 隐藏域.每页显示条数 -->
@@ -98,30 +97,29 @@ $(document).ready(function(){
     <table class="tablelist">
     	<thead>
     	<tr>
-        <th>用户名<i class="sort"><img src="${pageContext.request.contextPath }/back/images/px.gif" /></i></th>
-        <th>姓名</th>
-        <th>学号</th>
-        <th>学院</th>
-        <th>电话</th>
-        <th>邮箱</th>
+        <th>组织名称<i class="sort"><img src="${pageContext.request.contextPath }/back/images/px.gif" /></i></th>
+
+        <th>所属类型</th>
+        <th>所属学院</th>
         <th>注册时间</th>
-        <th>上次登录时间</th>
+        <th>是否审核</th>
+
+        <th>负责人</th>
         <th>操作</th>
         </tr>
         </thead>
 
         <tbody>
-        <c:forEach items="${beans}" var="Student">
-            <tr>
-                <td>${Student.username}</td>
-                <td>${Student.stu_name}</td>
-                <td>${Student.stu_num}</td>
-                <td>${Student.standby001}</td>
-                <td>${Student.mobile}</td>
-                <td>${Student.email}</td>
-                <td>${Student.register_time}</td>
-                <td>${Student.last_login_time}</td>
-                <td><a href="${pageContext.request.contextPath }/back/stuEdit.do?user_id=${Student.user_id}" class="tablelink">修改</a>     <a href="${pageContext.request.contextPath }/back/stuDelete.do?user_id=${Student.user_id}" class="tablelink" > 删除</a></td>
+        <c:forEach items="${beans}" var="Club">
+            <tr><%--<c:if test="${page.pageSize==5}">selected</c:if>--%>
+               <%-- <td>${Club.club_id}</td>--%>
+                <td>${Club.club_name}</td>
+                <td>${Club.club_type}</td>
+                <td>${Club.club_faculty}</td>
+                <td>${Club.club_createtime}</td>
+                <td><c:if test="${Club.club_status==0}">未</c:if>完成审核</td>
+                <td><a href="${pageContext.request.contextPath }/back/stuEdit.do?stu_num=${Club.club_standby002}" >${Club.club_standby001}</a></td>
+                <td><a href="${pageContext.request.contextPath }/back/clubEdit.do?club_id=${Club.club_id}" class="tablelink">修改</a>     <a href="${pageContext.request.contextPath }/back/clubDelete.do?club_id=${Club.club_id}" class="tablelink" > 删除</a></td>
             </tr>
         </c:forEach>
         </tbody>

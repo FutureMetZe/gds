@@ -16,6 +16,11 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/back")
 public class AdminController {
 
+    @RequestMapping("/login.do")
+    public String login(){
+        return "back/login";
+    }
+
     @RequestMapping("/main.do")
     public String main(){
         return "back/main";
