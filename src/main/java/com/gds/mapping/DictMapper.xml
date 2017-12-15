@@ -5,7 +5,7 @@
 
 
     <!--查询所有学院列表-->
-    <select id="selectAllFaculty" resultType="com.gds.entity.Dict" parameterType="String">
+    <select id="selectDiceByKey" resultType="com.gds.entity.Dict" parameterType="String">
         SELECT * from gds_dict g
         WHERE g.key_id = #{keyId}
 

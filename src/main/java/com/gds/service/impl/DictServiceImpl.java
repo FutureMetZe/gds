@@ -15,7 +15,7 @@ public class DictServiceImpl implements DictService{
     private DictDao dictDao;
 
     @Override
-    public List<Dict> selectAllFaculty(String str) {
-        return dictDao.selectAllFaculty(str);
+    public List<Dict> selectDiceByKey(String str) {
+        return dictDao.selectDiceByKey(str);
     }
 }

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gds.dao.HubestlDao">
+  <resultMap id="BaseResultMap" type="com.gds.entity.Hubestl">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="faculty" jdbcType="VARCHAR" property="faculty" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="stunum" jdbcType="VARCHAR" property="stunum" />
+    <result column="department" jdbcType="VARCHAR" property="department" />
+    <result column="createtime" jdbcType="VARCHAR" property="createtime" />
+    <result column="position" jdbcType="VARCHAR" property="position" />
+    <result column="isquit" jdbcType="INTEGER" property="isquit" />
+    <result column="standby001" jdbcType="VARCHAR" property="standby001" />
+    <result column="standby002" jdbcType="VARCHAR" property="standby002" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, sex, faculty, mobile, stunum, department, createtime, position, isquit, 
+    standby001, standby002
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from gds_hubestl
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <!--查询总数-->
+  <select id="selectCount" parameterType="Map" resultType="java.lang.Integer">
+    select count(1) from gds_hubestl
+    <where>
+      <if test="name != null and name != ''">
+        name like "%"#{name}"%"
+      </if>
+      <if test="department != null and department != ''">
+        and department = #{department}
+      </if>
+    </where>
+  </select>
+
+  <!--按照Map查询-->
+  <select id="selectListByMap" parameterType="Map" resultType="com.gds.entity.Hubestl">
+    select * from gds_hubestl
+    <where>
+      <if test="name != null and name != ''">
+        name like "%"#{name}"%"
+      </if>
+      <if test="department != null and department != ''">
+        and department like "%"#{department}"%"
+      </if>
+    </where>
+    LIMIT #{startRow},#{size}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from gds_hubestl
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gds.entity.Hubestl">
+    insert into gds_hubestl (id, name, sex, 
+      faculty, mobile, stunum, 
+      department, createtime, position, 
+      isquit, standby001, standby002
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+      #{faculty,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{stunum,jdbcType=VARCHAR}, 
+      #{department,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}, 
+      #{isquit,jdbcType=INTEGER}, #{standby001,jdbcType=VARCHAR}, #{standby002,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gds.entity.Hubestl">
+    insert into gds_hubestl
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="faculty != null">
+        faculty,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="stunum != null">
+        stunum,
+      </if>
+      <if test="department != null">
+        department,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="position != null">
+        position,
+      </if>
+      <if test="isquit != null">
+        isquit,
+      </if>
+      <if test="standby001 != null">
+        standby001,
+      </if>
+      <if test="standby002 != null">
+        standby002,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="faculty != null">
+        #{faculty,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="stunum != null">
+        #{stunum,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null">
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="isquit != null">
+        #{isquit,jdbcType=INTEGER},
+      </if>
+      <if test="standby001 != null">
+        #{standby001,jdbcType=VARCHAR},
+      </if>
+      <if test="standby002 != null">
+        #{standby002,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gds.entity.Hubestl">
+    update gds_hubestl
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="faculty != null">
+        faculty = #{faculty,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="stunum != null">
+        stunum = #{stunum,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null">
+        department = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        position = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="isquit != null">
+        isquit = #{isquit,jdbcType=INTEGER},
+      </if>
+      <if test="standby001 != null">
+        standby001 = #{standby001,jdbcType=VARCHAR},
+      </if>
+      <if test="standby002 != null">
+        standby002 = #{standby002,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gds.entity.Hubestl">
+    update gds_hubestl
+    set name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      faculty = #{faculty,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      stunum = #{stunum,jdbcType=VARCHAR},
+      department = #{department,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=VARCHAR},
+      position = #{position,jdbcType=VARCHAR},
+      isquit = #{isquit,jdbcType=INTEGER},
+      standby001 = #{standby001,jdbcType=VARCHAR},
+      standby002 = #{standby002,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

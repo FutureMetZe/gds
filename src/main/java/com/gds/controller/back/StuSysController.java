@@ -70,7 +70,7 @@ public class StuSysController {
         //查询所有社团
         List<Club> clubs = clubService.selectAll();
         //从字典中获取 002学院
-        List<Dict> facultys = dictService.selectAllFaculty("002");
+        List<Dict> facultys = dictService.selectDiceByKey("002");
         model.addAttribute("clubs",clubs);
         model.addAttribute("facultys",facultys);
         logger.info("访问【stuAdd.do】接口；返回数据为："+clubs.toString());
@@ -119,7 +119,7 @@ public class StuSysController {
         //查询所有社团
         List<Club> clubs = clubService.selectAll();
         //从字典中获取 002学院
-        List<Dict> facultys = dictService.selectAllFaculty("002");
+        List<Dict> facultys = dictService.selectDiceByKey("002");
         //获取制定学生绑定的社团关系列表
 //        List<Club> stuClub = stuAndClubService.selectStudentClubByStu_num(student.getStu_num());
 //        Integer stuClubId = null;

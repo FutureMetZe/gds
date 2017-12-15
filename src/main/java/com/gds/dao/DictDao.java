@@ -7,6 +7,6 @@ import java.util.List;
 
 @Repository("DictDao")
 public interface DictDao {
-    List<Dict> selectAllFaculty(String keyId);
+    List<Dict> selectDiceByKey(String keyId);
 
 }

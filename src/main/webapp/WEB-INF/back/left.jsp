@@ -49,31 +49,22 @@
 
     <dd>
         <div class="title">
-            <span><img src="${BasePath}/back/images/leftico01.png" /></span>管理信息
+            <span><img src="${BasePath}/back/images/leftico01.png" /></span>社联信息
         </div>
         <ul class="menuson">
-            <li><cite></cite><a href="${BasePath}/back/index.do" target="rightFrame">首页模版</a><i></i></li>
-            <li><cite></cite><a href="${BasePath}/back/stuMag.do" target="rightFrame">社员管理</a><i></i></li>
-            <li><cite></cite><a href="${BasePath}/back/clubList.do" target="rightFrame">组织架构</a><i></i></li>
-            <li><cite></cite><a href="${BasePath}/back/form.do" target="rightFrame">添加编辑</a><i></i></li>
-            <li><cite></cite><a href="${BasePath}/back/imglist.do" target="rightFrame">图片列表</a><i></i></li>
-            <li><cite></cite><a href="${BasePath}/back/imglist1.do" target="rightFrame">自定义</a><i></i></li>
-            <li><cite></cite><a href="${BasePath}/back/tools.do" target="rightFrame">常用工具</a><i></i></li>
-            <li><cite></cite><a href="${BasePath}/back/filelist.do" target="rightFrame">信息管理</a><i></i></li>
-            <li><cite></cite><a href="${BasePath}/back/tab.do" target="rightFrame">Tab页</a><i></i></li>
-            <li><cite></cite><a href="${BasePath}/back/error.do" target="rightFrame">404页面</a><i></i></li>
+            <li><cite></cite><a href="${BasePath}/back/index.do" target="rightFrame">首页</a><i></i></li>
+            <li><cite></cite><a href="${BasePath}/back/hubestl_list.do" target="rightFrame">成员列表</a><i></i></li>
+            <li><cite></cite><a href="${BasePath}/back/clubList.do" target="rightFrame">物资管理</a><i></i></li>
         </ul>
     </dd>
 
-
     <dd>
         <div class="title">
-            <span><img src="${BasePath}/back/images/leftico02.png" /></span>其他设置
+            <span><img src="${BasePath}/back/images/leftico02.png" /></span>社团管理
         </div>
         <ul class="menuson">
-            <li><cite></cite><a href="#">编辑内容</a><i></i></li>
-            <li><cite></cite><a href="#">发布信息</a><i></i></li>
-            <li><cite></cite><a href="#">档案列表显示</a><i></i></li>
+            <li><cite></cite><a href="${BasePath}/back/stuMag.do" target="rightFrame">社员管理</a><i></i></li>
+            <li><cite></cite><a href="${BasePath}/back/clubList.do" target="rightFrame">组织架构</a><i></i></li>
         </ul>
     </dd>
 

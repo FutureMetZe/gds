@@ -3,6 +3,7 @@ package com.gds.controller.back;
 import com.gds.entity.Student;
 import com.gds.service.StudentService;
 import com.gds.utils.PageBean;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @RequestMapping("/back")
-public class AdminController {
+public class PageController {
+    private Logger logger = Logger.getLogger(PageController.class);
 
     @RequestMapping("/login.do")
     public String login(){

@@ -54,9 +54,9 @@ public class ClubController {
     @RequestMapping("/clubAdd.do")
     public String clubAdd(HttpServletRequest request, HttpServletResponse response, ModelMap model ){
         //从字典中获取 001社团类型
-        List<Dict> clubType = dictService.selectAllFaculty("001");
+        List<Dict> clubType = dictService.selectDiceByKey("001");
         //从字典中获取 002学院
-        List<Dict> facultys = dictService.selectAllFaculty("002");
+        List<Dict> facultys = dictService.selectDiceByKey("002");
         model.addAttribute("clubType",clubType);
         model.addAttribute("facultys",facultys);
         logger.info("访问【clubAdd.do】接口；返回数据为："+clubType.toString());

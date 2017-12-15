@@ -8,6 +8,6 @@ import java.util.List;
 @Service("DictService")
 public interface DictService {
 
-    List<Dict> selectAllFaculty(String s);
+    List<Dict> selectDiceByKey(String s);
 
 }
