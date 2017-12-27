@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gds.dao.GoodsMapper">
+  <resultMap id="BaseResultMap" type="com.gds.entity.Goods">
+    <result column="goods_id" jdbcType="INTEGER" property="goodsId" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+    <result column="goods_createTime" jdbcType="TIMESTAMP" property="goodsCreatetime" />
+    <result column="goods_state" jdbcType="INTEGER" property="goodsState" />
+    <result column="goods_department" jdbcType="VARCHAR" property="goodsDepartment" />
+    <result column="standby001" jdbcType="VARCHAR" property="standby001" />
+    <result column="standby002" jdbcType="VARCHAR" property="standby002" />
+    <result column="standby003" jdbcType="VARCHAR" property="standby003" />
+  </resultMap>
+  <insert id="insert" parameterType="com.gds.entity.Goods">
+    insert into gds_goods (goods_id, goods_name, goods_createTime, 
+      goods_state, goods_department, standby001, 
+      standby002, standby003)
+    values (#{goodsId,jdbcType=INTEGER}, #{goodsName,jdbcType=VARCHAR}, #{goodsCreatetime,jdbcType=TIMESTAMP}, 
+      #{goodsState,jdbcType=INTEGER}, #{goodsDepartment,jdbcType=VARCHAR}, #{standby001,jdbcType=VARCHAR}, 
+      #{standby002,jdbcType=VARCHAR}, #{standby003,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gds.entity.Goods">
+    insert into gds_goods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="goodsName != null">
+        goods_name,
+      </if>
+      <if test="goodsCreatetime != null">
+        goods_createTime,
+      </if>
+      <if test="goodsState != null">
+        goods_state,
+      </if>
+      <if test="goodsDepartment != null">
+        goods_department,
+      </if>
+      <if test="standby001 != null">
+        standby001,
+      </if>
+      <if test="standby002 != null">
+        standby002,
+      </if>
+      <if test="standby003 != null">
+        standby003,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null">
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCreatetime != null">
+        #{goodsCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodsState != null">
+        #{goodsState,jdbcType=INTEGER},
+      </if>
+      <if test="goodsDepartment != null">
+        #{goodsDepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="standby001 != null">
+        #{standby001,jdbcType=VARCHAR},
+      </if>
+      <if test="standby002 != null">
+        #{standby002,jdbcType=VARCHAR},
+      </if>
+      <if test="standby003 != null">
+        #{standby003,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>
