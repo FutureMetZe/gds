@@ -95,5 +95,12 @@
     <mvc:default-servlet-handler />
     <!-- 静态资源映射 -->
     <mvc:resources mapping="/static/**" location="/static/" cache-period="31536000"/>
-
+    <!--登录拦截器-->
+    <mvc:interceptors>
+                <mvc:interceptor>
+                     <!-- 拦截所有URL中包含/back/的请求 -->
+                    <mvc:mapping path="/back/**"/>
+                     <bean class="com.gds.interceptor.LoginInterceptor"></bean>
+                 </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

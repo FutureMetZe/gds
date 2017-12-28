@@ -82,4 +82,18 @@ public class Goods {
     public void setStandby003(String standby003) {
         this.standby003 = standby003 == null ? null : standby003.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Goods{" +
+                "goodsId=" + goodsId +
+                ", goodsName='" + goodsName + '\'' +
+                ", goodsCreatetime=" + goodsCreatetime +
+                ", goodsState=" + goodsState +
+                ", goodsDepartment='" + goodsDepartment + '\'' +
+                ", standby001='" + standby001 + '\'' +
+                ", standby002='" + standby002 + '\'' +
+                ", standby003='" + standby003 + '\'' +
+                '}';
+    }
 }

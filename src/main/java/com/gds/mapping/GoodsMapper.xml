@@ -11,6 +11,7 @@
     <result column="standby002" jdbcType="VARCHAR" property="standby002" />
     <result column="standby003" jdbcType="VARCHAR" property="standby003" />
   </resultMap>
+
   <insert id="insert" parameterType="com.gds.entity.Goods">
     insert into gds_goods (goods_id, goods_name, goods_createTime, 
       goods_state, goods_department, standby001, 
@@ -74,4 +75,62 @@
       </if>
     </trim>
   </insert>
+
+  <select id="selectCount" resultType="java.lang.Integer" parameterType="Map">
+    select count(1) from gds_goods
+    <where>
+      <if test="goodsName != null and goodsName != ''">
+        goods_name like "%"#{goodsName}"%"
+      </if>
+      <if test="goodsDepartment != null and goodsDepartment != ''">
+        and goods_department like "%"#{goodsDepartment}"%"
+      </if>
+    </where>
+  </select>
+
+  <select id="selectListByMap" parameterType="Map" resultMap="BaseResultMap" >
+    select * from gds_goods
+    <where>
+      <if test="goodsName != null and goodsName != ''">
+        goods_name like "%"#{goodsName}"%"
+      </if>
+      <if test="goodsDepartment != null and goodsDepartment != ''">
+        and goods_department like "%"#{goodsDepartment}"%"
+      </if>
+    </where>
+    LIMIT #{startRow},#{size}
+  </select>
+
+  <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select * from gds_goods where goods_id = #{goodsId,jdbcType=INTEGER} ;
+  </select>
+
+  <update id="updateGoods" parameterType="com.gds.entity.Goods">
+    update gds_goods
+    <set>
+      <if test="goodsName != null">
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCreatetime != null">
+        goods_createTime = #{goodsCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodsState != null">
+        goods_state = #{goodsState,jdbcType=INTEGER},
+      </if>
+      <if test="goodsDepartment != null">
+        goods_department = #{goodsDepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="standby001 != null">
+        standby001 = #{standby001,jdbcType=VARCHAR},
+      </if>
+      <if test="standby002 != null">
+        standby002 = #{standby002,jdbcType=VARCHAR},
+      </if>
+      <if test="standby003 != null">
+        standby003 = #{standby003,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </update>
+
 </mapper>
