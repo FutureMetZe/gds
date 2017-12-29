@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gds.dao.ActivityMapper">
+  <resultMap id="BaseResultMap" type="com.gds.entity.Activity">
+    <id column="activity_id" jdbcType="INTEGER" property="activityId" />
+    <result column="activity_title" jdbcType="VARCHAR" property="activityTitle" />
+    <result column="activity_type" jdbcType="VARCHAR" property="activityType" />
+    <result column="beginTime" jdbcType="TIMESTAMP" property="begintime" />
+    <result column="overTime" jdbcType="TIMESTAMP" property="overtime" />
+    <result column="peopleNum" jdbcType="INTEGER" property="peoplenum" />
+    <result column="forecastNum" jdbcType="VARCHAR" property="forecastnum" />
+    <result column="sponsor" jdbcType="VARCHAR" property="sponsor" />
+    <result column="site" jdbcType="VARCHAR" property="site" />
+    <result column="activity_introduce" jdbcType="VARCHAR" property="activityIntroduce" />
+    <result column="plan001" jdbcType="VARCHAR" property="plan001" />
+    <result column="plan002" jdbcType="VARCHAR" property="plan002" />
+    <result column="plan003" jdbcType="VARCHAR" property="plan003" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    activity_id, activity_title, activity_type, beginTime, overTime, peopleNum, forecastNum, 
+    sponsor, site, activity_introduce, plan001, plan002, plan003
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from gds_activity
+    where activity_id = #{activityId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from gds_activity
+    where activity_id = #{activityId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gds.entity.Activity">
+    insert into gds_activity (activity_id, activity_title, activity_type, 
+      beginTime, overTime, peopleNum, 
+      forecastNum, sponsor, site, 
+      activity_introduce, plan001, plan002, 
+      plan003)
+    values (#{activityId,jdbcType=INTEGER}, #{activityTitle,jdbcType=VARCHAR}, #{activityType,jdbcType=VARCHAR}, 
+      #{begintime,jdbcType=TIMESTAMP}, #{overtime,jdbcType=TIMESTAMP}, #{peoplenum,jdbcType=INTEGER}, 
+      #{forecastnum,jdbcType=VARCHAR}, #{sponsor,jdbcType=VARCHAR}, #{site,jdbcType=VARCHAR}, 
+      #{activityIntroduce,jdbcType=VARCHAR}, #{plan001,jdbcType=VARCHAR}, #{plan002,jdbcType=VARCHAR}, 
+      #{plan003,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gds.entity.Activity">
+    insert into gds_activity
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="activityId != null">
+        activity_id,
+      </if>
+      <if test="activityTitle != null">
+        activity_title,
+      </if>
+      <if test="activityType != null">
+        activity_type,
+      </if>
+      <if test="begintime != null">
+        beginTime,
+      </if>
+      <if test="overtime != null">
+        overTime,
+      </if>
+      <if test="peoplenum != null">
+        peopleNum,
+      </if>
+      <if test="forecastnum != null">
+        forecastNum,
+      </if>
+      <if test="sponsor != null">
+        sponsor,
+      </if>
+      <if test="site != null">
+        site,
+      </if>
+      <if test="activityIntroduce != null">
+        activity_introduce,
+      </if>
+      <if test="plan001 != null">
+        plan001,
+      </if>
+      <if test="plan002 != null">
+        plan002,
+      </if>
+      <if test="plan003 != null">
+        plan003,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="activityId != null">
+        #{activityId,jdbcType=INTEGER},
+      </if>
+      <if test="activityTitle != null">
+        #{activityTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="activityType != null">
+        #{activityType,jdbcType=VARCHAR},
+      </if>
+      <if test="begintime != null">
+        #{begintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="overtime != null">
+        #{overtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="peoplenum != null">
+        #{peoplenum,jdbcType=INTEGER},
+      </if>
+      <if test="forecastnum != null">
+        #{forecastnum,jdbcType=VARCHAR},
+      </if>
+      <if test="sponsor != null">
+        #{sponsor,jdbcType=VARCHAR},
+      </if>
+      <if test="site != null">
+        #{site,jdbcType=VARCHAR},
+      </if>
+      <if test="activityIntroduce != null">
+        #{activityIntroduce,jdbcType=VARCHAR},
+      </if>
+      <if test="plan001 != null">
+        #{plan001,jdbcType=VARCHAR},
+      </if>
+      <if test="plan002 != null">
+        #{plan002,jdbcType=VARCHAR},
+      </if>
+      <if test="plan003 != null">
+        #{plan003,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gds.entity.Activity">
+    update gds_activity
+    <set>
+      <if test="activityTitle != null">
+        activity_title = #{activityTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="activityType != null">
+        activity_type = #{activityType,jdbcType=VARCHAR},
+      </if>
+      <if test="begintime != null">
+        beginTime = #{begintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="overtime != null">
+        overTime = #{overtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="peoplenum != null">
+        peopleNum = #{peoplenum,jdbcType=INTEGER},
+      </if>
+      <if test="forecastnum != null">
+        forecastNum = #{forecastnum,jdbcType=VARCHAR},
+      </if>
+      <if test="sponsor != null">
+        sponsor = #{sponsor,jdbcType=VARCHAR},
+      </if>
+      <if test="site != null">
+        site = #{site,jdbcType=VARCHAR},
+      </if>
+      <if test="activityIntroduce != null">
+        activity_introduce = #{activityIntroduce,jdbcType=VARCHAR},
+      </if>
+      <if test="plan001 != null">
+        plan001 = #{plan001,jdbcType=VARCHAR},
+      </if>
+      <if test="plan002 != null">
+        plan002 = #{plan002,jdbcType=VARCHAR},
+      </if>
+      <if test="plan003 != null">
+        plan003 = #{plan003,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where activity_id = #{activityId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gds.entity.Activity">
+    update gds_activity
+    set activity_title = #{activityTitle,jdbcType=VARCHAR},
+      activity_type = #{activityType,jdbcType=VARCHAR},
+      beginTime = #{begintime,jdbcType=TIMESTAMP},
+      overTime = #{overtime,jdbcType=TIMESTAMP},
+      peopleNum = #{peoplenum,jdbcType=INTEGER},
+      forecastNum = #{forecastnum,jdbcType=VARCHAR},
+      sponsor = #{sponsor,jdbcType=VARCHAR},
+      site = #{site,jdbcType=VARCHAR},
+      activity_introduce = #{activityIntroduce,jdbcType=VARCHAR},
+      plan001 = #{plan001,jdbcType=VARCHAR},
+      plan002 = #{plan002,jdbcType=VARCHAR},
+      plan003 = #{plan003,jdbcType=VARCHAR}
+    where activity_id = #{activityId,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectCount" parameterType="Map" resultType="java.lang.Integer">
+    SELECT count(1) from gds_activity
+    <where>
+      <if test="activityTitle != null and activityTitle != ''">
+        activity_title like "%"#{activityTitle}"%"
+      </if>
+      <if test="sponsor != null and sponsor != ''">
+        and sponsor like "%"#{sponsor}"%"
+      </if>
+    </where>
+  </select>
+
+  <select id="selectListByMap" parameterType="Map" resultMap="BaseResultMap">
+    SELECT * from gds_activity
+    <where>
+      <if test="activityTitle != null and activityTitle != ''">
+        activity_title like "%"#{activityTitle}"%"
+      </if>
+      <if test="sponsor != null and sponsor != ''">
+        and sponsor like "%"#{sponsor}"%"
+      </if>
+    </where>
+    LIMIT #{startRow},#{size}
+  </select>
+
+</mapper>

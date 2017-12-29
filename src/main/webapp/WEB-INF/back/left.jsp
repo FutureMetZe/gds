@@ -55,6 +55,7 @@
             <li><cite></cite><a href="${BasePath}/back/index.do" target="rightFrame">首页</a><i></i></li>
             <li><cite></cite><a href="${BasePath}/back/hubestl_list.do" target="rightFrame">成员列表</a><i></i></li>
             <li><cite></cite><a href="${BasePath}/back/goodsList.do" target="rightFrame">物资管理</a><i></i></li>
+            <li><cite></cite><a href="${BasePath}/back/activityList.do" target="rightFrame">活动管理</a><i></i></li>
         </ul>
     </dd>
 
