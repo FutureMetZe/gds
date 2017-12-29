@@ -17,7 +17,6 @@ public class ActivityServiceImpl implements ActivityService {
     @Resource(name="ActivityMapper")
     private ActivityMapper activityMapper;
 
-
     @Override
     public PageBean<Activity> selectActivityPageList(Integer currentPage, Integer pageSize, String activityTitle, String sponsor) {
 
@@ -34,5 +33,10 @@ public class ActivityServiceImpl implements ActivityService {
         pageBean.setBeans(beans);
         return pageBean;
 
+    }
+
+    @Override
+    public void insertSelective(Activity activity) {
+        activityMapper.insertSelective(activity);
     }
 }

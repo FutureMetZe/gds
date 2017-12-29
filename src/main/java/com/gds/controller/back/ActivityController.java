@@ -4,6 +4,7 @@ import com.gds.entity.Activity;
 import com.gds.entity.Dict;
 import com.gds.service.ActivityService;
 import com.gds.service.DictService;
+import com.gds.utils.DateUtils;
 import com.gds.utils.PageBean;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -57,4 +59,16 @@ public class ActivityController {
         return "back/activity/add";
     }
 
+    /**
+     *  保存活动数据
+     */
+    @RequestMapping("/activitySave.do")
+    public String save(Activity activity,HttpServletRequest request, HttpServletResponse response,ModelMap model,
+                       @RequestParam(value = "begintimeStr", required = false)String begintimeStr,
+                       @RequestParam(value = "overtimeStr", required = false)String overtimeStr){
+        activity.setBegintime(DateUtils.strToDateLong(begintimeStr));
+        activity.setOvertime(DateUtils.strToDateLong(overtimeStr));
+        activityService.insertSelective(activity);
+        return clubList(request,response,model,null,null,null,null);
+    }
 }

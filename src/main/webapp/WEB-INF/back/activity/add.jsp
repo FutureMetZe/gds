@@ -59,40 +59,28 @@ $(document).ready(function(e) {
 
     <div class="formtext">Hi，<b>admin</b>，欢迎您试用信息发布功能！</div>
 
-    <form action="/back/goodsSave.do">
-<%--
-    private String activityTitle;
-    private String activityType;
-    private Date begintime;
-    private Date overtime;
-    private Integer peoplenum;
-    private String forecastnum;
-    //主办
-    private String sponsor;
-    private String site;
-    private String activityIntroduce;
---%>
-    <ul class="forminfo">
-    <li><label>活动主题<b>*</b></label><input name="activityTitle" type="text" class="dfinput" value=""  style="width:350px;"/></li>
-    <li><label>主办方<b>*</b></label><input name="sponsor" type="text" class="dfinput" value=""  style="width:350px;"/></li>
-    <li><label>活动场地<b>*</b></label><input name="site" type="text" class="dfinput" value=""  style="width:350px;"/></li>
+    <form action="/back/activitySave.do">
 
-    <li><label>活动开始时间<b>*</b></label><input name="site" type="text" class="dfinput" value=""  style="width:350px;"/></li>
-    <li><label>活动结束时间<b>*</b></label><input name="site" type="text" class="dfinput" value=""  style="width:350px;"/></li>
+    <ul class="forminfo">
+    <li><label>活动主题：<b>*</b></label><input name="activityTitle" type="text" class="dfinput" value=""  style="width:350px;"/></li>
+    <li><label>主办方：<b>*</b></label><input name="sponsor" type="text" class="dfinput" value=""  style="width:350px;"/></li>
+    <li><label>活动场地：<b>*</b></label><input name="site" type="text" class="dfinput" value=""  style="width:350px;"/></li>
 
     <li>
-        <label>预计人数<b>*</b></label>
+        <label>预计人数：<b>*</b></label>
         <div class="vocation">
             <select	class="select1" id="forecastnum" name="forecastnum">
                 <option value="">--请选择--</option>
-                <c:forEach items="${activityTypes}" var="Dict">
-                    <option value="${Dict.value}">${Dict.value}</option>
-                </c:forEach>
+                    <option value="10人以内">10人以内</option>
+                    <option value="10人-50人">10人-50人</option>
+                    <option value="50人-200人">50人-100人</option>
+                    <option value="200人-500人">200人-500人</option>
+                    <option value="500人以上">500人以上</option>
             </select>
         </div>
     </li>
     <li>
-        <label>活动类型<b>*</b></label>
+        <label>活动类型：<b>*</b></label>
         <div class="vocation">
             <select	class="select1" id="activityType" name="activityType">
                 <option value="">--请选择--</option>
@@ -102,28 +90,41 @@ $(document).ready(function(e) {
             </select>
         </div>
     </li>
-        <li><label>活动介绍<b></b></label><textarea name="standby001" id="" cols="90" class="textinput" rows="10" ></textarea></li>
+        <li><label>活动介绍：<b></b></label><textarea name="activityIntroduce" id="" cols="90" class="textinput" rows="10" ></textarea></li>
+        <li><label>活动开始时间<b>*</b></label> <input name="begintimeStr" type="text" class="dfinput" id="begintime" placeholder="yyyy-MM-dd HH:mm:ss" lay-key="6"></li>
+        <li><label>活动结束时间<b>*</b></label> <input name="overtimeStr" type="text" class="dfinput" id="overtime" placeholder="yyyy-MM-dd HH:mm:ss" lay-key="6"></li>
 
-    <li><label>&nbsp;</label><input name="" type="submit" class="btn" value="提交"/></li>
 
+        <li><label>&nbsp;</label><input name="" type="submit" class="btn" value="提交"/></li>
     </ul>
-
     </form>
     </div>
 
 	<script type="text/javascript">
       $("#usual1 ul").idTabs();
     </script>
-
     <script type="text/javascript">
 	$('.tablelist tbody tr:odd').addClass('odd');
 	</script>
 
-
-
-
-
     </div>
+        <!--↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓时间插件↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓-->
+        <script src="${pageContext.request.contextPath }/back/laydate/laydate.js"></script>
+        <script>
+            //时间选择器
+            laydate.render({
+                elem: '#begintime'
+                ,type: 'datetime'
+            });
+        </script>
+        <script>
+            //时间选择器
+            laydate.render({
+                elem: '#overtime'
+                ,type: 'datetime'
+            });
+        </script>
+        <!--↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑时间插件↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑-->
 
 </body>
 </html>

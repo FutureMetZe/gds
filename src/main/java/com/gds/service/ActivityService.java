@@ -9,4 +9,5 @@ public interface ActivityService {
 
     PageBean<Activity> selectActivityPageList(Integer currentPage, Integer pageSize, String activityTitle, String sponsor);
 
+    void insertSelective(Activity activity);
 }
