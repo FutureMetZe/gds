@@ -13,9 +13,9 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/hello")
-public class HelloController {
+public class DemoController {
 
-    private Logger logger = Logger.getLogger(HelloController.class);
+    private Logger logger = Logger.getLogger(DemoController.class);
 
     @Resource(name = "UserService")
     private UserService userService;

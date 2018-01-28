@@ -44,7 +44,7 @@
        
     <div class="loginbox">
 
-    <form action="/back/login.do">
+    <form action="/back/adminLogin.do">
         <ul>
         <li><input name="username" type="text" class="loginuser" value="admin" onclick="JavaScript:this.value=''"/></li>
         <li><input name="password" type="text" class="loginpwd" value="密码" onclick="JavaScript:this.value=''"/></li>
