@@ -13,4 +13,6 @@ public interface StudentService {
     void deleteStuByUserId(Integer user_id);
 
     Student selectByUserId(Integer user_id);
+
+    Integer selectByUsernameAndPassword(String username, String password);
 }

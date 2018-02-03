@@ -71,4 +71,16 @@
         where user_id = #{user_id,jdbcType=INTEGER}
     </delete>
 
+    <select id="selectByUsernameAndPassword" resultType="java.lang.Integer" parameterType="Map">
+        select count(1) from gds_student
+        <where>
+            <if test="username != null and username != ''">
+                username like "%"#{username}"%"
+            </if>
+            <if test="password != null and password != ''">
+                and password like "%"#{password}"%"
+            </if>
+        </where>
+    </select>
+
 </mapper>

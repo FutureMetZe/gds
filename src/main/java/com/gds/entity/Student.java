@@ -46,8 +46,8 @@ public class Student implements Serializable {
     private String register_ip;
     private String last_login_time;
     private String last_login_ip;
-    private String standby001;
-    private String standby002;
+    private String standby001;  //学院
+    private String standby002;  //生日
 
     public Integer getUser_id() {
         return user_id;

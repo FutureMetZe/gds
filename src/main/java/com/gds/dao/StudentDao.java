@@ -19,4 +19,6 @@ public interface StudentDao {
     void deleteStuByUserId(Integer user_id);
 
     Student selectByUserId(Integer user_id);
+
+    Integer selectByUsernameAndPassword(Map<String, String> map);
 }

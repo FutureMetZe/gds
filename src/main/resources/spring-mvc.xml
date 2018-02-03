@@ -42,37 +42,6 @@
         </property>
     </bean>
 
-    <!-- html视图解析器 必须先配置freemarkerConfig,注意html是没有prefix前缀属性的-->
-   <!-- <bean id="viewResolver"
-          class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
-        <property name="exposeRequestAttributes" value="true" />
-        <property name="exposeSessionAttributes" value="true" />
-        <property name="viewClass">
-            <value>org.springframework.web.servlet.view.freemarker.FreeMarkerView</value>
-        </property>
-        <property name="cache">
-            <value>true</value>
-        </property>
-        <property name="suffix">
-            <value>.html</value>
-        </property>
-        <property name="contentType">
-            <value>text/html; charset=UTF-8</value>
-        </property>
-    </bean>
-
-    <bean id="freemarkerConfig"
-          class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
-        <property name="templateLoaderPath">
-            <value>/WEB-INF/</value>
-        </property>
-        <property name="freemarkerSettings">
-            <props>
-                <prop key="locale">zh_CN</prop>
-                <prop key="defaultEncoding">UTF-8</prop>
-            </props>
-        </property>
-    </bean>-->
         <!-- 默认的视图解析器  -->
         <bean id="defaultViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:order="3">
             <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>

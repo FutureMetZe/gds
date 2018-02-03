@@ -68,6 +68,7 @@ public class ActivityController {
                        @RequestParam(value = "overtimeStr", required = false)String overtimeStr){
         activity.setBegintime(DateUtils.strToDateLong(begintimeStr));
         activity.setOvertime(DateUtils.strToDateLong(overtimeStr));
+//        activity.setPlan003("0");//0为社联活动，1为社团活动
         activityService.insertSelective(activity);
         return clubList(request,response,model,null,null,null,null);
     }

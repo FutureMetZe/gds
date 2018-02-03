@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gds.dao.BannersMapper">
+  <resultMap id="BaseResultMap" type="com.gds.entity.Banners">
+    <id column="banners_id" jdbcType="INTEGER" property="bannersId" />
+    <result column="banners_name" jdbcType="VARCHAR" property="bannersName" />
+    <result column="banners_img_url" jdbcType="VARCHAR" property="bannersImgUrl" />
+    <result column="banner_creat_time" jdbcType="TIMESTAMP" property="bannerCreatTime" />
+    <result column="banner_introduce" jdbcType="VARCHAR" property="bannerIntroduce" />
+    <result column="standby001" jdbcType="VARCHAR" property="standby001" />
+    <result column="standby002" jdbcType="VARCHAR" property="standby002" />
+    <result column="standby003" jdbcType="VARCHAR" property="standby003" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    banners_id, banners_name, banners_img_url, banner_creat_time, banner_introduce, standby001, 
+    standby002, standby003
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from blog_banners
+    where banners_id = #{bannersId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from blog_banners
+    where banners_id = #{bannersId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gds.entity.Banners">
+    insert into blog_banners (banners_id, banners_name, banners_img_url, 
+      banner_creat_time, banner_introduce, standby001, 
+      standby002, standby003)
+    values (#{bannersId,jdbcType=INTEGER}, #{bannersName,jdbcType=VARCHAR}, #{bannersImgUrl,jdbcType=VARCHAR}, 
+      #{bannerCreatTime,jdbcType=TIMESTAMP}, #{bannerIntroduce,jdbcType=VARCHAR}, #{standby001,jdbcType=VARCHAR}, 
+      #{standby002,jdbcType=VARCHAR}, #{standby003,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gds.entity.Banners">
+    insert into blog_banners
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bannersId != null">
+        banners_id,
+      </if>
+      <if test="bannersName != null">
+        banners_name,
+      </if>
+      <if test="bannersImgUrl != null">
+        banners_img_url,
+      </if>
+      <if test="bannerCreatTime != null">
+        banner_creat_time,
+      </if>
+      <if test="bannerIntroduce != null">
+        banner_introduce,
+      </if>
+      <if test="standby001 != null">
+        standby001,
+      </if>
+      <if test="standby002 != null">
+        standby002,
+      </if>
+      <if test="standby003 != null">
+        standby003,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bannersId != null">
+        #{bannersId,jdbcType=INTEGER},
+      </if>
+      <if test="bannersName != null">
+        #{bannersName,jdbcType=VARCHAR},
+      </if>
+      <if test="bannersImgUrl != null">
+        #{bannersImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="bannerCreatTime != null">
+        #{bannerCreatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bannerIntroduce != null">
+        #{bannerIntroduce,jdbcType=VARCHAR},
+      </if>
+      <if test="standby001 != null">
+        #{standby001,jdbcType=VARCHAR},
+      </if>
+      <if test="standby002 != null">
+        #{standby002,jdbcType=VARCHAR},
+      </if>
+      <if test="standby003 != null">
+        #{standby003,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gds.entity.Banners">
+    update blog_banners
+    <set>
+      <if test="bannersName != null">
+        banners_name = #{bannersName,jdbcType=VARCHAR},
+      </if>
+      <if test="bannersImgUrl != null">
+        banners_img_url = #{bannersImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="bannerCreatTime != null">
+        banner_creat_time = #{bannerCreatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bannerIntroduce != null">
+        banner_introduce = #{bannerIntroduce,jdbcType=VARCHAR},
+      </if>
+      <if test="standby001 != null">
+        standby001 = #{standby001,jdbcType=VARCHAR},
+      </if>
+      <if test="standby002 != null">
+        standby002 = #{standby002,jdbcType=VARCHAR},
+      </if>
+      <if test="standby003 != null">
+        standby003 = #{standby003,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where banners_id = #{bannersId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gds.entity.Banners">
+    update blog_banners
+    set banners_name = #{bannersName,jdbcType=VARCHAR},
+      banners_img_url = #{bannersImgUrl,jdbcType=VARCHAR},
+      banner_creat_time = #{bannerCreatTime,jdbcType=TIMESTAMP},
+      banner_introduce = #{bannerIntroduce,jdbcType=VARCHAR},
+      standby001 = #{standby001,jdbcType=VARCHAR},
+      standby002 = #{standby002,jdbcType=VARCHAR},
+      standby003 = #{standby003,jdbcType=VARCHAR}
+    where banners_id = #{bannersId,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectAllBanners" resultMap="BaseResultMap">
+    select banners_id , banners_name , banners_img_url ,standby002
+    from blog_banners
+    where standby001 = '是'
+  </select>
+
+</mapper>

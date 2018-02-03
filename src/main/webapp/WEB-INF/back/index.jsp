@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -35,9 +36,17 @@
         <a href="#">帐号设置</a>
     </div>
 
+    <%
+        java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        java.util.Date currentTime = new java.util.Date();//得到当前系统时间
+
+        String str_date1 = formatter.format(currentTime); //将日期时间格式化
+        String str_date2 = currentTime.toString(); //将Date型日期时间转换成字符串形式
+    %>
     <div class="welinfo">
         <span><img src="images/time.png" alt="时间" /></span>
-        <i>您上次登录的时间：2013-10-09 15:22</i> （不是您登录的？<a href="#">请点这里</a>）
+        <i>您上次登录的时间：<%=str_date2 %></i> （不是您登录的？<a href="#">请点这里</a>）
     </div>
 
     <div class="xline"></div>

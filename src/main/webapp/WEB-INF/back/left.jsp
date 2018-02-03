@@ -43,7 +43,7 @@
 </head>
 
 <body style="background:#f0f9fd;">
-<div class="lefttop"><span></span>通讯录</div>
+<div class="lefttop"><span></span>目录</div>
 
 <dl class="leftmenu">
 
@@ -56,6 +56,8 @@
             <li><cite></cite><a href="${BasePath}/back/hubestl_list.do" target="rightFrame">成员列表</a><i></i></li>
             <li><cite></cite><a href="${BasePath}/back/goodsList.do" target="rightFrame">物资管理</a><i></i></li>
             <li><cite></cite><a href="${BasePath}/back/activityList.do" target="rightFrame">活动管理</a><i></i></li>
+            <li><cite></cite><a href="#" target="rightFrame">活动室管理</a><i></i></li>
+            <li><cite></cite><a href="#" target="rightFrame">电子文件管理</a><i></i></li>
         </ul>
     </dd>
 
@@ -70,12 +72,12 @@
     </dd>
 
 
-    <dd><div class="title"><span><img src="${BasePath}/back/images/leftico03.png" /></span>编辑器</div>
+    <dd><div class="title"><span><img src="${BasePath}/back/images/leftico03.png" /></span>首页管理</div>
         <ul class="menuson">
-            <li><cite></cite><a href="#">自定义</a><i></i></li>
-            <li><cite></cite><a href="#">常用资料</a><i></i></li>
-            <li><cite></cite><a href="#">信息列表</a><i></i></li>
-            <li><cite></cite><a href="#">其他</a><i></i></li>
+            <li><cite></cite><a href="${BasePath}/back/blogList.do" target="rightFrame">文章管理</a><i></i></li>
+            <li><cite></cite><a href="${BasePath}/back/postReviewList.do" target="rightFrame">留言管理</a><i></i></li>
+            <li><cite></cite><a href="#">自定义导航模块</a><i></i></li>
+            <li><cite></cite><a href="#">首页轮播图</a><i></i></li>
         </ul>
     </dd>
 

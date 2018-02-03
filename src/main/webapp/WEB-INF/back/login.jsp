@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>欢迎登录后台管理系统--模板之家 www.cssmoban.com</title>
+<title>湖北第二师范学院学生社团管理系统</title>
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <script language="JavaScript" src="js/jquery.js"></script>
 <script src="js/cloud.js" type="text/javascript"></script>
@@ -30,7 +30,7 @@
 
 
 <div class="logintop">    
-    <span>欢迎登录后台管理界面平台</span>    
+    <span>湖北第二师范学院学生社团管理系统</span>
     <ul>
     <li><a href="#">回首页</a></li>
     <li><a href="#">帮助</a></li>
@@ -44,11 +44,11 @@
        
     <div class="loginbox">
 
-    <form action="/back/adminLogin.do">
+    <form action="/back/adminLogin.do" method="post">
         <ul>
         <li><input name="username" type="text" class="loginuser" value="admin" onclick="JavaScript:this.value=''"/></li>
         <li><input name="password" type="text" class="loginpwd" value="密码" onclick="JavaScript:this.value=''"/></li>
-        <li><input name="" type="button" class="loginbtn" value="登录"  onclick="javascript:window.location='main.html'"  /><label><input name="" type="checkbox" value="" checked="checked" />记住密码</label><label><a href="#">忘记密码？</a></label></li>
+        <li><input name="" type="submit" class="loginbtn" value="登录"   /><label><input name="" type="checkbox" value="" checked="checked" />记住密码</label><label><a href="#">忘记密码？</a></label></li>
         </ul>
     </form>
     

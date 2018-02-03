@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gds.dao.PostReviewMapper">
+  <resultMap id="BaseResultMap" type="com.gds.entity.PostReview">
+    <id column="review_id" jdbcType="INTEGER" property="reviewId" />
+    <result column="blog_id" jdbcType="INTEGER" property="blogId" />
+    <result column="blog_title" jdbcType="VARCHAR" property="blogTitle" />
+    <result column="review_user_name" jdbcType="VARCHAR" property="reviewUserName" />
+    <result column="review_uesr_img" jdbcType="VARCHAR" property="reviewUesrImg" />
+    <result column="review_creattime" jdbcType="TIMESTAMP" property="reviewCreattime" />
+    <result column="review_content" jdbcType="VARCHAR" property="reviewContent" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="standby001" jdbcType="VARCHAR" property="standby001" />
+    <result column="standby002" jdbcType="VARCHAR" property="standby002" />
+    <result column="standby003" jdbcType="VARCHAR" property="standby003" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    review_id, blog_id, blog_title, review_user_name, review_uesr_img, review_creattime, 
+    review_content, status, standby001, standby002, standby003
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from blog_review
+    where review_id = #{reviewId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from blog_review
+    where review_id = #{reviewId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gds.entity.PostReview">
+    insert into blog_review (review_id, blog_id, blog_title, 
+      review_user_name, review_uesr_img, review_creattime, 
+      review_content, status, standby001, 
+      standby002, standby003)
+    values (#{reviewId,jdbcType=INTEGER}, #{blogId,jdbcType=INTEGER}, #{blogTitle,jdbcType=VARCHAR}, 
+      #{reviewUserName,jdbcType=VARCHAR}, #{reviewUesrImg,jdbcType=VARCHAR}, #{reviewCreattime,jdbcType=TIMESTAMP}, 
+      #{reviewContent,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{standby001,jdbcType=VARCHAR}, 
+      #{standby002,jdbcType=VARCHAR}, #{standby003,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gds.entity.PostReview">
+    insert into blog_review
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="reviewId != null">
+        review_id,
+      </if>
+      <if test="blogId != null">
+        blog_id,
+      </if>
+      <if test="blogTitle != null">
+        blog_title,
+      </if>
+      <if test="reviewUserName != null">
+        review_user_name,
+      </if>
+      <if test="reviewUesrImg != null">
+        review_uesr_img,
+      </if>
+      <if test="reviewCreattime != null">
+        review_creattime,
+      </if>
+      <if test="reviewContent != null">
+        review_content,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="standby001 != null">
+        standby001,
+      </if>
+      <if test="standby002 != null">
+        standby002,
+      </if>
+      <if test="standby003 != null">
+        standby003,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="reviewId != null">
+        #{reviewId,jdbcType=INTEGER},
+      </if>
+      <if test="blogId != null">
+        #{blogId,jdbcType=INTEGER},
+      </if>
+      <if test="blogTitle != null">
+        #{blogTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewUserName != null">
+        #{reviewUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewUesrImg != null">
+        #{reviewUesrImg,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewCreattime != null">
+        #{reviewCreattime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reviewContent != null">
+        #{reviewContent,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="standby001 != null">
+        #{standby001,jdbcType=VARCHAR},
+      </if>
+      <if test="standby002 != null">
+        #{standby002,jdbcType=VARCHAR},
+      </if>
+      <if test="standby003 != null">
+        #{standby003,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gds.entity.PostReview">
+    update blog_review
+    <set>
+      <if test="blogId != null">
+        blog_id = #{blogId,jdbcType=INTEGER},
+      </if>
+      <if test="blogTitle != null">
+        blog_title = #{blogTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewUserName != null">
+        review_user_name = #{reviewUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewUesrImg != null">
+        review_uesr_img = #{reviewUesrImg,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewCreattime != null">
+        review_creattime = #{reviewCreattime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reviewContent != null">
+        review_content = #{reviewContent,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="standby001 != null">
+        standby001 = #{standby001,jdbcType=VARCHAR},
+      </if>
+      <if test="standby002 != null">
+        standby002 = #{standby002,jdbcType=VARCHAR},
+      </if>
+      <if test="standby003 != null">
+        standby003 = #{standby003,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where review_id = #{reviewId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gds.entity.PostReview">
+    update blog_review
+    set blog_id = #{blogId,jdbcType=INTEGER},
+      blog_title = #{blogTitle,jdbcType=VARCHAR},
+      review_user_name = #{reviewUserName,jdbcType=VARCHAR},
+      review_uesr_img = #{reviewUesrImg,jdbcType=VARCHAR},
+      review_creattime = #{reviewCreattime,jdbcType=TIMESTAMP},
+      review_content = #{reviewContent,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      standby001 = #{standby001,jdbcType=VARCHAR},
+      standby002 = #{standby002,jdbcType=VARCHAR},
+      standby003 = #{standby003,jdbcType=VARCHAR}
+    where review_id = #{reviewId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectPostReviewCount" resultType="java.lang.Integer" parameterType="Map">
+    select count(1) from blog_review
+    <where>
+      <if test="blog_title != null and blog_title != ''">
+        blog_title like "%"#{blogTitle}"%"
+      </if>
+      <if test="review_user_name != null and review_user_name != ''">
+        and review_user_name like "%"#{reviewUserName}"%"
+      </if>
+    </where>
+  </select>
+  
+  <select id="selectPostReviewList" resultMap="BaseResultMap" parameterType="Map">
+    select * from blog_review
+    <where>
+      <if test="blog_title != null and blog_title != ''">
+        blog_title like "%"#{blogTitle}"%"
+      </if>
+      <if test="review_user_name != null and review_user_name != ''">
+        and review_user_name like "%"#{reviewUserName}"%"
+      </if>
+    </where>
+    LIMIT #{startRow},#{size}
+  </select>
+
+  <!--按照时间排序-->
+  <select id="selectReviewByTime" resultMap="BaseResultMap">
+    SELECT review_id ,blog_id ,blog_title ,review_user_name ,review_creattime,review_content
+    from blog_review
+    order by review_creattime desc;
+  </select>
+</mapper>
