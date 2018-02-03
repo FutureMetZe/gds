@@ -29,9 +29,10 @@ public class BlogPostReviewController {
     public String clubList(HttpServletRequest request, HttpServletResponse response, ModelMap model,
                            @RequestParam(value = "pageSize", required = false)Integer pageSize,
                            @RequestParam(value = "currentPage", required = false)Integer currentPage,
+                           @RequestParam(value = "blogId", required = false)Integer blogId,
                            @RequestParam(value = "blogTitle", required = false)String blogTitle,
                            @RequestParam(value = "reviewUserName", required = false)String reviewUserName ){
-        PageBean<PostReview> pageBeans = postReviewService.selectPostReviewPageList(currentPage,pageSize,blogTitle,reviewUserName);
+        PageBean<PostReview> pageBeans = postReviewService.selectPostReviewPageList(currentPage,pageSize,blogTitle,reviewUserName,blogId);
         model.addAttribute("page",pageBeans);
         model.addAttribute("beans",pageBeans.getBeans());
         model.addAttribute("blogTitle",blogTitle);

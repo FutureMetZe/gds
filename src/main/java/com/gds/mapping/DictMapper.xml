@@ -4,7 +4,7 @@
 <mapper namespace="com.gds.dao.DictDao">
 
 
-    <!--查询所有学院列表-->
+    <!--查询字典-->
     <select id="selectDiceByKey" resultType="com.gds.entity.Dict" parameterType="String">
         SELECT * from gds_dict g
         WHERE g.key_id = #{keyId}

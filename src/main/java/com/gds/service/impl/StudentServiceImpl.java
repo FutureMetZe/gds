@@ -68,7 +68,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Integer selectByUsernameAndPassword(String username, String password) {
+    public Student selectByUsernameAndPassword(String username, String password) {
         Map<String,String> map = new HashMap<String,String>();
         map.put("username",username);
         map.put("password",password);

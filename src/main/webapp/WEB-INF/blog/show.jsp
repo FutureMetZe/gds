@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="zh-CN">
 <head>
@@ -41,34 +42,28 @@
         <div class="container">
             <div class="header-topbar hidden-xs link-border">
                 <ul class="site-nav topmenu">
-                    <li><a href="${BasePath}/tags/" >标签云</a></li>
-                    <li><a href="${BasePath}/readers/" rel="nofollow" >读者墙</a></li>
-                    <li><a href="${BasePath}/rss.html" title="RSS订阅" >
-                        <i class="fa fa-rss">
-                        </i> RSS订阅
-                    </a></li>
+                    <% if(session.getAttribute("UserName") == null || session.getAttribute("UserName").equals("")){
+                        out.write(" <li><a href=\"toRegisterPage.do\" >注册</a></li>" +
+                                "<li><a href=\"toLoginPage.do\" >登录</a></li>" );
+                    }else {
+                        out.write("<li>欢迎你，"+session.getAttribute("UserName").toString()+"！</li>"+
+                                "<li><a href=\"userExit.do\" >退出</a></li>");
+                    }
+                    %>
                 </ul>
                 勤记录 懂分享</div>
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-navbar" aria-expanded="false"> <span class="sr-only"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-                <h1 class="logo hvr-bounce-in"><a href="${BasePath}/" title="木庄网络博客"><img src="${BasePath}/upload/201610/17/201610171329086541.png" alt="木庄网络博客"></a></h1>
+                <h1 class="logo hvr-bounce-in"><a href="#" title="木庄网络博客"><img src="#" alt="湖北二师社团之家"></a></h1>
             </div>
             <div class="collapse navbar-collapse" id="header-navbar">
-                <form class="navbar-form visible-xs" action="/Search" method="post">
-                    <div class="input-group">
-                        <input type="text" name="keyword" class="form-control" placeholder="请输入关键字" maxlength="20" autocomplete="off">
-                        <span class="input-group-btn">
-            <button class="btn btn-default btn-search" name="search" type="submit">搜索</button>
-            </span> </div>
-                </form>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a data-cont="木庄网络博客" title="木庄网络博客" href="index.html">首页</a></li>
-                    <li><a data-cont="列表页" title="列表页" href="list.html">列表页</a></li>
-                    <li><a data-cont="详细页" title="详细页" href="show.html">详细页</a></li>
-                    <li><a data-cont="404" title="404" href="404.html">404</a></li>
-                    <li><a data-cont="MZ-NetBolg主题" title="MZ-NetBolg主题" href="${BasePath}/list/mznetblog/" >MZ-NetBolg主题</a></li>
-                    <li><a data-cont="IT技术笔记" title="IT技术笔记" href="${BasePath}/list/code/" >IT技术笔记</a></li>
-                    <li><a data-cont="源码分享" title="源码分享" href="${BasePath}/list/share/" >源码分享</a></li>
+                    <li><a data-cont="木庄网络博客" title="木庄网络博客" href="index.do">首页</a></li>
+                    <li><a data-cont="列表页" title="列表页" href="list.do?postType=新闻资讯">列表页</a></li>
+                    <c:forEach items="${blogPostType}" var="DictType">
+                        <li><a data-cont="${DictType.value}" title="${DictType.value}" href="${BasePath}/list/share/" >${DictType.value}</a></li>
+                    </c:forEach>
+
                     <li><a data-cont="靠谱网赚" title="靠谱网赚" href="${BasePath}/list/money/" >靠谱网赚</a></li>
                     <li><a data-cont="资讯分享" title="资讯分享" href="${BasePath}/list/news/" >资讯分享</a></li>
                 </ul>
@@ -76,19 +71,24 @@
         </div>
     </nav>
 </header>
+
 <section class="container">
     <div class="content-wrap">
         <div class="content">
             <header class="article-header">
-                <h1 class="article-title"><a href="${BasePath}/show/269.html" title="用DTcms做一个独立博客网站（响应式模板）" >用DTcms做一个独立博客网站（响应式模板）</a></h1>
+                <h1 class="article-title"><a href="#" title="${POST.blogTitle}" >${POST.blogTitle}</a></h1>
                 <div class="article-meta"> <span class="item article-meta-time">
-          <time class="time" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="发表时间：2016-10-14"><i class="glyphicon glyphicon-time"></i> 2016-10-14</time>
-          </span> <span class="item article-meta-source" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="来源：木庄网络博客"><i class="glyphicon glyphicon-globe"></i> 木庄网络博客</span> <span class="item article-meta-category" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="MZ-NetBlog主题"><i class="glyphicon glyphicon-list"></i> <a href="${BasePath}/list/mznetblog/" title="MZ-NetBlog主题" >MZ-NetBlog主题</a></span> <span class="item article-meta-views" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="浏览量：219"><i class="glyphicon glyphicon-eye-open"></i> 219</span> <span class="item article-meta-comment" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="评论量"><i class="glyphicon glyphicon-comment"></i> 4</span> </div>
+          <time class="time" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="${POST.blogCreatTime}"><i class="glyphicon glyphicon-time"></i> ${POST.blogCreatTime}</time>
+          </span> <span class="item article-meta-source" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="来源：${POST.blogAuthor}"><i class="glyphicon glyphicon-globe"></i> ${POST.blogAuthor}</span>
+                    <span class="item article-meta-views" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="浏览量：${POST.view}"><i class="glyphicon glyphicon-eye-open"></i> ${POST.view}</span>
+                    <span class="item article-meta-comment" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="评论量"><i class="glyphicon glyphicon-comment"></i> 99999999</span> </div>
             </header>
             <article class="article-content">
-                <p><img data-original="${BasePath}/upload/201610/18/201610181557196870.jpg" src="${BasePath}/upload/201610/18/201610181557196870.jpg" alt="" /></p>
-                <p>文章效果示例，文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字。</p>
-                <pre class="prettyprint lang-cs">代码示例：
+                <p><img data-original="${BasePath}/upload/201610/18/201610181557196870.jpg" src="" alt="${POST.standby003}" /></p>
+                <p>
+                    ${POST.blogContent}
+                </p>
+                <%--<pre class="prettyprint lang-cs">代码示例：
         public static double JieCheng(int number)
         {
             if (number == 0)
@@ -104,41 +104,36 @@
                 result = result*i;
             }
             return result;
-        }</pre>
+        }</pre>--%>
                 <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a><a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a></div>
 
                 <script>                  window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "2", "bdMiniList": false, "bdPic": "", "bdStyle": "1", "bdSize": "32" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
             </article>
-            <div class="article-tags">标签：<a href="${BasePath}/tags/list/2/" rel="tag" >DTcms博客</a><a href="${BasePath}/tags/list/3/" rel="tag" >木庄网络博客</a><a href="${BasePath}/tags/list/4/" rel="tag" >独立博客</a><a href="${BasePath}/tags/list/5/" rel="tag" >修复优化</a>
+            <div class="article-tags">
+                标签：<a href="#" rel="tag" >DTcms博客</a>
             </div>
             <div class="relates">
                 <div class="title">
-                    <h3>相关推荐</h3>
+                    <h3>推荐文章</h3>
                 </div>
                 <ul>
-                    <li><a href="${BasePath}/show/269.html" title="" >用DTcms做一个独立博客网站（响应式模板）-MZ-NetBlog主题</a></li>
-                    <li><a href="${BasePath}/show/269.html" title="" >用DTcms做一个独立博客网站（响应式模板）-MZ-NetBlog主题</a></li>
-                    <li><a href="${BasePath}/show/269.html" title="" >用DTcms做一个独立博客网站（响应式模板）-MZ-NetBlog主题</a></li>
-                    <li><a href="${BasePath}/show/269.html" title="" >用DTcms做一个独立博客网站（响应式模板）-MZ-NetBlog主题</a></li>
-                    <li><a href="${BasePath}/show/269.html" title="" >用DTcms做一个独立博客网站（响应式模板）-MZ-NetBlog主题</a></li>
-                    <li><a href="${BasePath}/show/269.html" title="" >用DTcms做一个独立博客网站（响应式模板）-MZ-NetBlog主题</a></li>
-                    <li><a href="${BasePath}/show/269.html" title="" >用DTcms做一个独立博客网站（响应式模板）-MZ-NetBlog主题</a></li>
-                    <li><a href="${BasePath}/show/269.html" title="" >用DTcms做一个独立博客网站（响应式模板）-MZ-NetBlog主题</a></li>
+                    <c:forEach items="${levelPosts}" var="Post">
+                        <li><a href="#" title="" >${Post.blogTitle}</a></li>
+                    </c:forEach>
                 </ul>
             </div>
             <div class="title" id="comment">
                 <h3>评论</h3>
             </div>
             <div id="respond">
-                <form id="comment-form" name="comment-form" action="" method="POST">
+                <form id="comment-form" name="comment-form" action="/b" method="POST">
                     <div class="comment">
                         <input name="" id="" class="form-control" size="22" placeholder="您的昵称（必填）" maxlength="15" autocomplete="off" tabindex="1" type="text">
                         <input name="" id="" class="form-control" size="22" placeholder="您的网址或邮箱（非必填）" maxlength="58" autocomplete="off" tabindex="2" type="text">
                         <div class="comment-box">
                             <textarea placeholder="您的评论或留言（必填）" name="comment-textarea" id="comment-textarea" cols="100%" rows="3" tabindex="3"></textarea>
                             <div class="comment-ctrl">
-                                <div class="comment-prompt" style="display: none;"> <i class="fa fa-spin fa-circle-o-notch"></i> <span class="comment-prompt-text">评论正在提交中...请稍后</span> </div>
-                                <div class="comment-success" style="display: none;"> <i class="fa fa-check"></i> <span class="comment-prompt-text">评论提交成功...</span> </div>
+
                                 <button type="submit" name="comment-submit" id="comment-submit" tabindex="4">评论</button>
                             </div>
                         </div>
@@ -146,8 +141,13 @@
                 </form>
 
             </div>
+            <!--留言板-->
             <div id="postcomments">
                 <ol id="comment_list" class="commentlist">
+                    <c:forEach items="${Reviews}" var="Review">
+                        <li class="comment-content"><span class="comment-f">#2</span><div class="comment-main"><p><a class="address" href="${BasePath}/" rel="nofollow" target="_blank">${Review.reviewUserName}</a><span class="time">${Review.reviewCreattime}</span><br>${Review.reviewContent}</p></div></li>
+                    </c:forEach>
+
                     <li class="comment-content"><span class="comment-f">#2</span><div class="comment-main"><p><a class="address" href="${BasePath}/" rel="nofollow" target="_blank">木庄网络博客</a><span class="time">(2016/10/28 11:41:03)</span><br>不错的网站主题，看着相当舒服</p></div></li>
                     <li class="comment-content"><span class="comment-f">#1</span><div class="comment-main"><p><a class="address" href="${BasePath}/" rel="nofollow" target="_blank">木庄网络博客</a><span class="time">(2016/10/14 21:02:39)</span><br>博客做得好漂亮哦！</p></div></li></ol>
             </div>

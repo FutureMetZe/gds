@@ -180,6 +180,9 @@
       <if test="blog_title != null and blog_title != ''">
         blog_title like "%"#{blogTitle}"%"
       </if>
+      <if test="blogId != null and blogId != ''">
+        and blog_id = #{blogId}
+      </if>
       <if test="review_user_name != null and review_user_name != ''">
         and review_user_name like "%"#{reviewUserName}"%"
       </if>
@@ -188,9 +191,17 @@
   </select>
 
   <!--按照时间排序-->
-  <select id="selectReviewByTime" resultMap="BaseResultMap">
-    SELECT review_id ,blog_id ,blog_title ,review_user_name ,review_creattime,review_content
-    from blog_review
-    order by review_creattime desc;
+  <select id="selectReviewByTime" resultMap="BaseResultMap" parameterType="Map">
+   SELECT * from(
+      SELECT review_id ,blog_id ,blog_title ,review_user_name ,review_creattime,review_content
+        from blog_review
+        <where>
+          <if test="postType != null and postType != ''">
+            standby001 = #{postType}
+          </if>
+        </where>
+        order by review_creattime desc
+        ) a
+   LIMIT #{row_num,jdbcType=INTEGER};
   </select>
 </mapper>

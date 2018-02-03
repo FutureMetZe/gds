@@ -10,9 +10,11 @@ import java.util.List;
 @Service("BlogPostService")
 public interface BlogPostService {
 
-    PageBean<Post> selectClubPageList(Integer currentPage, Integer pageSize, String blogAuthor, String blogSort);
+    PageBean<Post> selectClubPageList(Integer currentPage, Integer pageSize,String postTitle, String blogAuthor, String blogSort);
 
     List<Post> selectPostByLevel();
 
     List<Post> selectPostByTime();
+
+    Post selectPostById(Integer blogId);
 }

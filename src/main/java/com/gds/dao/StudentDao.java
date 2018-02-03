@@ -20,5 +20,5 @@ public interface StudentDao {
 
     Student selectByUserId(Integer user_id);
 
-    Integer selectByUsernameAndPassword(Map<String, String> map);
+    Student selectByUsernameAndPassword(Map<String, String> map);
 }

@@ -20,11 +20,12 @@ public class PostReviewServiceImpl implements PostReviewService {
     private PostReviewMapper postReviewMapper;
 
     @Override
-    public PageBean<PostReview> selectPostReviewPageList(Integer currentPage, Integer pageSize, String blogTitle, String reviewUserName) {
+    public PageBean<PostReview> selectPostReviewPageList(Integer currentPage, Integer pageSize, String blogTitle, String reviewUserName ,Integer blogId) {
 
         Map map = new HashMap();
         map.put("blogTitle",blogTitle);
         map.put("reviewUserName",reviewUserName);
+        map.put("blogId",blogId);
 
         //1.查询总数
         Integer totalCount = postReviewMapper.selectPostReviewCount(map);
@@ -44,7 +45,10 @@ public class PostReviewServiceImpl implements PostReviewService {
 
     //按照时间排序
     @Override
-    public List<PostReview> selectReviewByTime() {
-        return postReviewMapper.selectReviewByTime();
+    public List<PostReview> selectReviewByTime(Integer row_num,String postType) {
+        Map map = new HashMap();
+        map.put("row_num",row_num);
+        map.put("postType",postType);
+        return postReviewMapper.selectReviewByTime(map);
     }
 }

@@ -34,8 +34,10 @@ public class BlogPostController {
                            @RequestParam(value = "pageSize", required = false)Integer pageSize,
                            @RequestParam(value = "currentPage", required = false)Integer currentPage,
                            @RequestParam(value = "blogAuthor", required = false)String blogAuthor,
-                           @RequestParam(value = "blogSort", required = false)String blogSort ){
-        PageBean<Post> pageBeans = blogPostService.selectClubPageList(currentPage,pageSize,blogAuthor,blogSort);
+                           @RequestParam(value = "blogSort", required = false)String blogSort,
+                           @RequestParam(value = "postTitle", required = false)String postTitle
+                           ){
+        PageBean<Post> pageBeans = blogPostService.selectClubPageList(currentPage,pageSize,postTitle,blogAuthor,blogSort);
         model.addAttribute("page",pageBeans);
         model.addAttribute("beans",pageBeans.getBeans());
         model.addAttribute("blogAuthor",blogAuthor);

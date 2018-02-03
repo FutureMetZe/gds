@@ -26,5 +26,5 @@ public interface PostReviewMapper {
     List<PostReview> selectPostReviewList(Map map);
 
     //按照时间排序
-    List<PostReview> selectReviewByTime();
+    List<PostReview> selectReviewByTime(Map map);
 }

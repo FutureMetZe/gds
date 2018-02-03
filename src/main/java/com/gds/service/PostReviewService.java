@@ -10,8 +10,8 @@ import java.util.List;
 @Service("PostReviewService")
 public interface PostReviewService {
 
-    PageBean<PostReview> selectPostReviewPageList(Integer currentPage, Integer pageSize, String blogTitle, String reviewUserName);
+    PageBean<PostReview> selectPostReviewPageList(Integer currentPage, Integer pageSize, String blogTitle, String reviewUserName,Integer blogId);
 
-    List<PostReview> selectReviewByTime();
+    List<PostReview> selectReviewByTime(Integer row_num,String postType);
 
 }

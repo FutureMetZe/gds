@@ -220,6 +220,9 @@
       <if test="blogSort != null and blogSort != ''">
         and blog_sort like "%"#{blogSort}"%"
       </if>
+      <if test="postTitle != null and postTitle != ''">
+        and blog_title like "%"#{postTitle}"%"
+      </if>
     </where>
     LIMIT #{startRow},#{size}
   </select>
@@ -228,7 +231,7 @@
   <select id="selectPostByLevel" resultMap="BaseResultMap">
     select b.blog_id, b.blog_title, b.standby003 , b.blog_creat_time
     from blog_post b
-    where b.blog_level is not null or b.blog_level !=0
+    where b.blog_level !='0'
     order by b.blog_level desc
   </select>
 

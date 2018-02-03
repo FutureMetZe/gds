@@ -71,8 +71,8 @@ $(document).ready(function(){
     
     	<ul class="toolbar">
             <form action="${pageContext.request.contextPath }/back/blogList.do">
-                <li><label>作者：</label><input name="blogAuthor" type="text" class="dfinput" value="${blogAuthor}"  style="width:110px;"/></li>&nbsp;&nbsp;
-                <li><label>类别：</label><input name="blogSort" type="text" class="dfinput" value="${blogSort}"  style="width:130px;"/></li>&nbsp;&nbsp;
+                <li><label>文章标题：</label><input name="blogTitle" type="text" class="dfinput" value="${blogAuthor}"  style="width:110px;"/></li>&nbsp;&nbsp;
+                <li><label>留言者：</label><input name="reviewUserName" type="text" class="dfinput" value="${blogSort}"  style="width:130px;"/></li>&nbsp;&nbsp;
                 <!-- 隐藏域.当前页码 -->
                 <input type="hidden" name="currentPage" value="${page.totalPage}" />
                 <!-- 隐藏域.每页显示条数 -->

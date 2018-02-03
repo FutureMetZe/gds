@@ -19,11 +19,13 @@ public class BlogPostServiceImpl implements BlogPostService {
     private PostMapper postMapper;
 
     @Override
-    public PageBean<Post> selectClubPageList(Integer currentPage, Integer pageSize, String blogAuthor, String blogSort) {
+    public PageBean<Post> selectClubPageList(Integer currentPage, Integer pageSize,
+                                             String postTitle,String blogAuthor, String blogSort) {
 
         Map map = new HashMap();
         map.put("blogAuthor",blogAuthor);
         map.put("blogSort",blogSort);
+        map.put("postTitle",postTitle);
 
         //1.查询总数
         Integer totalCount = postMapper.selectPostCount(map);
@@ -50,5 +52,10 @@ public class BlogPostServiceImpl implements BlogPostService {
     @Override
     public List<Post> selectPostByTime() {
         return postMapper.selectPostByTime();
+    }
+
+    @Override
+    public Post selectPostById(Integer blogId) {
+        return postMapper.selectByPrimaryKey(blogId);
     }
 }

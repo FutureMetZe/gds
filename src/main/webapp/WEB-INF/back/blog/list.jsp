@@ -71,6 +71,7 @@ $(document).ready(function(){
     
     	<ul class="toolbar">
             <form action="${pageContext.request.contextPath }/back/blogList.do">
+                <li><label>文章名称：</label><input name="postTitle" type="text" class="dfinput" value="${postTitle}"  style="width:110px;"/></li>&nbsp;&nbsp;
                 <li><label>作者：</label><input name="blogAuthor" type="text" class="dfinput" value="${blogAuthor}"  style="width:110px;"/></li>&nbsp;&nbsp;
                 <li><label>类别：</label><input name="blogSort" type="text" class="dfinput" value="${blogSort}"  style="width:130px;"/></li>&nbsp;&nbsp;
                 <!-- 隐藏域.当前页码 -->
@@ -113,8 +114,8 @@ $(document).ready(function(){
         <tbody>
         <c:forEach items="${beans}" var="Post">
             <tr>
-                <td>${Post.blogSort}</td>
                 <td>${Post.blogTitle}</td>
+                <td>${Post.blogSort}</td>
                 <td>${Post.blogAuthor}</td>
                 <td>${Post.blogCreatTime}</td>
                 <td>${Post.blogLevel}</td>

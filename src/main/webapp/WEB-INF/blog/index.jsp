@@ -50,9 +50,6 @@
                         "<li><a href=\"userExit.do\" >退出</a></li>");
                     }
                     %>
-                    <%--<li><a href="${BasePath}/blog/toRegisterPage.do" >注册</a></li>
-                    <li><a href="${BasePath}/blog/toLoginPage.do" >登录</a></li>
-                    <%="欢迎您，"+session.getAttribute("UserName").toString()+"！"%>--%>
                 </ul>
                 勤记录 懂分享</div>
             <div class="navbar-header">
@@ -62,7 +59,7 @@
             <div class="collapse navbar-collapse" id="header-navbar">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a data-cont="木庄网络博客" title="木庄网络博客" href="index.do">首页</a></li>
-                    <li><a data-cont="列表页" title="列表页" href="list.do">列表页</a></li>
+                    <li><a data-cont="列表页" title="列表页" href="list.do?postType=新闻资讯">列表页</a></li>
                     <c:forEach items="${blogPostType}" var="DictType">
                         <li><a data-cont="${DictType.value}" title="${DictType.value}" href="${BasePath}/list/share/" >${DictType.value}</a></li>
                     </c:forEach>
@@ -114,19 +111,22 @@
                 </div>
             </div>
             <!--最新发布-->
-            <article class="excerpt excerpt-1" style="">
-                <a class="focus" href="${BasePath}/show/269.html" title="用DTcms做一个独立博客网站（响应式模板）" target="_blank" ><img class="thumb" data-original="${BasePath}/upload/201610/18/201610181739277776.jpg" src="${BasePath}/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: inline;"></a>
-                <header><a class="cat" href="${BasePath}/list/mznetblog/" title="MZ-NetBlog主题" >MZ-NetBlog主题<i></i></a>
-                    <h2><a href="${BasePath}/show/269.html" title="用DTcms做一个独立博客网站（响应式模板）" target="_blank" >用DTcms做一个独立博客网站（响应式模板）</a>
-                    </h2>
-                </header>
-                <p class="meta">
-                    <time class="time"><i class="glyphicon glyphicon-time"></i> 2016-10-14</time>
-                    <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 216</span> <a class="comment" href="${BasePath}/show/269.html#comment" title="评论" target="_blank" ><i class="glyphicon glyphicon-comment"></i> 4</a>
-                </p>
-                <p class="note">用DTcms做一个独立博客网站（响应式模板），采用DTcms V4.0正式版（MSSQL）。开发环境：SQL2008R2+VS2010。DTcms V4.0正式版功能修复和优化：1、favicon.ico图标后台上传。（解决要换图标时要连FTP或者开服务器的麻烦）</p>
-            </article>
+            <c:forEach items="${newPosts}" var="Post">
+                <article class="excerpt excerpt-1" style="">
+                    <a class="focus" href="#" title="${Post.blogTitle}" target="_blank" ><img class="thumb" data-original="${BasePath}/upload/201610/18/201610181739277776.jpg" src="${BasePath}/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: inline;"></a>
+                    <header><a class="cat" href="#" title="${Post.blogSort}" >${Post.blogSort}<i></i></a>
+                        <h2><a href="#" title="${Post.blogTitle}" target="_blank" >${Post.blogTitle}</a>
+                        </h2>
+                    </header>
+                    <p class="meta">
+                        <time class="time"><i class="glyphicon glyphicon-time"></i> ${Post.blogCreatTime}</time>
+                        <span class="views"><i class="glyphicon glyphicon-eye-open"></i> ${Post.view}</span> <a class="comment" href="${BasePath}/show/269.html#comment" title="评论" target="_blank" ><i class="glyphicon glyphicon-comment"></i> 4</a>
+                    </p>
+                    <p class="note">${Post.standby003}</p>
+                </article>
+            </c:forEach>
 
+            <!--最新文章列表分页-->
             <nav class="pagination" style="display: none;">
                 <ul>
                     <li class="prev-page"></li>
@@ -136,8 +136,10 @@
                     <li><span>共 2 页</span></li>
                 </ul>
             </nav>
+
         </div>
     </div>
+
     <aside class="sidebar">
         <div class="fixed">
             <div class="widget widget-tabs">
@@ -162,6 +164,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="widget widget_search">
                 <form class="navbar-form" action="/Search" method="post">
                     <div class="input-group">
@@ -171,47 +174,21 @@
             </span> </div>
                 </form>
             </div>
+
         </div>
         <div class="widget widget_hot">
 
             <!--最新发布-->
             <h3>最新评论文章</h3>
             <ul>
-                <li><a title="用DTcms做一个独立博客网站（响应式模板）" href="${BasePath}/show/269.html" ><span class="thumbnail">
-                    <img class="thumb" data-original="${BasePath}/upload/201610/18/201610181739277776.jpg" src="${BasePath}/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: block;">
-                </span><span class="text">用DTcms做一个独立博客网站（响应式模板）</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
-                    2016-11-01
-                </span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>88</span></a></li>
-                <li><a title="用DTcms做一个独立博客网站（响应式模板）" href="${BasePath}/show/269.html" ><span class="thumbnail">
-                    <img class="thumb" data-original="${BasePath}/upload/201610/18/201610181739277776.jpg" src="${BasePath}/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: block;">
-                </span><span class="text">用DTcms做一个独立博客网站（响应式模板）</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
-                    2016-11-01
-                </span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>88</span></a></li>
-                <li><a title="用DTcms做一个独立博客网站（响应式模板）" href="${BasePath}/show/269.html" ><span class="thumbnail">
-                    <img class="thumb" data-original="${BasePath}/upload/201610/18/201610181739277776.jpg" src="${BasePath}/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: block;">
-                </span><span class="text">用DTcms做一个独立博客网站（响应式模板）</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
-                    2016-11-01
-                </span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>88</span></a></li>
-                <li><a title="用DTcms做一个独立博客网站（响应式模板）" href="${BasePath}/show/269.html" ><span class="thumbnail">
-                    <img class="thumb" data-original="${BasePath}/upload/201610/18/201610181739277776.jpg" src="${BasePath}/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: block;">
-                </span><span class="text">用DTcms做一个独立博客网站（响应式模板）</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
-                    2016-11-01
-                </span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>88</span></a></li>
-                <li><a title="用DTcms做一个独立博客网站（响应式模板）" href="${BasePath}/show/269.html" ><span class="thumbnail">
-                    <img class="thumb" data-original="${BasePath}/upload/201610/18/201610181739277776.jpg" src="${BasePath}/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: block;">
-                </span><span class="text">用DTcms做一个独立博客网站（响应式模板）</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
-                    2016-11-01
-                </span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>88</span></a></li>
-                <li><a title="用DTcms做一个独立博客网站（响应式模板）" href="${BasePath}/show/269.html" ><span class="thumbnail">
-                    <img class="thumb" data-original="${BasePath}/upload/201610/18/201610181739277776.jpg" src="${BasePath}/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: block;">
-                </span><span class="text">用DTcms做一个独立博客网站（响应式模板）</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
-                    2016-11-01
-                </span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>88</span></a></li>
-                <li><a title="用DTcms做一个独立博客网站（响应式模板）" href="${BasePath}/show/269.html" ><span class="thumbnail">
-                    <img class="thumb" data-original="${BasePath}/upload/201610/18/201610181739277776.jpg" src="${BasePath}/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: block;">
-                </span><span class="text">用DTcms做一个独立博客网站（响应式模板）</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
-                    2016-11-01
-                </span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>88</span></a></li>
+                <c:forEach items="${newReviews}" var="Review">
+                    <li><a title="${Review.blogTitle}" href="#" ><span class="thumbnail">
+                    <img class="thumb" data-original="" src="" alt="${Review.reviewContent}"  style="display: block;">
+                </span><span class="text">${Review.blogTitle}</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
+                    ${Review.reviewCreattime}
+                </span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>${Review.reviewUserName}</span></a></li>
+                </c:forEach>
+
                 <li><a title="用DTcms做一个独立博客网站（响应式模板）" href="${BasePath}/show/269.html" ><span class="thumbnail">
                     <img class="thumb" data-original="${BasePath}/upload/201610/18/201610181739277776.jpg" src="${BasePath}/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: block;">
                 </span><span class="text">用DTcms做一个独立博客网站（响应式模板）</span><span class="muted"><i class="glyphicon glyphicon-time"></i>

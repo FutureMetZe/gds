@@ -14,5 +14,5 @@ public interface StudentService {
 
     Student selectByUserId(Integer user_id);
 
-    Integer selectByUsernameAndPassword(String username, String password);
+    Student selectByUsernameAndPassword(String username, String password);
 }
