@@ -19,9 +19,9 @@ public class PostReview {
 
     private Integer status;
 
-    private String standby001;  //文章作者
+    private String standby001;  //文章类型
 
-    private String standby002;
+    private String standby002;  //作者帐号
 
     private String standby003;
 

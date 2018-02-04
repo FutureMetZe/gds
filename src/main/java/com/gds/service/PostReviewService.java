@@ -14,4 +14,5 @@ public interface PostReviewService {
 
     List<PostReview> selectReviewByTime(Integer row_num,String postType);
 
+    void insertReview(PostReview postReview);
 }

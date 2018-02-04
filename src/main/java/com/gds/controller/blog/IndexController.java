@@ -14,6 +14,7 @@ import javax.management.monitor.StringMonitor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -70,8 +71,6 @@ public class IndexController {
         List<Banners> banners = bannersService.selectAllBanners();
         model.addAttribute("banners",banners);
 
-
-        System.out.println(newReviews);
         return "blog/index";
     }
 
@@ -84,7 +83,7 @@ public class IndexController {
     public String list(HttpServletRequest request, HttpServletResponse response, ModelMap model,
                        @RequestParam(value = "postType", required = false)String postType ){
 
-        System.out.println(postType);
+//        System.out.println(postType);
         //1,查询导航栏字典
         List<Dict> blogPostType = dictService.selectDiceByKey("006");
         model.addAttribute("blogPostType",blogPostType);
@@ -162,20 +161,27 @@ public class IndexController {
 
 
     /**
-     * 发布评论页面
+     * 发布评论
      */
     @RequestMapping("/submitReview.do")
     public String submitReview(HttpServletRequest request, HttpServletResponse response, ModelMap model,
-                               @RequestParam(value = "blogId", required = false)Integer blogId){
+                               PostReview postReview ){
+//        System.out.println("提交的评论："+postReview);
+        Integer blogId = postReview.getBlogId();
         HttpSession session = request.getSession();
         String UserName = (String) session.getAttribute("UserName");
-//        if (){
-//            //登录可以发布
-//        }else {
-//            //没登录跳转到登录页面
-//        }
 
-        return "blog/login";
+        if ( UserName !=null && !UserName.equals("")){
+            //登录可以发布
+            postReview.setReviewUserName(UserName);
+            postReview.setReviewCreattime(new Date());
+            postReviewService.insertReview(postReview);
+            return show(request,response,model,blogId);
+        }else {
+            //没登录跳转到登录页面
+            return "blog/login";
+        }
+
     }
 
     /**
@@ -226,6 +232,7 @@ public class IndexController {
     public String userExit(HttpServletRequest request, HttpServletResponse response, ModelMap model){
         HttpSession session = request.getSession();
         session.setAttribute("UserName","");
+        session.setAttribute("Student",null);
         return index(request,response,model);
     }
 

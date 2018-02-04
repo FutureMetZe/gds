@@ -51,4 +51,9 @@ public class PostReviewServiceImpl implements PostReviewService {
         map.put("postType",postType);
         return postReviewMapper.selectReviewByTime(map);
     }
+
+    @Override
+    public void insertReview(PostReview postReview) {
+        postReviewMapper.insert(postReview);
+    }
 }

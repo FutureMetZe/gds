@@ -47,7 +47,9 @@
                                     "<li><a href=\"toLoginPage.do\" >登录</a></li>" );
                     }else {
                         out.write("<li>欢迎你，"+session.getAttribute("UserName").toString()+"！</li>"+
-                        "<li><a href=\"userExit.do\" >退出</a></li>");
+                        "<li><a href=\"home/goHome.do\" >个人主页</a></li>" +
+                        "<li><a href=\"userExit.do\" >退出</a></li>"
+                        );
                     }
                     %>
                 </ul>
@@ -95,7 +97,7 @@
 
             <article class="excerpt-minic excerpt-minic-index">
                 <c:forEach items="${levelPosts}" var="Post">
-                    <h2><span class="red">【推荐】</span><a target="_blank" href="#" title="${Post.blogTitle}" >${Post.blogTitle}</a>
+                    <h2><span class="red">【推荐】</span><a target="_blank" href="/blog/show.do?blogId=${Post.blogId}" title="${Post.blogTitle}" >${Post.blogTitle}</a>
                     </h2>
                     <p class="note"> ${Post.standby003}</p>
                 </c:forEach>
@@ -106,21 +108,21 @@
                 <h3>最新发布</h3>
                 <div class="more">
                     <c:forEach items="${blogPostType}" var="DictType">
-                        <a href="${BasePath}/list/mznetblog/" title="${DictType.value}" >${DictType.value}</a>
+                        <a href="#" title="${DictType.value}" >${DictType.value}</a>
                     </c:forEach>
                 </div>
             </div>
             <!--最新发布-->
             <c:forEach items="${newPosts}" var="Post">
                 <article class="excerpt excerpt-1" style="">
-                    <a class="focus" href="#" title="${Post.blogTitle}" target="_blank" ><img class="thumb" data-original="${BasePath}/upload/201610/18/201610181739277776.jpg" src="${BasePath}/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: inline;"></a>
-                    <header><a class="cat" href="#" title="${Post.blogSort}" >${Post.blogSort}<i></i></a>
-                        <h2><a href="#" title="${Post.blogTitle}" target="_blank" >${Post.blogTitle}</a>
+                    <a class="focus" href="/blog/show.do?blogId=${Post.blogId}" title="${Post.blogTitle}" target="_blank" ><img class="thumb" data-original="${BasePath}/upload/201610/18/201610181739277776.jpg" src="${BasePath}/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: inline;"></a>
+                    <header><a class="cat" href="/blog/show.do?blogId=${Post.blogId}" title="${Post.blogSort}" >${Post.blogSort}<i></i></a>
+                        <h2><a href="/blog/show.do?blogId=${Post.blogId}" title="${Post.blogTitle}" target="_blank" >${Post.blogTitle}</a>
                         </h2>
                     </header>
                     <p class="meta">
                         <time class="time"><i class="glyphicon glyphicon-time"></i> ${Post.blogCreatTime}</time>
-                        <span class="views"><i class="glyphicon glyphicon-eye-open"></i> ${Post.view}</span> <a class="comment" href="${BasePath}/show/269.html#comment" title="评论" target="_blank" ><i class="glyphicon glyphicon-comment"></i> 4</a>
+                        <span class="views"><i class="glyphicon glyphicon-eye-open"></i> ${Post.view}</span> <a class="comment" href="/blog/show.do?blogId=${Post.blogId}" title="评论" target="_blank" ><i class="glyphicon glyphicon-comment"></i> 4</a>
                     </p>
                     <p class="note">${Post.standby003}</p>
                 </article>
@@ -182,7 +184,7 @@
             <h3>最新评论文章</h3>
             <ul>
                 <c:forEach items="${newReviews}" var="Review">
-                    <li><a title="${Review.blogTitle}" href="#" ><span class="thumbnail">
+                    <li><a title="${Review.blogTitle}" href="/blog/show.do?blogId=${Review.blogId}" ><span class="thumbnail">
                     <img class="thumb" data-original="" src="" alt="${Review.reviewContent}"  style="display: block;">
                 </span><span class="text">${Review.blogTitle}</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
                     ${Review.reviewCreattime}

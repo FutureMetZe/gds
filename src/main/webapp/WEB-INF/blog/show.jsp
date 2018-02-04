@@ -126,15 +126,17 @@
                 <h3>评论</h3>
             </div>
             <div id="respond">
-                <form id="comment-form" name="comment-form" action="/b" method="POST">
+                <form id="comment-form" name="comment-form" action="/blog/submitReview.do" method="POST">
                     <div class="comment">
-                        <input name="" id="" class="form-control" size="22" placeholder="您的昵称（必填）" maxlength="15" autocomplete="off" tabindex="1" type="text">
-                        <input name="" id="" class="form-control" size="22" placeholder="您的网址或邮箱（非必填）" maxlength="58" autocomplete="off" tabindex="2" type="text">
+                        <input type="hidden" name="standby002" id="pageSizeInput"       value="${POST.blogAuthor}" />
+                        <input type="hidden" name="standby001" id="standby001"       value="${POST.blogSort}" />
+                        <input type="hidden" name="blogTitle" id="blogTitle"       value="${POST.blogTitle}" />
+                        <input type="hidden" name="blogId" id="blogId"       value="${POST.blogId}" />
                         <div class="comment-box">
-                            <textarea placeholder="您的评论或留言（必填）" name="comment-textarea" id="comment-textarea" cols="100%" rows="3" tabindex="3"></textarea>
+                            <textarea placeholder="您的评论或留言（必填）" name="reviewContent" id="reviewContent" cols="100%" rows="5" tabindex="3"></textarea>
                             <div class="comment-ctrl">
 
-                                <button type="submit" name="comment-submit" id="comment-submit" tabindex="4">评论</button>
+                                <button type="submit" name="submit" id="submit" tabindex="5" >评 论</button>
                             </div>
                         </div>
                     </div>

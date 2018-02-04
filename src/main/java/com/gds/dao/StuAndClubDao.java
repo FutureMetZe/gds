@@ -1,6 +1,7 @@
 package com.gds.dao;
 
 import com.gds.entity.Club;
+import com.gds.entity.StuAndClub;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -11,5 +12,5 @@ public interface StuAndClubDao {
 
     void insertRelation(Map<String, Integer> map);
 
-    List<Club> selectStudentClubByStu_num(String stu_num);
+    List<StuAndClub> selectStudentClubByStu_num(String stu_num);
 }

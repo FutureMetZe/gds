@@ -3,9 +3,11 @@ package com.gds.dao;
 import com.gds.entity.Post;
 import com.gds.entity.PostReview;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
+
 
 @Repository("PostReviewMapper")
 public interface PostReviewMapper {

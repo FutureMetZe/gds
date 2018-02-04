@@ -2,6 +2,7 @@ package com.gds.service.impl;
 
 import com.gds.dao.StuAndClubDao;
 import com.gds.entity.Club;
+import com.gds.entity.StuAndClub;
 import com.gds.service.StuAndClubService;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +29,7 @@ public class StuAndClubServiceImpl implements StuAndClubService{
     }
 
     @Override
-    public List<Club> selectStudentClubByStu_num(String stu_num) {
+    public List<StuAndClub> selectStudentClubByStu_num(String stu_num) {
         return stuAndClubDao.selectStudentClubByStu_num(stu_num);
     }
 }

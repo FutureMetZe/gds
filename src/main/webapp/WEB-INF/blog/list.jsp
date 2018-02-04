@@ -85,9 +85,9 @@
             <c:forEach items="${posts}" var="Post">
                 <article class="excerpt excerpt-1" style="">
                     <a class="focus" href="/blog/show.do?blogId=${Post.blogId}" title="${Post.blogTitle}" target="_blank" >
-                        <img class="thumb" data-original="${BasePath}/upload/201610/18/201610181739277776.jpg" src="${BasePath}/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: inline;"></a>
-                    <header><a class="cat" href="#" title="${Post.blogSort}" >${Post.blogSort}<i></i></a>
-                        <h2><a href="#" title="${Post.blogTitle}" target="_blank" >${Post.blogTitle}</a>
+                        <img class="thumb" data-original="${BasePath}/upload/201610/18/201610181739277776.jpg" src="${BasePath}/upload/201610/18/201610181739277776.jpg" alt="${Post.standby003}"  style="display: inline;"></a>
+                    <header><a class="cat" href="/blog/show.do?blogId=${Post.blogId}" title="${Post.blogSort}" >${Post.blogSort}<i></i></a>
+                        <h2><a href="/blog/show.do?blogId=${Post.blogId}" title="${Post.blogTitle}" target="_blank" >${Post.blogTitle}</a>
                         </h2>
                     </header>
                     <p class="meta">
@@ -141,7 +141,7 @@
             <h3>最新评论文章</h3>
             <ul>
                 <c:forEach items="${newReviews}" var="Review">
-                    <li><a title="${Review.blogTitle}" href="#" ><span class="thumbnail">
+                    <li><a title="${Review.blogTitle}" href="/blog/show.do?blogId=${Review.blogId}" ><span class="thumbnail">
                     <img class="thumb" data-original="" src="" alt="${Review.reviewContent}"  style="display: block;">
                 </span><span class="text">${Review.blogTitle}</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
                     ${Review.reviewCreattime}
