@@ -144,7 +144,7 @@ div.container:after {
 	display: block;
 	clear: both;
 	visibility: hidden;
-	overflow: hidden;
+	/*overflow: hidden;*/
 	content: "\0020";
 }
 
@@ -152,7 +152,7 @@ div.container .span1, div.container .span2, div.container .span3, div.container 
 	_display: inline;
 	float: left;
 	margin-right: 10px;
-	overflow: hidden;
+	/*overflow: hidden;*/
 }
 
 div.container .span1 {

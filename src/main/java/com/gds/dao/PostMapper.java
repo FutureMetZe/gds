@@ -32,4 +32,8 @@ public interface PostMapper {
 
     //按照发布时间排序
     List<Post> selectPostByTime();
+
+    List<Post> selectPostByTypeOrKeyword(Map map);
+
+    List<Post> selectPostByUsername(Map map);
 }

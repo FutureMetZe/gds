@@ -1,7 +1,6 @@
 package com.gds.service.impl;
 
-import com.gds.dao.StuAndClubDao;
-import com.gds.entity.Club;
+import com.gds.dao.StuAndClubMapper;
 import com.gds.entity.StuAndClub;
 import com.gds.service.StuAndClubService;
 import org.springframework.stereotype.Service;
@@ -14,22 +13,20 @@ import java.util.Map;
 @Service("StuAndClubService")
 public class StuAndClubServiceImpl implements StuAndClubService{
 
-    @Resource(name="StuAndClubDao")
-    private StuAndClubDao stuAndClubDao;
+    @Resource(name="StuAndClubMapper")
+    private StuAndClubMapper stuAndClubDao;
 
     @Override
     public void insertRelation(String stu_num, Integer club_id) {
-
-        Map map = new HashMap();
-        map.put("stu_num",stu_num);
-        map.put("club_id",club_id);
-
-        stuAndClubDao.insertRelation(map);
+        StuAndClub stuAndClub = new StuAndClub();
+        stuAndClub.setDictClubId(club_id);
+        stuAndClub.setStuNum(stu_num);
+        stuAndClubDao.insert(stuAndClub);
 
     }
 
     @Override
-    public List<StuAndClub> selectStudentClubByStu_num(String stu_num) {
-        return stuAndClubDao.selectStudentClubByStu_num(stu_num);
+    public List<StuAndClub> selectStudentClubByStuNum(String stu_num) {
+        return stuAndClubDao.selectStudentClubByStuNum(stu_num);
     }
 }

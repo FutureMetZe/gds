@@ -130,10 +130,10 @@
                         <!--ALL PERSONAL DETAILS-->
                         <h3 class="personal-info-title title">个人信息</h3>
                         <ul class="personal-info">
-                            <li class="rotate-out rotated"><label>Email</label><span>未传入</span></li>
-                            <li class="rotate-out rotated"><label>我的电话</label><span>未传入</span></li>
-                            <li class="rotate-out rotated"><label>学院</label><span>未传入</span></li>
-                            <li class="rotate-out rotated"><label>个性签名</label><span>未传入</span></li>
+                            <li class="rotate-out rotated"><label>Email</label><span>${student.email}</span></li>
+                            <li class="rotate-out rotated"><label>我的电话</label><span>${student.mobile}</span></li>
+                            <li class="rotate-out rotated"><label>学院</label><span>${student.standby001}</span></li>
+                            <li class="rotate-out rotated"><label>个性签名</label><span>${student.standby002}</span></li>
                         </ul><!--/ul.personal-info-->
                     </div>
                 </li><!--/#home-->
@@ -144,132 +144,97 @@
                         <div class="shadow-img"></div>
                         <h2 class="rotate-out rotated"><span class="invert">Resume Of</span> John Doe</h2> <!--RESUME TITLE-->
                     </div>
-                    <div class="description">
+                    <div class="description" style="overflow: auto">
 
                         <div class='tabs tabs_animate'>
                             <!--RESUME TAB LISTS-->
                             <ul class='horizontal no-padding'>
-                                <li><a href="#tab-1" class="icon-bg icon-skills"><div>Skills</div></a></li>
-                                <li><a href="#tab-2" class="icon-bg icon-education"><div>Educations</div></a></li>
-                                <li><a href="#tab-3" class="icon-bg icon-employment"><div>Employment</div></a></li>
+                                <li><a href="#tab-1" class="icon-bg icon-skills"><div>我加入的社团</div></a></li>
+                                <li><a href="#tab-2" class="icon-bg icon-education"><div>相关类型社团</div></a></li>
+                                <li><a href="#tab-3" class="icon-bg icon-employment"><div>相关文章</div></a></li>
                             </ul><!--RESUME TAB LISTS ENDS-->
 
                             <!--RESUME FIRST TAB/SKILL TAB DETAILS-->
-                            <div id='tab-1'>
-                                <h3 class="title">OUR SKILLS</h3><!--SKILLS WITH BAR DISPLAY-->
+                            <div id='tab-1' >
+                                <!--对我加入的社团遍历-->
+                                <c:forEach items="${clubs}" var="Club">
+
+                                <h3 class="title">${Club.club_name}</h3><!--SKILLS WITH BAR DISPLAY-->
                                 <ul class="skills-list no-padding">
                                     <li class="row">
-                                        <div class="col-xs-2"><div class="fw-mid">HTML</div></div>
+                                        <div class="col-xs-2"><div class="fw-mid"><h5>所属学院</h5></div></div>
                                         <div class="col-xs-9">
-                                            <div class="bar">
-                                                <div class="percentage" id="bar1" style="width: 58%;"></div>
+                                            <div cl  s="bar">
+                                                <div class="percentage" id="badi" style="width: 100%;"><h5>${Club.club_faculty}</h5></div>
                                             </div>
                                         </div>
                                     </li>
                                     <li class="row">
-                                        <div class="col-xs-2"><div class="fw-mid">CSS</div></div>
+                                        <div class="col-xs-2"><div class="fw-mid"><h5>社团类型</h5></div></div>
                                         <div class="col-xs-9">
-                                            <div class="bar">
-                                                <div class="percentage" id="bar2" style="width: 75%;"></div>
+                                            <div cl  s="bar">
+                                                <div class="percentage" id="badi" style="width: 100%;"><h5>${Club.club_type}</h5></div>
                                             </div>
                                         </div>
                                     </li>
                                     <li class="row">
-                                        <div class="col-xs-2"><div class="fw-mid">Javascript</div></div>
+                                        <div class="col-xs-2"><div class="fw-mid"><h5>社团介绍</h5></div></div>
                                         <div class="col-xs-9">
-                                            <div class="bar">
-                                                <div class="percentage" id="bar3" style="width: 85%;"></div>
+                                            <div cl  s="bar">
+                                                <div class="percentage" id="badi" style="width: 100%;"><h5>${Club.club_introduce}</h5></div>
                                             </div>
                                         </div>
                                     </li>
                                 </ul><!--SKILLS WITH BAR DISPLAY ENDS-->
-
-                                <!--SKILLS WITH CIRCLE DISPLAY-->
-                                <div class="circle-skill-container">
-                                    <h3 class="title">OTHER SKILLS</h3>
-                                    <div class="row">
-                                        <div class="col-xs-4 center-align">
-                                            <div class="circle-bar" id="line-container1">
-                                                <div class="progressbar-text" id="progress-text1">0</div>
-                                            </div>
-                                            <h5>Photoshop</h5>
-                                        </div>
-                                        <div class="col-xs-4 center-align">
-                                            <div class="circle-bar" id="line-container2">
-                                                <div class="progressbar-text" id="progress-text2">0</div>
-                                            </div>
-                                            <h5>Illustrator</h5>
-                                        </div>
-                                        <div class="col-xs-4 center-align">
-                                            <div class="circle-bar" id="line-container3">
-                                                <div class="progressbar-text" id="progress-text3">0</div>
-                                            </div>
-                                            <h5>After effect</h5>
-                                        </div>
-                                    </div>
-                                </div><!--SKILLS WITH CIRCLE DISPLAY ENDS-->
+                                </c:forEach>
                             </div><!--RESUME FIRST TAB/SKILL TAB DETAILS ENDS-->
 
                             <!--RESUME SECOND TAB/EDUCATION TAB DETAILS-->
                             <div id='tab-2'>
-                                <h3 class="title">EDUCATIONS</h3>
-                                <ul class="education-class">
-                                    <li>
-                                        <!--EDUCATION LIST ITEM-->
-                                        <h4 class="title">MSc in Computer Sciene<i class="fa fa-sort-desc pull-right"></i></h4>
-                                        <div class="list-content">
-                                            <h5 class="title">Consectetur adipiscing <span class="list-year">(2014 - 2005)</span></h5>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing Vivamus sit Vivamus sit. Vivamus sit.. consectetur adipiscing Vivamus sit. Vivamus sit</p><!--EDUCATION LIST DETAILS-->
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <!--EDUCATION LIST ITEM-->
-                                        <h4 class="title">Grad At Computer Engineering<i class="fa fa-sort-desc pull-right"></i></h4>
-                                        <div class="list-content current">
-                                            <h5 class="title">Consectetur adipiscing <span class="list-year">(2014 - 2005)</span></h5>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing Vivamus sit Vivamus sit. Vivamus sit.. consectetur adipiscing Vivamus sit. Vivamus sit</p><!--EDUCATION LIST DETAILS-->
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <!--EDUCATION LIST ITEM-->
-                                        <h4 class="title">College<i class="fa fa-sort-desc pull-right"></i></h4>
-                                        <div class="list-content">
-                                            <h5 class="title">Consectetur adipiscing <span class="list-year">(2014 - 2005)</span></h5>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing Vivamus sit Vivamus sit. Vivamus sit.. consectetur adipiscing Vivamus sit. Vivamus sit</p><!--EDUCATION LIST DETAILS-->
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <!--EDUCATION LIST ITEM-->
-                                        <h4 class="title">Schools<i class="fa fa-sort-desc pull-right"></i></h4>
-                                        <div class="list-content">
-                                            <h5 class="title">Consectetur adipiscing <span class="list-year">(2014 - 2005)</span></h5>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing Vivamus sit Vivamus sit. Vivamus sit.. consectetur adipiscing Vivamus sit. Vivamus sit</p><!--EDUCATION LIST DETAILS-->
-                                        </div>
-                                    </li>
-                                </ul>
+                                <c:forEach items="${sameClub}" var="Club">
+                                    <h3 class="title">${Club.club_name}</h3><!--SKILLS WITH BAR DISPLAY-->
+                                    <ul class="skills-list no-padding">
+                                        <li class="row">
+                                            <div class="col-xs-2"><div class="fw-mid"><h5>所属学院</h5></div></div>
+                                            <div class="col-xs-9">
+                                                <div cl  s="bar">
+                                                    <div class="percentage" id="badi" style="width: 100%;"><h5>${Club.club_faculty}</h5></div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="row">
+                                            <div class="col-xs-2"><div class="fw-mid"><h5>社团类型</h5></div></div>
+                                            <div class="col-xs-9">
+                                                <div cl  s="bar">
+                                                    <div class="percentage" id="badi" style="width: 100%;"><h5>${Club.club_type}</h5></div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="row">
+                                            <div class="col-xs-2"><div class="fw-mid"><h5>社团介绍</h5></div></div>
+                                            <div class="col-xs-9">
+                                                <div cl  s="bar">
+                                                    <div class="percentage" id="badi" style="width: 100%;"><h5>${Club.club_introduce}</h5></div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul><!--SKILLS WITH BAR DISPLAY ENDS-->
+                                </c:forEach>
                             </div><!--RESUME SECOND TAB/EDUCATION TAB DETAILS ENDS-->
                             <!--RESUME THIRD TAB/EMPLYMENT TAB DETAILS ENDS-->
                             <div id='tab-3'>
+
                                 <h3 class="title">EMPLOYMENT</h3>
                                 <ul class="employment-class tab-cont">
+                                    <c:forEach items="${samePosts}" var="Post">
                                     <li>
-                                        <!--EMPLOYMENT INDIVIDUAL LIST-->
-                                        <h4>Manager <span class="year">2014 - 2005</span></h4>
-                                        <h5>Consectetur adipiscing</h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing Vivamus sit Vivamus sit. Vivamus sit.. consectetur adipiscing Vivamus sit.</p><!--EMPLOYMENT LIST DETAILS-->
+                                        <!-- -->
+                                        <h4><a href="/blog/show.do?blogId=${Post.blogId}">${Post.blogTitle} </a><span class="year">${Post.blogCreatTime}</span></h4>
+                                        <h5>${Post.blogAuthor}</h5>
+                                        <p><a href="/blog/show.do?blogId=${Post.blogId}">${Post.standby003}</a></p><!--EMPLOYMENT LIST DETAILS-->
                                     </li>
-                                    <li>
-                                        <!--EMPLOYMENT INDIVIDUAL LIST-->
-                                        <h4>Manager <span class="year">2014 - 2005</span></h4>
-                                        <h5>Consectetur adipiscing</h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing Vivamus sit Vivamus sit. Vivamus sit.. consectetur adipiscing Vivamus sit.</p><!--EMPLOYMENT LIST DETAILS-->
-                                    </li>
-                                    <li>
-                                        <!--EMPLOYMENT INDIVIDUAL LIST-->
-                                        <h4>Manager <span class="year">2014 - 2005</span></h4>
-                                        <h5>Consectetur adipiscing</h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing Vivamus sit Vivamus sit. Vivamus sit.. consectetur adipiscing Vivamus sit.</p><!--EMPLOYMENT LIST DETAILS-->
-                                    </li>
+                                    </c:forEach>
+
                                 </ul>
                             </div><!--RESUME THIRD TAB/EMPLYMENT TAB DETAILS ENDS-->
                         </div>
@@ -288,38 +253,55 @@
                             <!--RESUME TAB LISTS-->
                             <ul class='horizontal no-padding'>
                                 <%--<li><a href="#tab-1" class="icon-bg icon-skills"><div>Skills</div></a></li>--%>
-                                <li><a href="#tab-2" class="icon-bg icon-education"><div>我的评论</div></a></li>
+                                <li><a href="#tab-1" class="icon-bg icon-skills"><div>我的评论</div></a></li>
                                 <li><a href="#tab-3" class="icon-bg icon-employment"><div>我的文章</div></a></li>
                             </ul><!--RESUME TAB LISTS ENDS-->
 
-                            <!--RESUME FIRST TAB/SKILL TAB DETAILS-->
+                            <!--RESUME SECOND TAB/EDUCATION TAB DETAILS-->
                             <div id='tab-1'>
+                                <h3 class="title">我发布的评论</h3>
+                                <ul class="education-class">
+                                    <c:forEach items="${myReviews}" var="Review">
+                                        <li>
+                                            <!--EDUCATION LIST ITEM-->
+                                            <h4 class="title">文章题目:${Review.blogTitle} <i class="fa fa-sort-desc pull-right"></i></h4>
+                                            <div class="list-content">
+                                                <h5 class="title"><span class="list-year">${Review.reviewCreattime}}</span></h5>
+                                                <p><a href="/blog/show.do?blogId=${Review.blogId}">评论内容:${Review.reviewContent} </a></p>
+                                            </div>
+                                        </li>
+                                    </c:forEach>
+                                    <li>
+                                        <!--EDUCATION LIST ITEM-->
+                                        <h4 class="title">MSc in Computer Sciene<i class="fa fa-sort-desc pull-right"></i></h4>
+                                        <div class="list-content">
+                                            <h5 class="title">Consectetur adipiscing <span class="list-year">(2014 - 2005)</span></h5>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing Vivamus sit Vivamus sit. Vivamus sit.. consectetur adipiscing Vivamus sit. Vivamus sit</p><!--EDUCATION LIST DETAILS-->
+                                        </div>
+                                    </li>
+
+                                </ul>
+                            </div><!--RESUME SECOND TAB/EDUCATION TAB DETAILS ENDS-->
+                            <!--RESUME THIRD TAB/EMPLYMENT TAB DETAILS ENDS-->
+                            <div id='tab-3'>
+                                <h3 class="title">我发布的文章</h3>
+                                <ul class="employment-class tab-cont">
+                                    <c:forEach items="${myPosts}" var="Post">
+                                        <li>
+                                            <!-- -->
+                                            <h4><a href="/blog/show.do?blogId=${Post.blogId}">${Post.blogTitle} </a><span class="year">${Post.blogCreatTime}</span></h4>
+                                            <h5>${Post.blogAuthor}</h5>
+                                            <p><a href="/blog/show.do?blogId=${Post.blogId}">${Post.standby003}</a></p><!--EMPLOYMENT LIST DETAILS-->
+                                        </li>
+                                    </c:forEach>
+                                </ul>
+                            </div><!--RESUME THIRD TAB/EMPLYMENT TAB DETAILS ENDS-->
+
+                            <!--RESUME FIRST TAB/SKILL TAB DETAILS-->
+                            <div id='tab-2'>
                                 <h3 class="title">OUR SKILLS</h3><!--SKILLS WITH BAR DISPLAY-->
                                 <ul class="skills-list no-padding">
-                                    <li class="row">
-                                        <div class="col-xs-2"><div class="fw-mid">HTML</div></div>
-                                        <div class="col-xs-9">
-                                            <div class="bar">
-                                                <div class="percentage" id="bar1" style="width: 58%;"></div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="row">
-                                        <div class="col-xs-2"><div class="fw-mid">CSS</div></div>
-                                        <div class="col-xs-9">
-                                            <div class="bar">
-                                                <div class="percentage" id="bar2" style="width: 75%;"></div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="row">
-                                        <div class="col-xs-2"><div class="fw-mid">Javascript</div></div>
-                                        <div class="col-xs-9">
-                                            <div class="bar">
-                                                <div class="percentage" id="bar3" style="width: 85%;"></div>
-                                            </div>
-                                        </div>
-                                    </li>
+
                                 </ul><!--SKILLS WITH BAR DISPLAY ENDS-->
 
                                 <!--SKILLS WITH CIRCLE DISPLAY-->
@@ -347,69 +329,6 @@
                                     </div>
                                 </div><!--SKILLS WITH CIRCLE DISPLAY ENDS-->
                             </div><!--RESUME FIRST TAB/SKILL TAB DETAILS ENDS-->
-
-                            <!--RESUME SECOND TAB/EDUCATION TAB DETAILS-->
-                            <div id='tab-2'>
-                                <h3 class="title">我发布的评论</h3>
-                                <ul class="education-class">
-                                    <li>
-                                        <!--EDUCATION LIST ITEM-->
-                                        <h4 class="title">MSc in Computer Sciene<i class="fa fa-sort-desc pull-right"></i></h4>
-                                        <div class="list-content">
-                                            <h5 class="title">Consectetur adipiscing <span class="list-year">(2014 - 2005)</span></h5>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing Vivamus sit Vivamus sit. Vivamus sit.. consectetur adipiscing Vivamus sit. Vivamus sit</p><!--EDUCATION LIST DETAILS-->
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <!--EDUCATION LIST ITEM-->
-                                        <h4 class="title">Grad At Computer Engineering<i class="fa fa-sort-desc pull-right"></i></h4>
-                                        <div class="list-content current">
-                                            <h5 class="title">Consectetur adipiscing <span class="list-year">(2014 - 2005)</span></h5>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing Vivamus sit Vivamus sit. Vivamus sit.. consectetur adipiscing Vivamus sit. Vivamus sit</p><!--EDUCATION LIST DETAILS-->
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <!--EDUCATION LIST ITEM-->
-                                        <h4 class="title">College<i class="fa fa-sort-desc pull-right"></i></h4>
-                                        <div class="list-content">
-                                            <h5 class="title">Consectetur adipiscing <span class="list-year">(2014 - 2005)</span></h5>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing Vivamus sit Vivamus sit. Vivamus sit.. consectetur adipiscing Vivamus sit. Vivamus sit</p><!--EDUCATION LIST DETAILS-->
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <!--EDUCATION LIST ITEM-->
-                                        <h4 class="title">Schools<i class="fa fa-sort-desc pull-right"></i></h4>
-                                        <div class="list-content">
-                                            <h5 class="title">Consectetur adipiscing <span class="list-year">(2014 - 2005)</span></h5>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing Vivamus sit Vivamus sit. Vivamus sit.. consectetur adipiscing Vivamus sit. Vivamus sit</p><!--EDUCATION LIST DETAILS-->
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div><!--RESUME SECOND TAB/EDUCATION TAB DETAILS ENDS-->
-                            <!--RESUME THIRD TAB/EMPLYMENT TAB DETAILS ENDS-->
-                            <div id='tab-3'>
-                                <h3 class="title">我发布的文章</h3>
-                                <ul class="employment-class tab-cont">
-                                    <li>
-                                        <!--EMPLOYMENT INDIVIDUAL LIST-->
-                                        <h4>Manager <span class="year">2014 - 2005</span></h4>
-                                        <h5>Consectetur adipiscing</h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing Vivamus sit Vivamus sit. Vivamus sit.. consectetur adipiscing Vivamus sit.</p><!--EMPLOYMENT LIST DETAILS-->
-                                    </li>
-                                    <li>
-                                        <!--EMPLOYMENT INDIVIDUAL LIST-->
-                                        <h4>Manager <span class="year">2014 - 2005</span></h4>
-                                        <h5>Consectetur adipiscing</h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing Vivamus sit Vivamus sit. Vivamus sit.. consectetur adipiscing Vivamus sit.</p><!--EMPLOYMENT LIST DETAILS-->
-                                    </li>
-                                    <li>
-                                        <!--EMPLOYMENT INDIVIDUAL LIST-->
-                                        <h4>Manager <span class="year">2014 - 2005</span></h4>
-                                        <h5>Consectetur adipiscing</h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing Vivamus sit Vivamus sit. Vivamus sit.. consectetur adipiscing Vivamus sit.</p><!--EMPLOYMENT LIST DETAILS-->
-                                    </li>
-                                </ul>
-                            </div><!--RESUME THIRD TAB/EMPLYMENT TAB DETAILS ENDS-->
                         </div>
                     </div>
                 </li><!--/#portfolio-->
@@ -432,12 +351,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-5">
-                                <!--CONTACT DESCRIPTION-->
-                                <h3 class="title">Contact Info</h3>
-                                <h6 class="sm-title"><span class="address-icon"><i class="fa fa-map-marker"></i></span>311B, Jalalabad, Sylhet</h6>
-                                <h6 class="sm-title"><span class="address-icon"><i class="fa fa-phone"></i></span>+8801979791001</h6>
-                                <h6 class="sm-title"><span class="address-icon"><i class="fa fa-envelope"></i></span>nurealamsabbir@authlab.io</h6>
-                                <!--/CONTACT DESCRIPTION ENDS-->
+
                             </div>
                             <div class="col-sm-7" style="width:100%;height: 1000px">
                                 <div class="mail-container">
@@ -448,18 +362,7 @@
                                     <h3 class="title invert">Don't Forget To Mail Me</h3>
                                     <!--CONTACT FORM-->
                                     <form action="sendmail.php" class="form-horizontal" id="contact-form">
-                                        <div class="form-group">
-                                            <input name="name" class="form-control required" placeholder="Name" data-placement="top" type="text">
-                                        </div>
-                                        <div class="form-group">
-                                            <input name="email" class="form-control email" placeholder="Email" type="text">
-                                        </div>
-                                        <div class="form-group">
-                                            <textarea name="message" class="form-control" placeholder="Message" rows="3"></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <button type="submit" class="btn btn-success">SEND</button>
-                                        </div>
+
                                     </form><!--/#contact-form-->
                                 </div>
                             </div>

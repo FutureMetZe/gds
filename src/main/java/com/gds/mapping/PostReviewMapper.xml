@@ -189,7 +189,6 @@
     </where>
     LIMIT #{startRow},#{size}
   </select>
-
   <!--按照时间排序-->
   <select id="selectReviewByTime" resultMap="BaseResultMap" parameterType="Map">
    SELECT * from(
@@ -203,5 +202,15 @@
         order by review_creattime desc
         ) a
    LIMIT #{row_num,jdbcType=INTEGER};
+  </select>
+
+  <select id="selectReviewByUsername" resultMap="BaseResultMap" parameterType="Map">
+    SELECT review_id ,blog_id ,blog_title ,review_user_name ,review_creattime,review_content
+    from blog_review
+    <where>
+      <if test="username != null and username != ''">
+        standby002 like "%"#{username}"%"
+      </if>
+    </where>
   </select>
 </mapper>

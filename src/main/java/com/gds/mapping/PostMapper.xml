@@ -241,4 +241,16 @@
     from blog_post
     order by blog_creat_time desc;
   </select>
+
+  <select id="selectPostByTypeOrKeyword" resultMap="BaseResultMap" parameterType="Map">
+    select blog_id, blog_title, blog_author, blog_creat_time, blog_sort, view, standby003
+      from blog_post
+      WHERE standby002 like "%"#{club_type}"%" or blog_content like "%"#{club_type}"%"
+  </select>
+
+  <select id="selectPostByUsername" resultMap="BaseResultMap" parameterType="Map">
+    select blog_id, blog_title, blog_author, blog_creat_time, blog_sort, view, standby003
+    from blog_post
+    WHERE standby001 = #{username}
+  </select>
 </mapper>

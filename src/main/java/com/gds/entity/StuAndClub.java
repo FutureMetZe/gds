@@ -1,14 +1,11 @@
 package com.gds.entity;
 
 public class StuAndClub {
-    /*
-  `id` int(100) NOT NULL AUTO_INCREMENT,
-  `user_id` int(10) DEFAULT NULL COMMENT '学生id',
-  `dict_club_id` int(10) DEFAULT NULL COMMENT '所属社团id',
-     */
     private Integer id;
-    private String stu_num;
-    private Integer dict_club_id;
+
+    private String stuNum;
+
+    private Integer dictClubId;
 
     public Integer getId() {
         return id;
@@ -18,29 +15,28 @@ public class StuAndClub {
         this.id = id;
     }
 
-    public String getStu_num() {
-        return stu_num;
+    public String getStuNum() {
+        return stuNum;
     }
 
-    public void setStu_num(String stu_num) {
-        this.stu_num = stu_num;
+    public void setStuNum(String stuNum) {
+        this.stuNum = stuNum == null ? null : stuNum.trim();
     }
 
-    public Integer getDict_club_id() {
-        return dict_club_id;
+    public Integer getDictClubId() {
+        return dictClubId;
     }
 
-    public void setDict_club_id(Integer dict_club_id) {
-        this.dict_club_id = dict_club_id;
+    public void setDictClubId(Integer dictClubId) {
+        this.dictClubId = dictClubId;
     }
 
     @Override
     public String toString() {
         return "StuAndClub{" +
                 "id=" + id +
-                ", stu_num='" + stu_num + '\'' +
-                ", dict_club_id=" + dict_club_id +
+                ", stuNum='" + stuNum + '\'' +
+                ", dictClubId=" + dictClubId +
                 '}';
     }
-
 }

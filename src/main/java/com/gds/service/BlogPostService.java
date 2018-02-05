@@ -17,4 +17,8 @@ public interface BlogPostService {
     List<Post> selectPostByTime();
 
     Post selectPostById(Integer blogId);
+
+    List<Post> selectPostByTypeOrKeyword(String club_type);
+
+    List<Post> selectPostByUsername(String username);
 }

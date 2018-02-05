@@ -56,4 +56,11 @@ public class PostReviewServiceImpl implements PostReviewService {
     public void insertReview(PostReview postReview) {
         postReviewMapper.insert(postReview);
     }
+
+    @Override
+    public List<PostReview> selectReviewByUsername(String username) {
+        Map map = new HashMap();
+        map.put("username",username);
+        return postReviewMapper.selectReviewByUsername(map);
+    }
 }

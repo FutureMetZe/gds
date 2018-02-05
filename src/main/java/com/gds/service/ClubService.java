@@ -18,4 +18,6 @@ public interface ClubService {
     void insertClub(Club club);
 
     void deleteByClubId(Integer club_id);
+
+    List<Club> selectClubByType(String club_type);
 }

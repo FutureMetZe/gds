@@ -58,4 +58,18 @@ public class BlogPostServiceImpl implements BlogPostService {
     public Post selectPostById(Integer blogId) {
         return postMapper.selectByPrimaryKey(blogId);
     }
+
+    @Override
+    public List<Post> selectPostByTypeOrKeyword(String club_type) {
+        Map map = new HashMap();
+        map.put("club_type",club_type);
+        return postMapper.selectPostByTypeOrKeyword(map);
+    }
+
+    @Override
+    public List<Post> selectPostByUsername(String username) {
+        Map map = new HashMap();
+        map.put("username",username);
+        return postMapper.selectPostByUsername(map);
+    }
 }

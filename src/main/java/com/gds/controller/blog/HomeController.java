@@ -1,9 +1,9 @@
 package com.gds.controller.blog;
 
-import com.gds.entity.Club;
-import com.gds.entity.StuAndClub;
-import com.gds.entity.Student;
+import com.gds.entity.*;
+import com.gds.service.BlogPostService;
 import com.gds.service.ClubService;
+import com.gds.service.PostReviewService;
 import com.gds.service.StuAndClubService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -25,6 +25,12 @@ public class HomeController {
 
     @Resource(name = "ClubService")
     private ClubService clubService;
+
+    @Resource(name = "BlogPostService")
+    private BlogPostService blogPostService;
+
+    @Resource(name = "PostReviewService")
+    private PostReviewService postReviewService;
     /**
      * 进入用户主页
      */
@@ -34,7 +40,8 @@ public class HomeController {
         String username = (String) session.getAttribute("UserName");
         Student student = (Student) session.getAttribute("Student");
 
-        String clubMessage = "";    //错误信息提示
+        String clubMessage = "";    //社团模块错误信息提示
+        String reviewMessage = "";    //发布模块错误信息提示
 
         if (username!=null && !username.equals("")){
 
@@ -43,10 +50,10 @@ public class HomeController {
 
             //2,把学生所加入的社团信息传入主页
             List<Club> clubs = new ArrayList<Club>();
-            List<StuAndClub> links = stuAndClubService.selectStudentClubByStu_num(student.getStu_num());
+            List<StuAndClub> links = stuAndClubService.selectStudentClubByStuNum(student.getStu_num());
             if (links != null){
                 for (int i = 0; i < links.size() ; i++) {
-                    Club club = clubService.selectClubById(links.get(i).getDict_club_id());
+                    Club club = clubService.selectClubById(links.get(i).getDictClubId());
                     clubs.add(club);
                 }
             }else{
@@ -56,15 +63,22 @@ public class HomeController {
             model.addAttribute("clubs",clubs);
             model.addAttribute("clubMessage",clubMessage);
 
-            System.out.println("student:"+student);
-            System.out.println("clubs:"+clubs);
-            System.out.println("clubMessage:"+clubMessage);
+            //2-2查找相关类型的社团
+            List<Club> sameClub = clubService.selectClubByType(clubs.get(0).getClub_type());
+            model.addAttribute("sameClub",sameClub);
+            //2-3查找相关类型的文章
+            List<Post> samePosts = blogPostService.selectPostByTypeOrKeyword(clubs.get(0).getClub_type());
+            model.addAttribute("samePosts",samePosts);
 
             //3,把学生发布的评论传入主页
+            List<PostReview> myReviews = postReviewService.selectReviewByUsername(student.getUsername());
+            model.addAttribute("myReviews",myReviews);
 
             //4,把学生发布的文章ID，标题，日期，介绍，类型传入主页
-
-
+            List<Post> myPosts = blogPostService.selectPostByUsername(student.getUsername());
+            model.addAttribute("myPosts",myPosts);
+            System.out.println("myReviews:"+myReviews);
+            System.out.println("myPosts:"+myPosts);
 
             return "blog/home/HomePage";
         }else {

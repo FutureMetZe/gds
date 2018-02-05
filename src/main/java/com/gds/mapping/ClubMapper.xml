@@ -63,4 +63,13 @@
       where club_id = #{club_id}
     </delete>
 
+    <select id="selectClubByType"  resultType="com.gds.entity.Club" parameterType="Map">
+        select * from gds_club
+        <where>
+            <if test="club_type != null and club_type != ''">
+                club_type like "%"#{club_type}"%"
+            </if>
+        </where>
+    </select>
+
 </mapper>

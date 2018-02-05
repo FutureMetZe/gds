@@ -14,7 +14,7 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>木庄网络博客-MZ-NetBlog主题模板</title>
+    <title>湖北二师社团之家</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
@@ -56,18 +56,18 @@
                 勤记录 懂分享</div>
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-navbar" aria-expanded="false"> <span class="sr-only"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-                <h1 class="logo hvr-bounce-in"><a href="#" title="木庄网络博客"><img src="#" alt="湖北二师社团之家"></a></h1>
+                <h1 class="logo hvr-bounce-in"><a href="#" title="湖北二师社团之家"><img src="#" alt="湖北二师社团之家"></a></h1>
             </div>
             <div class="collapse navbar-collapse" id="header-navbar">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a data-cont="木庄网络博客" title="木庄网络博客" href="index.do">首页</a></li>
-                    <li><a data-cont="列表页" title="列表页" href="list.do?postType=新闻资讯">列表页</a></li>
+                    <li><a data-cont="首页" title="首页" href="index.do">首页</a></li>
+                    <li><a data-cont="列表页" title="列表页" href="list.do?postType=新闻资讯">新闻资讯</a></li>
                     <c:forEach items="${blogPostType}" var="DictType">
                         <li><a data-cont="${DictType.value}" title="${DictType.value}" href="${BasePath}/list/share/" >${DictType.value}</a></li>
                     </c:forEach>
 
-                    <li><a data-cont="靠谱网赚" title="靠谱网赚" href="${BasePath}/list/money/" >靠谱网赚</a></li>
-                    <li><a data-cont="资讯分享" title="资讯分享" href="${BasePath}/list/news/" >资讯分享</a></li>
+                    <li><a data-cont="靠谱网赚" title="靠谱网赚" href="#" >靠谱网赚</a></li>
+                    <li><a data-cont="资讯分享" title="资讯分享" href="#" >资讯分享</a></li>
                 </ul>
             </div>
         </div>

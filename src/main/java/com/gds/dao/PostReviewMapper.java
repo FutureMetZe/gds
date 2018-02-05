@@ -29,4 +29,7 @@ public interface PostReviewMapper {
 
     //按照时间排序
     List<PostReview> selectReviewByTime(Map map);
+
+    //按照username查询评论
+    List<PostReview> selectReviewByUsername(Map map);
 }

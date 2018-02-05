@@ -20,4 +20,6 @@ public interface ClubDao {
     void insertClub(Club club);
 
     void deleteByClubId(Integer club_id);
+
+    List<Club> selectClubByType(Map map);
 }

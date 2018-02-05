@@ -1067,7 +1067,7 @@ span.address-icon{
 .view {
     margin: 1px;
     float: left;
-    overflow: hidden;    
+    overflow: hidden;
     position: relative;
     text-align: center;
     width: 32.5%;
@@ -1388,7 +1388,7 @@ color: #F7EFE2;
 	}
 	.mail-container {
 		max-width: 120%;
-		top: 50px;
+		top: 15px;
 		margin: 0px -15px;
 	}
 	.map-container {

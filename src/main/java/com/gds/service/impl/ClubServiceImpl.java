@@ -64,4 +64,11 @@ public class ClubServiceImpl implements ClubService{
         clubDao.deleteByClubId(club_id);
     }
 
+    @Override
+    public List<Club> selectClubByType(String club_type) {
+        Map map = new HashMap();
+        map.put("club_type",club_type);
+        return clubDao.selectClubByType(map);
+    }
+
 }
