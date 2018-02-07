@@ -55,9 +55,9 @@
             <li><cite></cite><a href="${BasePath}/back/index.do" target="rightFrame">首页</a><i></i></li>
             <li><cite></cite><a href="${BasePath}/back/hubestl_list.do" target="rightFrame">成员列表</a><i></i></li>
             <li><cite></cite><a href="${BasePath}/back/goodsList.do" target="rightFrame">物资管理</a><i></i></li>
-            <li><cite></cite><a href="${BasePath}/back/activityList.do" target="rightFrame">活动管理</a><i></i></li>
-            <li><cite></cite><a href="#" target="rightFrame">活动室管理</a><i></i></li>
-            <li><cite></cite><a href="#" target="rightFrame">电子文件管理</a><i></i></li>
+            <li><cite></cite><a href="${BasePath}/back/activityList.do?plan003=0" target="rightFrame">活动管理</a><i></i></li>
+            <li><cite></cite><a href="#" target="rightFrame">活动室管理(未开发)</a><i></i></li>
+            <li><cite></cite><a href="#" target="rightFrame">电子文件管理(未开发)</a><i></i></li>
         </ul>
     </dd>
 
@@ -68,16 +68,18 @@
         <ul class="menuson">
             <li><cite></cite><a href="${BasePath}/back/stuMag.do" target="rightFrame">社员管理</a><i></i></li>
             <li><cite></cite><a href="${BasePath}/back/clubList.do" target="rightFrame">组织架构</a><i></i></li>
+            <li><cite></cite><a href="${BasePath}/back/activityList.do?plan003=1" target="rightFrame">社团活动管理</a><i></i></li>
         </ul>
     </dd>
 
 
-    <dd><div class="title"><span><img src="${BasePath}/back/images/leftico03.png" /></span>首页管理</div>
+    <dd><div class="title"><span><img src="${BasePath}/back/images/leftico03.png" /></span>首页配置</div>
         <ul class="menuson">
             <li><cite></cite><a href="${BasePath}/back/blogList.do" target="rightFrame">文章管理</a><i></i></li>
             <li><cite></cite><a href="${BasePath}/back/postReviewList.do" target="rightFrame">留言管理</a><i></i></li>
-            <li><cite></cite><a href="#">自定义导航模块</a><i></i></li>
-            <li><cite></cite><a href="#">首页轮播图</a><i></i></li>
+            <li><cite></cite><a href="#">自定义导航模块(未开发)</a><i></i></li>
+            <li><cite></cite><a href="#">首页轮播图(未开发)</a><i></i></li>
+            <li><cite></cite><a href="${BasePath}/back/dictList.do" target="rightFrame">字典管理</a><i></i></li>
         </ul>
     </dd>
 

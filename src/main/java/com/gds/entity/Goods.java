@@ -1,8 +1,9 @@
 package com.gds.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Goods {
+public class Goods implements Serializable {
     private Integer goodsId;
 
     private String goodsName;

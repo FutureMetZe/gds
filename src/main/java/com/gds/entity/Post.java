@@ -1,8 +1,9 @@
 package com.gds.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Post {
+public class Post implements Serializable {
     private Integer blogId;
 
     private String blogTitle;
@@ -19,9 +20,9 @@ public class Post {
 
     private Integer status;
 
-    private String standby001;
+    private String standby001;  //作者帐号
 
-    private String standby002;
+    private String standby002;  //相关类型社团
 
     private String standby003;  //主题
 

@@ -41,4 +41,15 @@ public class BlogPostReviewController {
         return "back/blogReview/list";
     }
 
+
+
+    /**
+     * 删除留言
+     */
+    @RequestMapping("/postReviewDelete.do")
+    public String postReviewDelete(HttpServletRequest request, HttpServletResponse response, ModelMap model,
+                           @RequestParam(value = "reviewId", required = false)Integer reviewId){
+        postReviewService.deleteReviewById(reviewId);
+        return clubList(request,response,model,null,null,null,null,null);
+    }
 }

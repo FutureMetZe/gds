@@ -17,4 +17,6 @@ public interface PostReviewService {
     void insertReview(PostReview postReview);
 
     List<PostReview> selectReviewByUsername(String username);
+
+    void deleteReviewById(Integer reviewId);
 }

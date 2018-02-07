@@ -34,7 +34,7 @@
         name like "%"#{name}"%"
       </if>
       <if test="department != null and department != ''">
-        and department = #{department}
+        and department like "%"#{department}"%"
       </if>
     </where>
   </select>

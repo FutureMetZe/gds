@@ -1,6 +1,8 @@
 package com.gds.entity;
 
-public class StuAndClub {
+import java.io.Serializable;
+
+public class StuAndClub implements Serializable {
     private Integer id;
 
     private String stuNum;

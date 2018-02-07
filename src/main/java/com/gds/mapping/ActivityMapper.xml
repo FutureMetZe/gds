@@ -195,6 +195,9 @@
       <if test="sponsor != null and sponsor != ''">
         and sponsor like "%"#{sponsor}"%"
       </if>
+      <if test="plan003 != null and plan003 != ''">
+        and plan003 = #{plan003}
+      </if>
     </where>
   </select>
 
@@ -206,6 +209,9 @@
       </if>
       <if test="sponsor != null and sponsor != ''">
         and sponsor like "%"#{sponsor}"%"
+      </if>
+      <if test="plan003 != null and plan003 != ''">
+        and plan003 = #{plan003}
       </if>
     </where>
     LIMIT #{startRow},#{size}

@@ -1,6 +1,8 @@
 package com.gds.entity;
 
-public class Club {
+import java.io.Serializable;
+
+public class Club implements Serializable {
     /*
   `club_id` int(10) NOT NULL AUTO_INCREMENT,
   `club_name` varchar(255) DEFAULT NULL COMMENT '社团名称',

@@ -6,27 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 <link href="${pageContext.request.contextPath }/back/css/style.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="${pageContext.request.contextPath }/front/js/jquery-1.11.1.min.js"></script>
-<script type="text/javascript">
-    function changePage(pageNum){
-        //1 将页码的值放入对应表单隐藏域中
-        $("#currentPageInput").val(pageNum);
-        //2 提交表单
-        $("#pageForm").submit();
-    };
+<script type="text/javascript" src="${pageContext.request.contextPath }/back/js/jquery-1.11.1.min.js"></script>
 
-    function changePageSize(pageSize){
-        //1 将页码的值放入对应表单隐藏域中
-        $("#pageSizeInput").val(pageSize);
-        //2 提交表单
-        $("#pageForm").submit();
-    };
-
-    function forAddPage(){
-        window.location.href="${pageContext.request.contextPath }/back/stuAdd.do";
-    };
-
-</script>
 
 <script type="text/javascript">
     $('.tablelist tbody tr:odd').addClass('odd');
@@ -75,7 +56,7 @@ $(document).ready(function(){
                 <li><label>姓名：</label><input name="stu_name" type="text" class="dfinput" value="${stu_name}"  style="width:110px;"/></li>&nbsp;&nbsp;
                 <li><label>学院：</label><input name="standby001" type="text" class="dfinput" value="${standby001}"  style="width:130px;"/></li>&nbsp;&nbsp;
                 <!-- 隐藏域.当前页码 -->
-                <input type="hidden" name="currentPage" value="${page.totalPage}" />
+                <input type="hidden" name="currentPage" value="${page.currentPage}" />
                 <!-- 隐藏域.每页显示条数 -->
                 <input type="hidden" name="pageSize" value="${page.pageSize}" />
                 <li><label>&nbsp;</label><input type="submit" class="findbtn" value="查找"/></li>
@@ -131,7 +112,7 @@ $(document).ready(function(){
         <DIV style="LINE-HEIGHT: 40px; HEIGHT: 40px; TEXT-ALIGN: right">
             共[<B>${page.totalCount}</B>]条记录，共[<B>${page.totalPage}</B>]页
             ；每页显示
-            <select name="pageSize" onchange="changePageSize($('#pageSizeSelect option:selected').val())" id="pageSizeSelect" >
+            <select name="pageSize" onchange="changePageSize(jQuery('#pageSizeSelect option:selected').val())" id="pageSizeSelect" >
                 <option value="5" <c:if test="${page.pageSize==5}">selected</c:if> >5</option>
                 <option value="10" <c:if test="${page.pageSize==10}">selected</c:if> >10</option>
                 <option value="20" <c:if test="${page.pageSize==20}">selected</c:if> >20</option>
@@ -151,7 +132,25 @@ $(document).ready(function(){
 
 
     </div>
+    <script type="text/javascript">
+        function changePage(pageNum){
+            //1 将页码的值放入对应表单隐藏域中
+            jQuery("#currentPageInput").val(pageNum);
+            //2 提交表单
+            jQuery("#pageForm").submit();
+        };
 
+        function changePageSize(pageSize){
+            //1 将页码的值放入对应表单隐藏域中
+            jQuery("#pageSizeInput").val(pageSize);
+            //2 提交表单
+            jQuery("#pageForm").submit();
+        };
+        function forAddPage(){
+            window.location.href="${pageContext.request.contextPath }/back/stuAdd.do";
+        };
+
+    </script>
 
 </body>
 </html>

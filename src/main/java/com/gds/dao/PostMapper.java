@@ -36,4 +36,5 @@ public interface PostMapper {
     List<Post> selectPostByTypeOrKeyword(Map map);
 
     List<Post> selectPostByUsername(Map map);
+
 }

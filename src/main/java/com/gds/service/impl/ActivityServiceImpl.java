@@ -18,11 +18,12 @@ public class ActivityServiceImpl implements ActivityService {
     private ActivityMapper activityMapper;
 
     @Override
-    public PageBean<Activity> selectActivityPageList(Integer currentPage, Integer pageSize, String activityTitle, String sponsor) {
+    public PageBean<Activity> selectActivityPageList(Integer currentPage, Integer pageSize, String activityTitle, String sponsor,String plan003) {
 
         Map map = new HashMap();
         map.put("activityTitle",activityTitle);
         map.put("sponsor",sponsor);
+        map.put("plan003",plan003);
         Integer totalCount = activityMapper.selectCount(map);
         PageBean<Activity> pageBean = new PageBean<Activity>(currentPage,totalCount,pageSize);
         Integer startRow = pageBean.getStart();

@@ -6,49 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 <link href="${pageContext.request.contextPath }/back/css/style.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="${pageContext.request.contextPath }/front/js/jquery-1.11.1.min.js"></script>
-<script type="text/javascript">
-    function changePage(pageNum){
-        //1 将页码的值放入对应表单隐藏域中
-        $("#currentPageInput").val(pageNum);
-        //2 提交表单
-        $("#pageForm").submit();
-    };
-
-    function changePageSize(pageSize){
-        //1 将页码的值放入对应表单隐藏域中
-        $("#pageSizeInput").val(pageSize);
-        //2 提交表单
-        $("#pageForm").submit();
-    };
-
-    function forAddPage(){
-        window.location.href="${pageContext.request.contextPath }/back/hubestl_add.do";
-    };
-
-</script>
-
-<script type="text/javascript">
-    $('.tablelist tbody tr:odd').addClass('odd');
-$(document).ready(function(){
-  $(".click").click(function(){
-  $(".tip").fadeIn(200);
-  });
-  
-  $(".tiptop a").click(function(){
-  $(".tip").fadeOut(200);
-});
-
-  $(".sure").click(function(){
-  $(".tip").fadeOut(100);
-});
-
-  $(".cancel").click(function(){
-  $(".tip").fadeOut(100);
-});
-
-});
-</script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/back/js/jquery-1.11.1.min.js"></script>
 
 
 </head>
@@ -64,17 +22,17 @@ $(document).ready(function(){
     <li><a href="#">社员列表</a></li>
     </ul>
     </div>
-    
+
     <div class="rightinfo">
-    
+
     <div class="tools">
-    
+
     	<ul class="toolbar">
             <form action="${pageContext.request.contextPath }/back/hubestl_list.do">
                 <li><label>姓名：</label><input name="name" type="text" class="dfinput" value="${name}"  style="width:110px;"/></li>&nbsp;&nbsp;
                 <li><label>所属部门：</label><input name="department" type="text" class="dfinput" value="${department}"  style="width:130px;"/></li>&nbsp;&nbsp;
                 <!-- 隐藏域.当前页码 -->
-                <input type="hidden" name="currentPage" value="${page.totalPage}" />
+                <input type="hidden" name="currentPage" value="${page.currentPage}" />
                 <!-- 隐藏域.每页显示条数 -->
                 <input type="hidden" name="pageSize" value="${page.pageSize}" />
                 <li><label>&nbsp;</label><input type="submit" class="findbtn" value="查找"/></li>
@@ -85,7 +43,7 @@ $(document).ready(function(){
         <ul class="toolbar1">
             <li onclick="forAddPage()"><span><img src="${pageContext.request.contextPath }/back/images/t01.png" /></span>新增</li>
         </ul>
-    
+
     </div>
 
 <FORM id="pageForm" name="customerForm" action="${pageContext.request.contextPath }/back/hubestl_list.do" method=post>
@@ -130,7 +88,7 @@ $(document).ready(function(){
         <DIV style="LINE-HEIGHT: 40px; HEIGHT: 40px; TEXT-ALIGN: right">
             共[<B>${page.totalCount}</B>]条记录，共[<B>${page.totalPage}</B>]页
             ；每页显示
-            <select name="pageSize" onchange="changePageSize($('#pageSizeSelect option:selected').val())" id="pageSizeSelect" >
+            <select name="pageSize" onchange="changePageSize(jQuery('#pageSizeSelect option:selected').val())" id="pageSizeSelect" >
                 <option value="5" <c:if test="${page.pageSize==5}">selected</c:if> >5</option>
                 <option value="10" <c:if test="${page.pageSize==10}">selected</c:if> >10</option>
                 <option value="20" <c:if test="${page.pageSize==20}">selected</c:if> >20</option>
@@ -150,6 +108,48 @@ $(document).ready(function(){
 
 
     </div>
+    <script type="text/javascript">
+        function changePage(pageNum){
+            //1 将页码的值放入对应表单隐藏域中
+            jQuery("#currentPageInput").val(pageNum);
+            //2 提交表单
+            jQuery("#pageForm").submit();
+        };
+
+        function changePageSize(pageSize){
+            //1 将页码的值放入对应表单隐藏域中
+            jQuery("#pageSizeInput").val(pageSize);
+            //2 提交表单
+            jQuery("#pageForm").submit();
+        };
+
+        function forAddPage(){
+            window.location.href="${pageContext.request.contextPath }/back/dictToAddPage.do";
+        };
+
+    </script>
+
+    <script type="text/javascript">
+        $('.tablelist tbody tr:odd').addClass('odd');
+        $(document).ready(function(){
+            $(".click").click(function(){
+                $(".tip").fadeIn(200);
+            });
+
+            $(".tiptop a").click(function(){
+                $(".tip").fadeOut(200);
+            });
+
+            $(".sure").click(function(){
+                $(".tip").fadeOut(100);
+            });
+
+            $(".cancel").click(function(){
+                $(".tip").fadeOut(100);
+            });
+
+        });
+    </script>
 
 
 </body>

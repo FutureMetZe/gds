@@ -37,12 +37,14 @@ public class ActivityController {
                            @RequestParam(value = "pageSize", required = false)Integer pageSize,
                            @RequestParam(value = "currentPage", required = false)Integer currentPage,
                            @RequestParam(value = "activityTitle", required = false)String activityTitle,
+                           @RequestParam(value = "plan003", required = false)String plan003,
                            @RequestParam(value = "sponsor", required = false)String sponsor ){
-        PageBean<Activity> pageBeans = activityService.selectActivityPageList(currentPage,pageSize,activityTitle,sponsor);
+        PageBean<Activity> pageBeans = activityService.selectActivityPageList(currentPage,pageSize,activityTitle,sponsor,plan003);
         model.addAttribute("page",pageBeans);
         model.addAttribute("beans",pageBeans.getBeans());
         model.addAttribute("activityTitle",activityTitle);
         model.addAttribute("sponsor",sponsor);
+        model.addAttribute("plan003",plan003);
         logger.info("访问【activityList.do】接口；返回数据为："+pageBeans.toString());
         return "back/activity/list";
     }
@@ -51,10 +53,12 @@ public class ActivityController {
      *  跳转到新增页面
      */
     @RequestMapping("/activityAdd.do")
-    public String clubAdd(HttpServletRequest request, HttpServletResponse response, ModelMap model ){
+    public String clubAdd(HttpServletRequest request, HttpServletResponse response, ModelMap model,
+                          @RequestParam(value = "plan003", required = false)String plan003 ){
         //从字典中获取 005活动类型
         List<Dict> activityTypes = dictService.selectDiceByKey("005");
         model.addAttribute("activityTypes",activityTypes);
+        model.addAttribute("plan003",plan003);
         logger.info("访问【activityAdd.do】接口；返回数据为："+activityTypes.toString());
         return "back/activity/add";
     }
@@ -70,6 +74,6 @@ public class ActivityController {
         activity.setOvertime(DateUtils.strToDateLong(overtimeStr));
 //        activity.setPlan003("0");//0为社联活动，1为社团活动
         activityService.insertSelective(activity);
-        return clubList(request,response,model,null,null,null,null);
+        return clubList(request,response,model,null,null,null,activity.getPlan003(),null);
     }
 }

@@ -60,7 +60,7 @@ $(document).ready(function(e) {
     <div class="formtext">Hi，<b>admin</b>，欢迎您试用信息发布功能！</div>
 
     <form action="/back/activitySave.do">
-
+<input type="hidden" name="plan003" value="${plan003}"/>
     <ul class="forminfo">
     <li><label>活动主题：<b>*</b></label><input name="activityTitle" type="text" class="dfinput" value=""  style="width:350px;"/></li>
     <li><label>主办方：<b>*</b></label><input name="sponsor" type="text" class="dfinput" value=""  style="width:350px;"/></li>

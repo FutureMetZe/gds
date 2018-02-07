@@ -2,14 +2,122 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="com.gds.dao.DictDao">
+    <resultMap id="BaseResultMap" type="com.gds.entity.Dict">
+        <id column="dict_id" jdbcType="INTEGER" property="dictId" />
+        <result column="key_id" jdbcType="VARCHAR" property="keyId" />
+        <result column="key" jdbcType="VARCHAR" property="key" />
+        <result column="value" jdbcType="VARCHAR" property="value" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        dict_id, key_id, `key`, `value`
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from gds_dict
+        where dict_id = #{dictId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from gds_dict
+        where dict_id = #{dictId,jdbcType=INTEGER}
+    </delete>
 
+    <insert id="insertSelective" parameterType="com.gds.entity.Dict">
+        insert into gds_dict
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="dictId != null">
+                dict_id,
+            </if>
+            <if test="keyId != null">
+                key_id,
+            </if>
+            <if test="key != null">
+                `key`,
+            </if>
+            <if test="value != null">
+                `value`,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="dictId != null">
+                #{dictId,jdbcType=INTEGER},
+            </if>
+            <if test="keyId != null">
+                #{keyId,jdbcType=VARCHAR},
+            </if>
+            <if test="key != null">
+                #{key,jdbcType=VARCHAR},
+            </if>
+            <if test="value != null">
+                #{value,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.gds.entity.Dict">
+        update gds_dict
+        <set>
+            <if test="keyId != null">
+                key_id = #{keyId,jdbcType=VARCHAR},
+            </if>
+            <if test="key != null">
+                key = #{key,jdbcType=VARCHAR},
+            </if>
+            <if test="value != null">
+                value = #{value,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where dict_id = #{dictId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.gds.entity.Dict">
+        update gds_dict
+        set key_id = #{keyId,jdbcType=VARCHAR},
+        key = #{key,jdbcType=VARCHAR},
+        value = #{value,jdbcType=VARCHAR}
+        where dict_id = #{dictId,jdbcType=INTEGER}
+    </update>
 
     <!--查询字典-->
-    <select id="selectDiceByKey" resultType="com.gds.entity.Dict" parameterType="String">
+    <select id="selectDiceByKey" resultMap="BaseResultMap" parameterType="String">
         SELECT * from gds_dict g
         WHERE g.key_id = #{keyId}
 
     </select>
+
+    <select id="selectDiceById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        SELECT * from gds_dict g
+        WHERE g.dict_id = #{dictId}
+
+    </select>
+
+
+    <!--查询字典记录数-->
+    <select id="selectClubCount" resultType="java.lang.Integer" parameterType="Map">
+        SELECT count(1) from gds_dict
+        <where>
+            <if test="keyName != null and keyName != ''">
+                `key` like "%"#{keyName}"%"
+            </if>
+            <if test="keyNum != null and keyNum != ''">
+               and key_id LIKE "%"#{keyNum}"%"
+            </if>
+        </where>
+    </select>
+
+    <!--分页查询-->
+    <select id="selectClubList" resultMap="BaseResultMap" parameterType="Map">
+        select * from gds_dict
+        <where>
+            <if test="keyName != null and keyName != ''">
+                `key like "%"#{keyName}"%"
+            </if>
+            <if test="keyNum != null and keyNum != ''">
+                and  key_id LIKE "%"#{keyNum}"%"
+            </if>
+        </where>
+        order by key_id asc
+        LIMIT #{startRow},#{size}
+    </select>
+
 
 
 </mapper>

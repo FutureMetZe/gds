@@ -1,8 +1,10 @@
 package com.gds.controller.back;
 
 import com.gds.entity.Club;
+import com.gds.entity.Dict;
 import com.gds.entity.Post;
 import com.gds.service.BlogPostService;
+import com.gds.service.DictService;
 import com.gds.utils.PageBean;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * 后台管理员控制博客相关操作
@@ -24,6 +27,9 @@ public class BlogPostController {
 
     @Resource(name = "BlogPostService")
     private BlogPostService blogPostService;
+
+    @Resource(name = "DictService")
+    private DictService dictService;
 
     /**
      * 所有文章列表
@@ -46,7 +52,36 @@ public class BlogPostController {
         return "back/blog/list";
     }
 
+    /**
+     * 文章发布页面
+     */
+    @RequestMapping("/blogAddPage.do")
+    public String blogAddPage(HttpServletRequest request, HttpServletResponse response, ModelMap model){
 
+        String blogAuthor = "作者姓名";
+        String standby001 = "作者账户";
 
+        //所属分类
+        List<Dict> postType =  dictService.selectDiceByKey("006");
+        model.addAttribute("postType",postType);
+        model.addAttribute("blogAuthor",blogAuthor);
+        model.addAttribute("standby001",standby001);
+
+        //社团类型
+        List<Dict> clubType =  dictService.selectDiceByKey("001");
+        model.addAttribute("clubType",clubType);
+
+        return "back/blog/add";
+    }
+
+    /**
+     * 保存文章操作
+     */
+    @RequestMapping("/postSave.do")
+    public String postSave(HttpServletRequest request, HttpServletResponse response, ModelMap model,Post post){
+        blogPostService.insertPost(post);
+
+        return clubList(request,response,model,null,null,null,null,null);
+    }
 
 }

@@ -63,4 +63,9 @@ public class PostReviewServiceImpl implements PostReviewService {
         map.put("username",username);
         return postReviewMapper.selectReviewByUsername(map);
     }
+
+    @Override
+    public void deleteReviewById(Integer reviewId) {
+        postReviewMapper.deleteByPrimaryKey(reviewId);
+    }
 }

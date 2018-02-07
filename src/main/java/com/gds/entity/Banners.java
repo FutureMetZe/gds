@@ -1,8 +1,9 @@
 package com.gds.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Banners {
+public class Banners implements Serializable {
 
     //图片尺寸为 820*200
 

@@ -1,6 +1,8 @@
 package com.gds.entity;
 
-public class Hubestl {
+import java.io.Serializable;
+
+public class Hubestl implements Serializable {
     private Integer id;
 
     private String name;

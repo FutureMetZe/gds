@@ -21,4 +21,6 @@ public interface BlogPostService {
     List<Post> selectPostByTypeOrKeyword(String club_type);
 
     List<Post> selectPostByUsername(String username);
+
+    void insertPost(Post post);
 }

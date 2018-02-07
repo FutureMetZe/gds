@@ -72,4 +72,9 @@ public class BlogPostServiceImpl implements BlogPostService {
         map.put("username",username);
         return postMapper.selectPostByUsername(map);
     }
+
+    @Override
+    public void insertPost(Post post) {
+        postMapper.insert(post);
+    }
 }

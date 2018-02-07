@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gds.dao.ActivityRoomMapper">
+  <resultMap id="BaseResultMap" type="com.gds.entity.ActivityRoom">
+    <id column="room_id" jdbcType="INTEGER" property="roomId" />
+    <result column="room_name" jdbcType="VARCHAR" property="roomName" />
+    <result column="room_addr" jdbcType="VARCHAR" property="roomAddr" />
+    <result column="room_isUse" jdbcType="VARCHAR" property="roomIsuse" />
+    <result column="room_use_name" jdbcType="VARCHAR" property="roomUseName" />
+    <result column="room_begin_time" jdbcType="TIMESTAMP" property="roomBeginTime" />
+    <result column="room_over_time" jdbcType="TIMESTAMP" property="roomOverTime" />
+    <result column="room_introduce" jdbcType="VARCHAR" property="roomIntroduce" />
+    <result column="plan01" jdbcType="VARCHAR" property="plan01" />
+    <result column="plan02" jdbcType="VARCHAR" property="plan02" />
+    <result column="plan03" jdbcType="VARCHAR" property="plan03" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    room_id, room_name, room_addr, room_isUse, room_use_name, room_begin_time, room_over_time, 
+    room_introduce, plan01, plan02, plan03
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from gds_activity_room
+    where room_id = #{roomId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from gds_activity_room
+    where room_id = #{roomId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gds.entity.ActivityRoom">
+    insert into gds_activity_room (room_id, room_name, room_addr, 
+      room_isUse, room_use_name, room_begin_time, 
+      room_over_time, room_introduce, plan01, 
+      plan02, plan03)
+    values (#{roomId,jdbcType=INTEGER}, #{roomName,jdbcType=VARCHAR}, #{roomAddr,jdbcType=VARCHAR}, 
+      #{roomIsuse,jdbcType=VARCHAR}, #{roomUseName,jdbcType=VARCHAR}, #{roomBeginTime,jdbcType=TIMESTAMP}, 
+      #{roomOverTime,jdbcType=TIMESTAMP}, #{roomIntroduce,jdbcType=VARCHAR}, #{plan01,jdbcType=VARCHAR}, 
+      #{plan02,jdbcType=VARCHAR}, #{plan03,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gds.entity.ActivityRoom">
+    insert into gds_activity_room
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roomId != null">
+        room_id,
+      </if>
+      <if test="roomName != null">
+        room_name,
+      </if>
+      <if test="roomAddr != null">
+        room_addr,
+      </if>
+      <if test="roomIsuse != null">
+        room_isUse,
+      </if>
+      <if test="roomUseName != null">
+        room_use_name,
+      </if>
+      <if test="roomBeginTime != null">
+        room_begin_time,
+      </if>
+      <if test="roomOverTime != null">
+        room_over_time,
+      </if>
+      <if test="roomIntroduce != null">
+        room_introduce,
+      </if>
+      <if test="plan01 != null">
+        plan01,
+      </if>
+      <if test="plan02 != null">
+        plan02,
+      </if>
+      <if test="plan03 != null">
+        plan03,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roomId != null">
+        #{roomId,jdbcType=INTEGER},
+      </if>
+      <if test="roomName != null">
+        #{roomName,jdbcType=VARCHAR},
+      </if>
+      <if test="roomAddr != null">
+        #{roomAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="roomIsuse != null">
+        #{roomIsuse,jdbcType=VARCHAR},
+      </if>
+      <if test="roomUseName != null">
+        #{roomUseName,jdbcType=VARCHAR},
+      </if>
+      <if test="roomBeginTime != null">
+        #{roomBeginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="roomOverTime != null">
+        #{roomOverTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="roomIntroduce != null">
+        #{roomIntroduce,jdbcType=VARCHAR},
+      </if>
+      <if test="plan01 != null">
+        #{plan01,jdbcType=VARCHAR},
+      </if>
+      <if test="plan02 != null">
+        #{plan02,jdbcType=VARCHAR},
+      </if>
+      <if test="plan03 != null">
+        #{plan03,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gds.entity.ActivityRoom">
+    update gds_activity_room
+    <set>
+      <if test="roomName != null">
+        room_name = #{roomName,jdbcType=VARCHAR},
+      </if>
+      <if test="roomAddr != null">
+        room_addr = #{roomAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="roomIsuse != null">
+        room_isUse = #{roomIsuse,jdbcType=VARCHAR},
+      </if>
+      <if test="roomUseName != null">
+        room_use_name = #{roomUseName,jdbcType=VARCHAR},
+      </if>
+      <if test="roomBeginTime != null">
+        room_begin_time = #{roomBeginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="roomOverTime != null">
+        room_over_time = #{roomOverTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="roomIntroduce != null">
+        room_introduce = #{roomIntroduce,jdbcType=VARCHAR},
+      </if>
+      <if test="plan01 != null">
+        plan01 = #{plan01,jdbcType=VARCHAR},
+      </if>
+      <if test="plan02 != null">
+        plan02 = #{plan02,jdbcType=VARCHAR},
+      </if>
+      <if test="plan03 != null">
+        plan03 = #{plan03,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where room_id = #{roomId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gds.entity.ActivityRoom">
+    update gds_activity_room
+    set room_name = #{roomName,jdbcType=VARCHAR},
+      room_addr = #{roomAddr,jdbcType=VARCHAR},
+      room_isUse = #{roomIsuse,jdbcType=VARCHAR},
+      room_use_name = #{roomUseName,jdbcType=VARCHAR},
+      room_begin_time = #{roomBeginTime,jdbcType=TIMESTAMP},
+      room_over_time = #{roomOverTime,jdbcType=TIMESTAMP},
+      room_introduce = #{roomIntroduce,jdbcType=VARCHAR},
+      plan01 = #{plan01,jdbcType=VARCHAR},
+      plan02 = #{plan02,jdbcType=VARCHAR},
+      plan03 = #{plan03,jdbcType=VARCHAR}
+    where room_id = #{roomId,jdbcType=INTEGER}
+  </update>
+</mapper>

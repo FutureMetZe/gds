@@ -1,8 +1,9 @@
 package com.gds.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class PostReview {
+public class PostReview implements Serializable {
     private Integer reviewId;
 
     private Integer blogId;
