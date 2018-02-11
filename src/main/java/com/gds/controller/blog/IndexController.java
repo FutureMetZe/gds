@@ -5,6 +5,7 @@ import com.gds.service.*;
 import com.gds.utils.PageBean;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,6 +37,9 @@ public class IndexController {
 
     @Resource(name = "StudentService")
     private StudentService studentService;
+
+    @Resource(name = "ClubService")
+    private ClubService clubService;
 
     /**
      * 跳转到博客首页
@@ -139,7 +143,8 @@ public class IndexController {
         //4,文章详情查询 blogId
         Post POST = blogPostService.selectPostById(blogId);
         model.addAttribute("POST",POST);
-
+        POST.setView(POST.getView()+1);
+        blogPostService.update(POST);
         //5,文章对应留言列表
         PageBean<PostReview> postReviewsList = postReviewService.selectPostReviewPageList(null,null,null,null,blogId);
         model.addAttribute("Reviews",postReviewsList.getBeans());
@@ -196,7 +201,11 @@ public class IndexController {
      * 跳转到注册页面
      */
     @RequestMapping("/toRegisterPage.do")
-    public String toRegisterPage(){
+    public String toRegisterPage(HttpServletRequest request, HttpServletResponse response, ModelMap model){
+
+        //将所有社团名称、ID发出去
+        List<Club> Clubs = clubService.selectAll();
+        model.addAttribute("Clubs",Clubs);
         return "blog/register";
     }
 
@@ -212,7 +221,7 @@ public class IndexController {
         Student student = studentService.selectByUsernameAndPassword(username,password);
         HttpSession session = request.getSession(true);
         if (student != null){
-            session.setAttribute("UserName",student.getStu_name());
+            session.setAttribute("UserName",student.getStuName());
             session.setAttribute("Student",student);
             //用户存在
             return index(request,response,model);

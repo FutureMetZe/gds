@@ -19,4 +19,6 @@ public interface PostReviewService {
     List<PostReview> selectReviewByUsername(String username);
 
     void deleteReviewById(Integer reviewId);
+
+    Integer selectCount();
 }

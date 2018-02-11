@@ -75,4 +75,11 @@
     from gds_stu_relation
     where stu_num = #{stu_num}
   </select>
+
+  <select id="selectByClubId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select
+    <include refid="Base_Column_List" />
+    from gds_stu_relation
+    where dict_club_id = #{clubId}
+  </select>
 </mapper>

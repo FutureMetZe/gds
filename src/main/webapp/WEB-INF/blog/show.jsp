@@ -47,31 +47,30 @@
                                 "<li><a href=\"toLoginPage.do\" >登录</a></li>" );
                     }else {
                         out.write("<li>欢迎你，"+session.getAttribute("UserName").toString()+"！</li>"+
-                                "<li><a href=\"userExit.do\" >退出</a></li>");
+                                "<li><a href=\"home/goHome.do\" >个人主页</a></li>" +
+                                "<li><a href=\"userExit.do\" >退出</a></li>"
+                        );
                     }
                     %>
                 </ul>
                 勤记录 懂分享</div>
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-navbar" aria-expanded="false"> <span class="sr-only"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-                <h1 class="logo hvr-bounce-in"><a href="#" title="木庄网络博客"><img src="#" alt="湖北二师社团之家"></a></h1>
+                <h1 class="logo hvr-bounce-in"><a href="#" title="湖北二师社团之家"><img src="#" alt="湖北二师社团之家"></a></h1>
             </div>
             <div class="collapse navbar-collapse" id="header-navbar">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a data-cont="木庄网络博客" title="木庄网络博客" href="index.do">首页</a></li>
-                    <li><a data-cont="列表页" title="列表页" href="list.do?postType=新闻资讯">列表页</a></li>
+                    <li><a data-cont="首页" title="首页" href="index.do">首页</a></li>
                     <c:forEach items="${blogPostType}" var="DictType">
-                        <li><a data-cont="${DictType.value}" title="${DictType.value}" href="${BasePath}/list/share/" >${DictType.value}</a></li>
+                        <li><a data-cont="${DictType.value}" title="${DictType.value}" href="list.do?postType=${DictType.value}" >${DictType.value}</a></li>
                     </c:forEach>
-
-                    <li><a data-cont="靠谱网赚" title="靠谱网赚" href="${BasePath}/list/money/" >靠谱网赚</a></li>
-                    <li><a data-cont="资讯分享" title="资讯分享" href="${BasePath}/list/news/" >资讯分享</a></li>
+                    <li><a data-cont="团委资讯" title="团委资讯" href="http://tw.hue.edu.cn/" >团委资讯</a></li>
+                    <li><a data-cont="二师官网" title="二师官网" href="http://www.hue.edu.cn/static/" >二师官网</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 </header>
-
 <section class="container">
     <div class="content-wrap">
         <div class="content">
@@ -126,7 +125,7 @@
                 <h3>评论</h3>
             </div>
             <div id="respond">
-                <form id="comment-form" name="comment-form" action="/blog/submitReview.do" method="POST">
+                <form id="comment-form" name="comment-form" action="/blog/submitReview.do">
                     <div class="comment">
                         <input type="hidden" name="standby002" id="pageSizeInput"       value="${POST.blogAuthor}" />
                         <input type="hidden" name="standby001" id="standby001"       value="${POST.blogSort}" />
@@ -244,8 +243,6 @@
         </div>
         <div class="widget widget_sentence">
 
-            <a href="http://web.muzhuangnet.com/" target="_blank" rel="nofollow" title="专业网站建设" >
-                <img style="width: 100%" src="${BasePath}/upload/201610/24/201610241224221511.jpg" alt="专业网站建设" ></a>
 
         </div>
     </aside>

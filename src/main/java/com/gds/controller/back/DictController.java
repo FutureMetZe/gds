@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @Controller
 @RequestMapping("back")
@@ -31,6 +32,9 @@ public class DictController {
                            @RequestParam(value = "currentPage", required = false)Integer currentPage,
                            @RequestParam(value = "keyNum", required = false)String keyNum,
                            @RequestParam(value = "keyName", required = false)String keyName ){
+
+        System.out.println(request.getParameter("currentPage"));
+
         PageBean<Dict> pageBeans = dictService.selectDictPageList(currentPage,pageSize,keyNum,keyName);
         model.addAttribute("page",pageBeans);
         model.addAttribute("beans",pageBeans.getBeans());
@@ -78,5 +82,9 @@ public class DictController {
         dictService.deleteDiceById(dictId);
         return dictList(request, response,model,null,null,null,null);
     }
+
+
+
+
 
 }

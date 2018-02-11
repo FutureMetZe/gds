@@ -77,4 +77,21 @@ public class BlogPostServiceImpl implements BlogPostService {
     public void insertPost(Post post) {
         postMapper.insert(post);
     }
+
+    @Override
+    public void update(Post post) {
+        postMapper.updateByPrimaryKey(post);
+    }
+
+    @Override
+    public void deleteById(Integer blogId) {
+        postMapper.deleteByPrimaryKey(blogId);
+    }
+
+    @Override
+    public Integer selectCount() {
+        return postMapper.selectPostCount(null);
+    }
+
+
 }

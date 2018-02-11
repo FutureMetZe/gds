@@ -29,4 +29,9 @@ public class StuAndClubServiceImpl implements StuAndClubService{
     public List<StuAndClub> selectStudentClubByStuNum(String stu_num) {
         return stuAndClubDao.selectStudentClubByStuNum(stu_num);
     }
+
+    @Override
+    public List<StuAndClub> selectBeanByClubId(Integer clubId) {
+        return stuAndClubDao.selectByClubId(clubId);
+    }
 }

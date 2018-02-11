@@ -20,4 +20,6 @@ public interface ClubService {
     void deleteByClubId(Integer club_id);
 
     List<Club> selectClubByType(String club_type);
+
+    Integer selectCount();
 }

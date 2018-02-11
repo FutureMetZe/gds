@@ -39,8 +39,8 @@ $(document).ready(function(e) {
 	<div class="place">
     <span>位置：</span>
     <ul class="placeul">
-    <li><a href="#">首页</a></li>
-    <li><a href="#">系统设置</a></li>
+        <li><a href="#">社团信息</a></li>
+        <li><a href="#">社团管理</a></li>
     </ul>
     </div>
     
@@ -51,13 +51,13 @@ $(document).ready(function(e) {
 
     <div class="itab">
   	<ul>
-     <li><a href="#tab1" class="selected">修改社员信息</a></li>
+     <li><a href="#tab1" class="selected">修改社团信息</a></li>
   	</ul>
     </div>
 
   	<div id="tab1" class="tabson">
 
-    <div class="formtext">Hi，<b>admin</b>，欢迎您试用信息发布功能！</div>
+    <div class="formtext">Hi，<b><%=session.getAttribute("AdminUsername")%></b>，欢迎您试用信息发布功能！</div>
 
     <form action="/back/stuSave.do">
 

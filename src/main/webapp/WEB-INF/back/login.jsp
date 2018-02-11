@@ -4,9 +4,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>湖北第二师范学院学生社团管理系统</title>
-<link href="css/style.css" rel="stylesheet" type="text/css" />
-<script language="JavaScript" src="js/jquery.js"></script>
-<script src="js/cloud.js" type="text/javascript"></script>
+<link href="${pageContext.request.contextPath }/back/css/style.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript" src="${pageContext.request.contextPath }/back/js/jquery.js"></script>
+<script src="${pageContext.request.contextPath }/back/js/cloud.js" type="text/javascript"></script>
 
 <script language="javascript">
 	$(function(){
@@ -44,7 +44,7 @@
        
     <div class="loginbox">
 
-    <form action="/back/adminLogin.do" method="post">
+    <form action="${pageContext.request.contextPath }/user/login.do" >
         <ul>
         <li><input name="username" type="text" class="loginuser" value="admin" onclick="JavaScript:this.value=''"/></li>
         <li><input name="password" type="text" class="loginpwd" value="密码" onclick="JavaScript:this.value=''"/></li>

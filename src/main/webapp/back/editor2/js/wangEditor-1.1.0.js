@@ -457,7 +457,7 @@
                     btnId = getUniqeId();
                     $modal = $(
                         '<div>' +
-                        '   <input id="' + urlTxtId + '" type="text" style="width:300px;"/>' + 
+                        '   <input id="' + urlTxtId + '" type="text" style="width:300px;"/>' +
                         '   <button id="' + btnId + '" type="button">插入图片</button>' + 
                         '</div>'
                     ),

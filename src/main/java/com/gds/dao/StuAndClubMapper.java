@@ -20,4 +20,6 @@ public interface StuAndClubMapper {
     int updateByPrimaryKey(StuAndClub record);
 
     List<StuAndClub> selectStudentClubByStuNum(String stu_num);
+
+    List<StuAndClub> selectByClubId(Integer clubId);
 }

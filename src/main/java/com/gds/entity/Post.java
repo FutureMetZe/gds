@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Post implements Serializable {
+
     private Integer blogId;
 
     private String blogTitle;
@@ -27,6 +28,16 @@ public class Post implements Serializable {
     private String standby003;  //主题
 
     private String blogContent;
+
+    private String imgUrl;
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
 
     public Integer getBlogId() {
         return blogId;
@@ -139,6 +150,7 @@ public class Post implements Serializable {
                 ", standby002='" + standby002 + '\'' +
                 ", standby003='" + standby003 + '\'' +
                 ", blogContent='" + blogContent + '\'' +
+                ", imgUrl='" + imgUrl + '\'' +
                 '}';
     }
 }

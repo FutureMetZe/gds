@@ -10,4 +10,10 @@ public interface HubestlService {
     PageBean<Hubestl> selectPageList(Integer currentPage, Integer pageSize, String name, String department);
 
     void insertHubestl(Hubestl hubestl);
+
+    Hubestl selectUserById(Integer user_id);
+
+    void update(Hubestl hubestl);
+
+    Integer selectCount();
 }

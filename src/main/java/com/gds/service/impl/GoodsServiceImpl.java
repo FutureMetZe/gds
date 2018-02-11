@@ -46,4 +46,9 @@ public class GoodsServiceImpl implements GoodsService {
     public void updateGoods(Goods goods) {
         goodsMapper.updateGoods(goods);
     }
+
+    @Override
+    public Integer selectCount() {
+        return goodsMapper.selectCount(null);
+    }
 }

@@ -59,21 +59,22 @@ font {
 					<font>会员登录</font>USER LOGIN
 					<div>&nbsp;</div>
 					<label id="message" class="error">${message}</label>
-					<form class="form-horizontal" action="/blog/userLogin.do" method="post">
+					<form class="form-horizontal" action="/blog/userLogin.do" >
 						<div class="form-group">
 							<label for="username" class="col-sm-2 control-label">用户名</label>
 							<div class="col-sm-6">
 								<input type="text" class="form-control" id="username" name="username"
-									placeholder="请输入用户名">
+									value="请输入帐号" onclick="JavaScript:this.value=''" />
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="inputPassword3" class="col-sm-2 control-label">密码</label>
 							<div class="col-sm-6">
 								<input type="password" class="form-control" id="password" name="password"
-									placeholder="请输入密码">
+									value="">
 							</div>
 						</div>
+
 						<div class="form-group">
 							<label for="inputPassword3" class="col-sm-2 control-label">验证码</label>
 							<div class="col-sm-3">

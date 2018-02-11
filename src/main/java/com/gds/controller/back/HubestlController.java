@@ -79,4 +79,35 @@ public class HubestlController {
         return list(request,response,model,null,null,null,null);
     }
 
+    /**
+     * hubestlEdit
+     */
+    @RequestMapping("/hubestlEdit.do")
+    public String hubestlEdit(HttpServletRequest request, HttpServletResponse response, ModelMap model,
+                              @RequestParam(value = "user_id", required = false)Integer user_id){
+
+        Hubestl hubestl = hubestlService.selectUserById(user_id);
+        model.addAttribute("hubestl",hubestl);
+        //查询学院002
+        List<Dict> facultys = dictService.selectDiceByKey("002");
+        //查询部门003
+        List<Dict> departments = dictService.selectDiceByKey("003");
+        //查询性别004
+        List<Dict> sexs = dictService.selectDiceByKey("004");
+        model.addAttribute("facultys",facultys);
+        model.addAttribute("departments",departments);
+        model.addAttribute("sexs",sexs);
+        return "back/hubestl/edit";
+    }
+
+    /**
+     * hubestlUpdate
+     */
+    @RequestMapping("/hubestlUpdate.do")
+    public String hubestlUpdate(HttpServletRequest request, HttpServletResponse response, ModelMap model ,Hubestl hubestl){
+        hubestlService.update(hubestl);
+
+        return list(request,response,model,null,null,null,null);
+    }
+
 }

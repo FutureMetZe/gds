@@ -65,7 +65,7 @@
     
     </div>
 
-<FORM id="pageForm" name="customerForm" action="${pageContext.request.contextPath }/back/goodsList.do" method=post>
+<FORM id="pageForm" name="customerForm" action="${pageContext.request.contextPath }/back/goodsList.do" >
     <!-- 隐藏域.当前页码 -->
     <input type="hidden" name="currentPage" id="currentPageInput" value="${page.totalPage}" />
     <!-- 隐藏域.每页显示条数 -->

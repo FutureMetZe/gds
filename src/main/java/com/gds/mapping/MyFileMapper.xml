@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gds.dao.MyFileMapper">
+  <resultMap id="BaseResultMap" type="com.gds.entity.MyFile">
+    <id column="file_id" jdbcType="INTEGER" property="fileId" />
+    <result column="file_name" jdbcType="VARCHAR" property="fileName" />
+    <result column="file_url" jdbcType="VARCHAR" property="fileUrl" />
+    <result column="file_introduce" jdbcType="VARCHAR" property="fileIntroduce" />
+    <result column="upload_username" jdbcType="VARCHAR" property="uploadUsername" />
+    <result column="file_creat_time" jdbcType="TIMESTAMP" property="fileCreatTime" />
+    <result column="plan001" jdbcType="VARCHAR" property="plan001" />
+    <result column="plan002" jdbcType="VARCHAR" property="plan002" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    file_id, file_name, file_url, file_introduce, upload_username, file_creat_time, plan001, 
+    plan002
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from gds_file
+    where file_id = #{fileId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from gds_file
+    where file_id = #{fileId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gds.entity.MyFile">
+    insert into gds_file (file_id, file_name, file_url, 
+      file_introduce, upload_username, file_creat_time, 
+      plan001, plan002)
+    values (#{fileId,jdbcType=INTEGER}, #{fileName,jdbcType=VARCHAR}, #{fileUrl,jdbcType=VARCHAR}, 
+      #{fileIntroduce,jdbcType=VARCHAR}, #{uploadUsername,jdbcType=VARCHAR}, #{fileCreatTime,jdbcType=TIMESTAMP}, 
+      #{plan001,jdbcType=VARCHAR}, #{plan002,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gds.entity.MyFile">
+    insert into gds_file
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="fileId != null">
+        file_id,
+      </if>
+      <if test="fileName != null">
+        file_name,
+      </if>
+      <if test="fileUrl != null">
+        file_url,
+      </if>
+      <if test="fileIntroduce != null">
+        file_introduce,
+      </if>
+      <if test="uploadUsername != null">
+        upload_username,
+      </if>
+      <if test="fileCreatTime != null">
+        file_creat_time,
+      </if>
+      <if test="plan001 != null">
+        plan001,
+      </if>
+      <if test="plan002 != null">
+        plan002,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="fileId != null">
+        #{fileId,jdbcType=INTEGER},
+      </if>
+      <if test="fileName != null">
+        #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileUrl != null">
+        #{fileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="fileIntroduce != null">
+        #{fileIntroduce,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadUsername != null">
+        #{uploadUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="fileCreatTime != null">
+        #{fileCreatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="plan001 != null">
+        #{plan001,jdbcType=VARCHAR},
+      </if>
+      <if test="plan002 != null">
+        #{plan002,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gds.entity.MyFile">
+    update gds_file
+    <set>
+      <if test="fileName != null">
+        file_name = #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileUrl != null">
+        file_url = #{fileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="fileIntroduce != null">
+        file_introduce = #{fileIntroduce,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadUsername != null">
+        upload_username = #{uploadUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="fileCreatTime != null">
+        file_creat_time = #{fileCreatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="plan001 != null">
+        plan001 = #{plan001,jdbcType=VARCHAR},
+      </if>
+      <if test="plan002 != null">
+        plan002 = #{plan002,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where file_id = #{fileId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gds.entity.MyFile">
+    update gds_file
+    set file_name = #{fileName,jdbcType=VARCHAR},
+      file_url = #{fileUrl,jdbcType=VARCHAR},
+      file_introduce = #{fileIntroduce,jdbcType=VARCHAR},
+      upload_username = #{uploadUsername,jdbcType=VARCHAR},
+      file_creat_time = #{fileCreatTime,jdbcType=TIMESTAMP},
+      plan001 = #{plan001,jdbcType=VARCHAR},
+      plan002 = #{plan002,jdbcType=VARCHAR}
+    where file_id = #{fileId,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectClubCount" resultType="java.lang.Integer" parameterType="Map">
+    SELECT count(1) from  gds_file
+    <where>
+      <if test="fileName != null and fileName != ''">
+        file_name like "%"#{fileName}"%"
+      </if>
+      <if test="uploadUsername != null and uploadUsername != ''">
+        and upload_username like "%"#{uploadUsername}"%"
+      </if>
+    </where>
+  </select>
+
+  <select id="selectClubList" resultMap="BaseResultMap" parameterType="Map">
+    SELECT * from  gds_file
+    <where>
+      <if test="fileName != null and fileName != ''">
+        file_name like "%"#{fileName}"%"
+      </if>
+      <if test="uploadUsername != null and uploadUsername != ''">
+        and upload_username like "%"#{uploadUsername}"%"
+      </if>
+    </where>
+    LIMIT #{startRow},#{size}
+  </select>
+</mapper>

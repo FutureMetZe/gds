@@ -23,4 +23,10 @@ public interface BlogPostService {
     List<Post> selectPostByUsername(String username);
 
     void insertPost(Post post);
+
+    void update(Post post);
+
+    void deleteById(Integer blogId);
+
+    Integer selectCount();
 }

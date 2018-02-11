@@ -3,6 +3,7 @@ package com.gds.controller.blog;
 import com.alibaba.fastjson.JSONObject;
 import com.gds.entity.Student;
 import com.gds.entity.User;
+import com.gds.service.StuAndClubService;
 import com.gds.service.StudentService;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -26,6 +27,9 @@ public class UserController {
     @Resource(name = "StudentService")
     private StudentService studentService;
 
+    @Resource(name = "StuAndClubService")
+    private StuAndClubService stuAndClubService;
+
     /**
      * 用户注册 （需完善）
      * @param request
@@ -36,9 +40,14 @@ public class UserController {
      */
     @RequestMapping("/registUser.do")
     public String registUser(HttpServletRequest request, HttpServletResponse response, ModelMap model,
-                      /*@RequestParam(value = "department", required = false)String department*/
+                      @RequestParam(value = "clubId", required = false)Integer clubId,
                              Student student){
         studentService.insertStudent(student);
+
+        //将学号与社团ID影射加入数据库
+        if (clubId !=null ){
+            stuAndClubService.insertRelation(student.getStuNum(),clubId);
+        }
 
         return "blog/index";
     }

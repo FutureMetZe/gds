@@ -17,9 +17,9 @@
 	<div class="place">
     <span>位置：</span>
     <ul class="placeul">
-    <li><a href="#">管理信息</a></li>
-    <li><a href="#">社员管理</a></li>
-    <li><a href="#">社员列表</a></li>
+    <li><a href="#">社联信息</a></li>
+    <li><a href="#">成员管理</a></li>
+    <li><a href="#">成员列表</a></li>
     </ul>
     </div>
 
@@ -46,7 +46,7 @@
 
     </div>
 
-<FORM id="pageForm" name="customerForm" action="${pageContext.request.contextPath }/back/hubestl_list.do" method=post>
+<FORM id="pageForm" name="customerForm" action="${pageContext.request.contextPath }/back/hubestl_list.do" >
     <!-- 隐藏域.当前页码 -->
     <input type="hidden" name="currentPage" id="currentPageInput" value="${page.totalPage}" />
     <!-- 隐藏域.每页显示条数 -->
@@ -78,7 +78,7 @@
                 <td>${Hubestl.position}</td>
                 <td>${Hubestl.mobile}</td>
                 <td>${Hubestl.createtime}</td>
-                <td><a href="${pageContext.request.contextPath }/back/hubestl_edit.do?user_id=${Hubestl.id}" class="tablelink">修改</a>     <a href="${pageContext.request.contextPath }/back/hubestl_delete.do?user_id=${Hubestl.id}" class="tablelink" > 删除</a></td>
+                <td><a href="${pageContext.request.contextPath }/back/hubestlEdit.do?user_id=${Hubestl.id}" class="tablelink">修改</a>     <a href="${pageContext.request.contextPath }/back/hubestl_delete.do?user_id=${Hubestl.id}" class="tablelink" > 删除</a></td>
             </tr>
         </c:forEach>
         </tbody>
@@ -124,7 +124,7 @@
         };
 
         function forAddPage(){
-            window.location.href="${pageContext.request.contextPath }/back/dictToAddPage.do";
+            window.location.href="${pageContext.request.contextPath }/back/hubestl_add.do";
         };
 
     </script>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head></head>
@@ -154,7 +155,7 @@ font {
 					<div class="form-group">
 						<label for="stu_name" class="col-sm-2 control-label">姓名</label>
 						<div class="col-sm-6">
-							<input type="text" class="form-control" id="stu_name" name="stu_name"
+							<input type="text" class="form-control" id="stu_name" name="stuName"
 								placeholder="请输入姓名">
 						</div>
 					</div>
@@ -162,7 +163,7 @@ font {
 					<div class="form-group">
 						<label for="stu_num" class="col-sm-2 control-label">学号</label>
 						<div class="col-sm-6">
-							<input type="text" class="form-control" id="stu_num" name="stu_num"
+							<input type="text" class="form-control" id="stu_num" name="stuNum"
 								   placeholder="请输入学号">
 						</div>
 					</div>
@@ -174,7 +175,17 @@ font {
 								   placeholder="请输入手机号">
 						</div>
 					</div>
-
+					<div class="form-group opt">
+						<label for="inlineRadio1" class="col-sm-2 control-label">已加入的社团：<b></b></label>
+						<div class="col-sm-6">
+							<select	class="form-control" id="clubId" name="clubId">
+								<option value="">--请选择--</option>
+								<c:forEach items="${Clubs}" var="Club">
+									<option value="${Club.club_id}">${Club.club_name}</option>
+								</c:forEach>
+							</select>
+						</div>
+					</div>
 					<div class="form-group opt">
 						<label for="inlineRadio1" class="col-sm-2 control-label">性别</label>
 						<div class="col-sm-6">
@@ -186,12 +197,6 @@ font {
 							</label>
 							<label class="error" for="sex" style="display:none ">您没有第三种选择</label>
 
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="date" class="col-sm-2 control-label">出生日期</label>
-						<div class="col-sm-6">
-							<input type="date" class="form-control">
 						</div>
 					</div>
 

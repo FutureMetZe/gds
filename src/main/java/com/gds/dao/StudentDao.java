@@ -10,6 +10,12 @@ import java.util.Map;
 @Repository("StudentDao")
 public interface StudentDao {
 
+    int insertSelective(Student record);
+
+    int updateByPrimaryKeySelective(Student record);
+
+    int updateByPrimaryKey(Student record);
+
     Integer selectTotalCount(Map map);
 
     List<Student> selectPageList(Map<String,Object> map);
@@ -21,4 +27,6 @@ public interface StudentDao {
     Student selectByUserId(Integer user_id);
 
     Student selectByUsernameAndPassword(Map<String, String> map);
+
+    Student selectByStuNum(Map<String,String> map );
 }

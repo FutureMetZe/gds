@@ -59,9 +59,9 @@ $(document).ready(function(){
 	<div class="place">
     <span>位置：</span>
     <ul class="placeul">
-    <li><a href="#">管理信息</a></li>
-    <li><a href="#">组织架构</a></li>
-    <li><a href="#">社团列表</a></li>
+    <li><a href="#">首页配置</a></li>
+    <li><a href="#">文章管理</a></li>
+    <li><a href="#">文章列表</a></li>
     </ul>
     </div>
     
@@ -89,7 +89,7 @@ $(document).ready(function(){
     
     </div>
 
-<FORM id="pageForm" name="customerForm" action="${pageContext.request.contextPath }/back/blogList.do" method=post>
+<FORM id="pageForm" name="customerForm" action="${pageContext.request.contextPath }/back/blogList.do" >
     <!-- 隐藏域.当前页码 -->
     <input type="hidden" name="currentPage" id="currentPageInput" value="${page.totalPage}" />
     <!-- 隐藏域.每页显示条数 -->
@@ -122,7 +122,8 @@ $(document).ready(function(){
 
                 <td>${Post.view}</td>
                 <td><c:if test="${Post.status==0}">未</c:if>完成审核</td>
-                <td><a href="${pageContext.request.contextPath }/back/clubEdit.do?club_id=${Club.club_id}" class="tablelink">修改</a>     <a href="${pageContext.request.contextPath }/back/clubDelete.do?club_id=${Club.club_id}" class="tablelink" > 删除</a></td>
+                <td><a href="${pageContext.request.contextPath }/back/postEdit.do?blogId=${Post.blogId}" class="tablelink">修改</a>
+                    <a href="${pageContext.request.contextPath }/back/postDelete.do?blogId=${Post.blogId}" class="tablelink" > 删除</a></td>
             </tr>
         </c:forEach>
         </tbody>

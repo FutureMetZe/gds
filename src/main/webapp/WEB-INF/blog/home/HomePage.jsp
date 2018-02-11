@@ -98,12 +98,12 @@
 
                 <!--SOCIAL NAV MENU-->
                 <div class="social-menu-container">
-                    <ul class="social-menu no-padding">
-                        <li><a href=""><i class="fa fa-facebook"></i></a></li>
-                        <li><a href=""><i class="fa fa-google-plus"></i></a></li>
-                        <li><a href=""><i class="fa fa-youtube"></i></a></li>
-                        <li><a href=""><i class="fa fa-pinterest-p"></i></a></li>
-                        <li><a href=""><i class="fa fa-linkedin"></i></a></li>
+                    <ul >
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li><a href="">申请加入新社团</a></li>
+                        <li><a href="">发布文章</a></li>
                     </ul>
                 </div><!--/.social-menu-container-->
             </div><!--#menu-container-->
@@ -267,18 +267,11 @@
                                             <h4 class="title">文章题目:${Review.blogTitle} <i class="fa fa-sort-desc pull-right"></i></h4>
                                             <div class="list-content">
                                                 <h5 class="title"><span class="list-year">${Review.reviewCreattime}}</span></h5>
-                                                <p><a href="/blog/show.do?blogId=${Review.blogId}">评论内容:${Review.reviewContent} </a></p>
+                                                <p><a href="/blog/show.do?blogId=${Review.blogId}" target=”_blank">评论内容:${Review.reviewContent} </a></p>
                                             </div>
                                         </li>
                                     </c:forEach>
-                                    <li>
-                                        <!--EDUCATION LIST ITEM-->
-                                        <h4 class="title">MSc in Computer Sciene<i class="fa fa-sort-desc pull-right"></i></h4>
-                                        <div class="list-content">
-                                            <h5 class="title">Consectetur adipiscing <span class="list-year">(2014 - 2005)</span></h5>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing Vivamus sit Vivamus sit. Vivamus sit.. consectetur adipiscing Vivamus sit. Vivamus sit</p><!--EDUCATION LIST DETAILS-->
-                                        </div>
-                                    </li>
+
 
                                 </ul>
                             </div><!--RESUME SECOND TAB/EDUCATION TAB DETAILS ENDS-->
@@ -289,9 +282,9 @@
                                     <c:forEach items="${myPosts}" var="Post">
                                         <li>
                                             <!-- -->
-                                            <h4><a href="/blog/show.do?blogId=${Post.blogId}">${Post.blogTitle} </a><span class="year">${Post.blogCreatTime}</span></h4>
+                                            <h4><a href="/blog/show.do?blogId=${Post.blogId}" target=”_blank">${Post.blogTitle} </a><span class="year">${Post.blogCreatTime}</span></h4>
                                             <h5>${Post.blogAuthor}</h5>
-                                            <p><a href="/blog/show.do?blogId=${Post.blogId}">${Post.standby003}</a></p><!--EMPLOYMENT LIST DETAILS-->
+                                            <p><a href="/blog/show.do?blogId=${Post.blogId}" target=”_blank">${Post.standby003}</a></p><!--EMPLOYMENT LIST DETAILS-->
                                         </li>
                                     </c:forEach>
                                 </ul>
@@ -376,7 +369,7 @@
                 <!--SOCIAL NAV FOR MOBILE-->
                 <ul class="mobile-social no-padding">
                     <li>Connect With Me</li>
-                    <li><a href=""><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="">加入社团</a></li>
                     <li><a href=""><i class="fa fa-google-plus"></i></a></li>
                     <li><a href=""><i class="fa fa-youtube"></i></a></li>
                     <li><a href=""><i class="fa fa-pinterest-p"></i></a></li>

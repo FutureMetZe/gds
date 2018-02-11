@@ -2,6 +2,7 @@ package com.gds.controller.back;
 
 import com.gds.entity.Club;
 import com.gds.entity.Dict;
+import com.gds.entity.StuAndClub;
 import com.gds.entity.Student;
 import com.gds.service.ClubService;
 import com.gds.service.DictService;
@@ -18,6 +19,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -88,10 +90,10 @@ public class StuSysController {
         logger.info("访问【stuSave.do】接口；接收到的数据为："+student.toString());
         Date day=new Date();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        student.setRegister_time(df.format(day));
+        student.setRegisterTime(df.format(day));
 
         studentService.insertStudent(student);
-        String stuNum = student.getStu_num();
+        String stuNum = student.getStuNum();
         //添加学号--社团id映射关系
         stuAndClubService.insertRelation(stuNum,club01);
         return stuMag(request,response,model,null,null,null,null,null);
@@ -135,5 +137,30 @@ public class StuSysController {
         return "back/stu/edit";
     }
 
+
+    /**
+     * stuIntroduce
+     * 查看社员详情
+     */
+    @RequestMapping("/stuIntroduce.do")
+    public String stuIntroduce(HttpServletRequest request, HttpServletResponse response, ModelMap model ,
+                          @RequestParam(value = "user_id", required = false)Integer user_id){
+        logger.info("访问【stuIntroduce.do】接口；接收到的数据为：user_id="+user_id);
+        //查询学生信息
+        Student student = studentService.selectByUserId(user_id);
+
+        //根据学号查询社团列表
+        List<StuAndClub> lists = stuAndClubService.selectStudentClubByStuNum(student.getStuNum());
+        List<Club> clubs = new ArrayList<Club>();
+        for (int i = 0; i < lists.size() ; i++) {
+            Club club = clubService.selectClubById(lists.get(i).getDictClubId());
+            clubs.add(club);
+        }
+
+        model.addAttribute("student",student);
+        model.addAttribute("clubs",clubs);
+
+        return "back/stu/introduce";
+    }
 
 }

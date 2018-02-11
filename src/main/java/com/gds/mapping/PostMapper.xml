@@ -13,19 +13,20 @@
     <result column="standby001" jdbcType="VARCHAR" property="standby001" />
     <result column="standby002" jdbcType="VARCHAR" property="standby002" />
     <result column="standby003" jdbcType="VARCHAR" property="standby003" />
+    <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.gds.entity.Post">
     <result column="blog_content" jdbcType="LONGVARCHAR" property="blogContent" />
   </resultMap>
   <sql id="Base_Column_List">
-    blog_id, blog_title, blog_author, blog_creat_time, blog_level, blog_sort, view, status, 
-    standby001, standby002, standby003
+    blog_id, blog_title, blog_author, blog_creat_time, blog_level, blog_sort, view, status,
+    standby001, standby002, standby003, img_url
   </sql>
   <sql id="Blob_Column_List">
     blog_content
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
-    select 
+    select
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
@@ -37,16 +38,16 @@
     where blog_id = #{blogId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.gds.entity.Post">
-    insert into blog_post (blog_id, blog_title, blog_author, 
-      blog_creat_time, blog_level, blog_sort, 
-      view, status, standby001, 
-      standby002, standby003, blog_content
-      )
-    values (#{blogId,jdbcType=INTEGER}, #{blogTitle,jdbcType=VARCHAR}, #{blogAuthor,jdbcType=VARCHAR}, 
-      #{blogCreatTime,jdbcType=TIMESTAMP}, #{blogLevel,jdbcType=VARCHAR}, #{blogSort,jdbcType=VARCHAR}, 
-      #{view,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{standby001,jdbcType=VARCHAR}, 
-      #{standby002,jdbcType=VARCHAR}, #{standby003,jdbcType=VARCHAR}, #{blogContent,jdbcType=LONGVARCHAR}
-      )
+    insert into blog_post (blog_id, blog_title, blog_author,
+    blog_creat_time, blog_level, blog_sort,
+    view, status, standby001,
+    standby002, standby003, img_url,
+    blog_content)
+    values (#{blogId,jdbcType=INTEGER}, #{blogTitle,jdbcType=VARCHAR}, #{blogAuthor,jdbcType=VARCHAR},
+    #{blogCreatTime,jdbcType=TIMESTAMP}, #{blogLevel,jdbcType=VARCHAR}, #{blogSort,jdbcType=VARCHAR},
+    #{view,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{standby001,jdbcType=VARCHAR},
+    #{standby002,jdbcType=VARCHAR}, #{standby003,jdbcType=VARCHAR}, #{imgUrl,jdbcType=VARCHAR},
+    #{blogContent,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.gds.entity.Post">
     insert into blog_post
@@ -83,6 +84,9 @@
       </if>
       <if test="standby003 != null">
         standby003,
+      </if>
+      <if test="imgUrl != null">
+        img_url,
       </if>
       <if test="blogContent != null">
         blog_content,
@@ -122,6 +126,9 @@
       <if test="standby003 != null">
         #{standby003,jdbcType=VARCHAR},
       </if>
+      <if test="imgUrl != null">
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
       <if test="blogContent != null">
         #{blogContent,jdbcType=LONGVARCHAR},
       </if>
@@ -160,6 +167,9 @@
       <if test="standby003 != null">
         standby003 = #{standby003,jdbcType=VARCHAR},
       </if>
+      <if test="imgUrl != null">
+        img_url = #{imgUrl,jdbcType=VARCHAR},
+      </if>
       <if test="blogContent != null">
         blog_content = #{blogContent,jdbcType=LONGVARCHAR},
       </if>
@@ -169,33 +179,34 @@
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.gds.entity.Post">
     update blog_post
     set blog_title = #{blogTitle,jdbcType=VARCHAR},
-      blog_author = #{blogAuthor,jdbcType=VARCHAR},
-      blog_creat_time = #{blogCreatTime,jdbcType=TIMESTAMP},
-      blog_level = #{blogLevel,jdbcType=VARCHAR},
-      blog_sort = #{blogSort,jdbcType=VARCHAR},
-      view = #{view,jdbcType=INTEGER},
-      status = #{status,jdbcType=INTEGER},
-      standby001 = #{standby001,jdbcType=VARCHAR},
-      standby002 = #{standby002,jdbcType=VARCHAR},
-      standby003 = #{standby003,jdbcType=VARCHAR},
-      blog_content = #{blogContent,jdbcType=LONGVARCHAR}
+    blog_author = #{blogAuthor,jdbcType=VARCHAR},
+    blog_creat_time = #{blogCreatTime,jdbcType=TIMESTAMP},
+    blog_level = #{blogLevel,jdbcType=VARCHAR},
+    blog_sort = #{blogSort,jdbcType=VARCHAR},
+    view = #{view,jdbcType=INTEGER},
+    status = #{status,jdbcType=INTEGER},
+    standby001 = #{standby001,jdbcType=VARCHAR},
+    standby002 = #{standby002,jdbcType=VARCHAR},
+    standby003 = #{standby003,jdbcType=VARCHAR},
+    img_url = #{imgUrl,jdbcType=VARCHAR},
+    blog_content = #{blogContent,jdbcType=LONGVARCHAR}
     where blog_id = #{blogId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.gds.entity.Post">
     update blog_post
     set blog_title = #{blogTitle,jdbcType=VARCHAR},
-      blog_author = #{blogAuthor,jdbcType=VARCHAR},
-      blog_creat_time = #{blogCreatTime,jdbcType=TIMESTAMP},
-      blog_level = #{blogLevel,jdbcType=VARCHAR},
-      blog_sort = #{blogSort,jdbcType=VARCHAR},
-      view = #{view,jdbcType=INTEGER},
-      status = #{status,jdbcType=INTEGER},
-      standby001 = #{standby001,jdbcType=VARCHAR},
-      standby002 = #{standby002,jdbcType=VARCHAR},
-      standby003 = #{standby003,jdbcType=VARCHAR}
+    blog_author = #{blogAuthor,jdbcType=VARCHAR},
+    blog_creat_time = #{blogCreatTime,jdbcType=TIMESTAMP},
+    blog_level = #{blogLevel,jdbcType=VARCHAR},
+    blog_sort = #{blogSort,jdbcType=VARCHAR},
+    view = #{view,jdbcType=INTEGER},
+    status = #{status,jdbcType=INTEGER},
+    standby001 = #{standby001,jdbcType=VARCHAR},
+    standby002 = #{standby002,jdbcType=VARCHAR},
+    standby003 = #{standby003,jdbcType=VARCHAR},
+    img_url = #{imgUrl,jdbcType=VARCHAR}
     where blog_id = #{blogId,jdbcType=INTEGER}
   </update>
-
 
   <!--按条件查询总数-->
   <select id="selectPostCount" resultType="java.lang.Integer" parameterType="Map">
@@ -237,19 +248,19 @@
 
   <!--按照时间排序-->
   <select id="selectPostByTime" resultMap="BaseResultMap">
-    select blog_id, blog_title, blog_author, blog_creat_time, blog_sort, view, standby003
+    select blog_id, blog_title, blog_author, blog_creat_time, blog_sort, `view`, standby003,img_url
     from blog_post
     order by blog_creat_time desc;
   </select>
 
   <select id="selectPostByTypeOrKeyword" resultMap="BaseResultMap" parameterType="Map">
-    select blog_id, blog_title, blog_author, blog_creat_time, blog_sort, view, standby003
+    select blog_id, blog_title, blog_author, blog_creat_time, blog_sort, `view`, standby003,img_url
       from blog_post
       WHERE standby002 like "%"#{club_type}"%" or blog_content like "%"#{club_type}"%"
   </select>
 
   <select id="selectPostByUsername" resultMap="BaseResultMap" parameterType="Map">
-    select blog_id, blog_title, blog_author, blog_creat_time, blog_sort, view, standby003
+    select blog_id, blog_title, blog_author, blog_creat_time, blog_sort, `view`, standby003,img_url
     from blog_post
     WHERE standby001 = #{username}
   </select>

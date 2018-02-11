@@ -74,4 +74,16 @@ public class StudentServiceImpl implements StudentService {
         map.put("password",password);
         return studentDao.selectByUsernameAndPassword(map);
     }
+
+    @Override
+    public Integer selectCount() {
+        return studentDao.selectTotalCount(null);
+    }
+
+    @Override
+    public Student selectByStuNum(String stuNum) {
+        Map<String,String> map = new HashMap<String,String>();
+        map.put("stuNum",stuNum);
+        return studentDao.selectByStuNum(map);
+    }
 }

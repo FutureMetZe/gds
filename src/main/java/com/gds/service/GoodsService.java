@@ -14,4 +14,6 @@ public interface GoodsService {
     Goods selectById(Integer goodsId);
 
     void updateGoods(Goods goods);
+
+    Integer selectCount();
 }

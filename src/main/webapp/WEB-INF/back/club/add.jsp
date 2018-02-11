@@ -39,8 +39,8 @@
 <div class="place">
     <span>位置：</span>
     <ul class="placeul">
-        <li><a href="#">组织架构</a></li>
-        <li><a href="#">增加社团</a></li>
+        <li><a href="#">社团信息</a></li>
+        <li><a href="#">社团管理</a></li>
     </ul>
 </div>
 
@@ -57,7 +57,9 @@
 
         <div id="tab1" class="tabson">
 
-            <div class="formtext">Hi，<b>admin</b>，欢迎您试用信息发布功能！</div>
+            <div class="formtext">Hi，<b><%=session.getAttribute("AdminUsername")%>
+            </b>，欢迎您试用信息发布功能！
+            </div>
 
             <form action="/back/clubSave.do">
 

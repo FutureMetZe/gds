@@ -59,9 +59,9 @@ $(document).ready(function(){
 	<div class="place">
     <span>位置：</span>
     <ul class="placeul">
-    <li><a href="#">管理信息</a></li>
-    <li><a href="#">组织架构</a></li>
-    <li><a href="#">社团列表</a></li>
+    <li><a href="#">首页配置</a></li>
+    <li><a href="#">留言管理</a></li>
+    <li><a href="#">留言列表</a></li>
     </ul>
     </div>
     
@@ -86,7 +86,7 @@ $(document).ready(function(){
     
     </div>
 
-<FORM id="pageForm" name="customerForm" action="${pageContext.request.contextPath }/back/clubList.do" method=post>
+<FORM id="pageForm" name="customerForm" action="${pageContext.request.contextPath }/back/clubList.do" >
     <!-- 隐藏域.当前页码 -->
     <input type="hidden" name="currentPage" id="currentPageInput" value="${page.totalPage}" />
     <!-- 隐藏域.每页显示条数 -->

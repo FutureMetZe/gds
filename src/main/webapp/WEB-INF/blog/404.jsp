@@ -94,10 +94,6 @@
                     </a></li>
                 </ul>
                 勤记录 懂分享 </div>
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-navbar" aria-expanded="false"> <span class="sr-only"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-                <h1 class="logo hvr-bounce-in"><a href="${BasePath}/" title="木庄网络博客"><img src="${BasePath}/upload/201610/17/201610171329086541.png" alt="木庄网络博客"></a></h1>
-            </div>
             <div class="collapse navbar-collapse" id="header-navbar">
                 <form class="navbar-form visible-xs" action="/Search" method="post">
                     <div class="input-group">

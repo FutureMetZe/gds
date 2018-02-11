@@ -161,4 +161,32 @@
       plan03 = #{plan03,jdbcType=VARCHAR}
     where room_id = #{roomId,jdbcType=INTEGER}
   </update>
+
+  <!--查询数量-->
+  <select id="selectCount" parameterType="Map" resultType="java.lang.Integer">
+    SELECT count(1) from gds_activity_room
+    <where>
+      <if test="roomName != null and roomName != ''">
+        room_name like "%"#{roomName}"%"
+      </if>
+      <if test="roomIsUse != null and roomIsUse != ''">
+        and room_isUse like "%"#{roomIsUse}"%"
+      </if>
+    </where>
+  </select>
+
+  <!--分页查询-->
+  <select id="selectListByMap" parameterType="Map" resultMap="BaseResultMap">
+    SELECT * from gds_activity_room
+    <where>
+      <if test="roomName != null and roomName != ''">
+        room_name like "%"#{roomName}"%"
+      </if>
+      <if test="roomIsUse != null and roomIsUse != ''">
+        and room_isUse like "%"#{roomIsUse}"%"
+      </if>
+    </where>
+    LIMIT #{startRow},#{size}
+  </select>
+
 </mapper>

@@ -39,8 +39,8 @@ $(document).ready(function(e) {
 	<div class="place">
     <span>位置：</span>
     <ul class="placeul">
-    <li><a href="#">组织架构</a></li>
-    <li><a href="#">增加社团</a></li>
+    <li><a href="#">社联信息</a></li>
+    <li><a href="#">活动管理</a></li>
     </ul>
     </div>
     
@@ -51,13 +51,13 @@ $(document).ready(function(e) {
 
     <div class="itab">
   	<ul>
-     <li><a href="#tab1" class="selected">新增物资</a></li>
+     <li><a href="#tab1" class="selected">发布活动</a></li>
   	</ul>
     </div>
 
   	<div id="tab1" class="tabson">
 
-    <div class="formtext">Hi，<b>admin</b>，欢迎您试用信息发布功能！</div>
+    <div class="formtext">Hi，<b><%=session.getAttribute("AdminUsername")%></b>，欢迎您试用信息发布功能！</div>
 
     <form action="/back/activitySave.do">
 <input type="hidden" name="plan003" value="${plan003}"/>

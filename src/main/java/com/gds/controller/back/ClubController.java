@@ -2,9 +2,12 @@ package com.gds.controller.back;
 
 import com.gds.entity.Club;
 import com.gds.entity.Dict;
+import com.gds.entity.StuAndClub;
 import com.gds.entity.Student;
 import com.gds.service.ClubService;
 import com.gds.service.DictService;
+import com.gds.service.StuAndClubService;
+import com.gds.service.StudentService;
 import com.gds.utils.PageBean;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -13,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
+import javax.naming.Name;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -29,6 +34,12 @@ public class ClubController {
     private ClubService clubService;
     @Resource(name="DictService")
     private DictService dictService;
+
+    @Resource(name = "StuAndClubService")
+    private StuAndClubService stuAndClubService;
+
+    @Resource(name = "StudentService")
+    private StudentService studentService;
 
     /**
      * 组织列表
@@ -93,5 +104,29 @@ public class ClubController {
         return clubList(request,response,model,null,null,null,null);
     }
 
+
+    /**
+     * clubIntroduce
+     * 查看社团详情
+     */
+    @RequestMapping("/clubIntroduce.do")
+    public String clubIntroduce(HttpServletRequest request, HttpServletResponse response, ModelMap model,
+                             @RequestParam(value = "clubId", required = false)Integer clubId ){
+
+        Club club = clubService.selectClubById(clubId);
+        List<Student> students = new ArrayList<Student>();
+        List<StuAndClub> lists = stuAndClubService.selectBeanByClubId(clubId);
+        if (lists != null){
+            for (int i = 0; i <lists.size() ; i++) {
+                Student student = studentService.selectByStuNum(lists.get(i).getStuNum());
+                students.add(student);
+            }
+        }
+        model.addAttribute("club",club);
+        model.addAttribute("students",students);
+        model.addAttribute("stuCount",students.size());
+
+        return "back/club/introduce";
+    }
 
 }

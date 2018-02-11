@@ -59,8 +59,8 @@ $(document).ready(function(){
 	<div class="place">
     <span>位置：</span>
     <ul class="placeul">
-    <li><a href="#">管理信息</a></li>
-    <li><a href="#">组织架构</a></li>
+    <li><a href="#">社团信息</a></li>
+    <li><a href="#">社团管理</a></li>
     <li><a href="#">社团列表</a></li>
     </ul>
     </div>
@@ -88,7 +88,7 @@ $(document).ready(function(){
     
     </div>
 
-<FORM id="pageForm" name="customerForm" action="${pageContext.request.contextPath }/back/clubList.do" method=post>
+<FORM id="pageForm" name="customerForm" action="${pageContext.request.contextPath }/back/clubList.do" >
     <!-- 隐藏域.当前页码 -->
     <input type="hidden" name="currentPage" id="currentPageInput" value="${page.totalPage}" />
     <!-- 隐藏域.每页显示条数 -->
@@ -118,8 +118,12 @@ $(document).ready(function(){
                 <td>${Club.club_faculty}</td>
                 <td>${Club.club_createtime}</td>
                 <td><c:if test="${Club.club_status==0}">未</c:if>完成审核</td>
-                <td><a href="${pageContext.request.contextPath }/back/stuEdit.do?stu_num=${Club.club_standby002}" >${Club.club_standby001}</a></td>
-                <td><a href="${pageContext.request.contextPath }/back/clubEdit.do?club_id=${Club.club_id}" class="tablelink">修改</a>     <a href="${pageContext.request.contextPath }/back/clubDelete.do?club_id=${Club.club_id}" class="tablelink" > 删除</a></td>
+                <td><a>${Club.club_standby001}</a></td>
+                <td>
+                    <a href="${pageContext.request.contextPath }/back/clubIntroduce.do?clubId=${Club.club_id}" class="tablelink" >查看详情</a>
+                    <a href="${pageContext.request.contextPath }/back/clubEdit.do?club_id=${Club.club_id}" class="tablelink">修改</a>
+                    <a href="${pageContext.request.contextPath }/back/clubDelete.do?club_id=${Club.club_id}" class="tablelink" > 删除</a>
+                </td>
             </tr>
         </c:forEach>
         </tbody>

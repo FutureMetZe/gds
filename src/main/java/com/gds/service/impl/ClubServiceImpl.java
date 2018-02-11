@@ -71,4 +71,9 @@ public class ClubServiceImpl implements ClubService{
         return clubDao.selectClubByType(map);
     }
 
+    @Override
+    public Integer selectCount() {
+        return clubDao.selectClubCount(null);
+    }
+
 }

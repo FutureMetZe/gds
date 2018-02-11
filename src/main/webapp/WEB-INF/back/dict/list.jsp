@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 <link href="${pageContext.request.contextPath }/back/css/style.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="${pageContext.request.contextPath }/back/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/back/js/jquery-1.11.3.min.js"></script>
 
 
 </head>
@@ -46,7 +46,7 @@
     
     </div>
 
-<FORM id="pageForm" name="customerForm" action="${pageContext.request.contextPath }/back/dictList.do" method=post>
+<FORM id="pageForm" name="customerForm" action="${pageContext.request.contextPath }/back/dictList.do" >
     <!-- 隐藏域.当前页码 -->
     <input type="hidden" name="currentPage" id="currentPageInput" value="${page.currentPage}" />
     <!-- 隐藏域.每页显示条数 -->
@@ -108,16 +108,16 @@
     <script type="text/javascript">
         function changePage(pageNum){
             //1 将页码的值放入对应表单隐藏域中
-            jQuery("#currentPageInput").val(pageNum);
+            $("#currentPageInput").val(pageNum);
             //2 提交表单
-            jQuery("#pageForm").submit();
+            $("#pageForm").submit();
         };
 
         function changePageSize(pageSize){
             //1 将页码的值放入对应表单隐藏域中
-            jQuery("#pageSizeInput").val(pageSize);
+            $("#pageSizeInput").val(pageSize);
             //2 提交表单
-            jQuery("#pageForm").submit();
+            $("#pageForm").submit();
         };
 
         function forAddPage(){

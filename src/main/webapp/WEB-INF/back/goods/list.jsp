@@ -59,9 +59,9 @@ $(document).ready(function(){
 	<div class="place">
     <span>位置：</span>
     <ul class="placeul">
-    <li><a href="#">管理信息</a></li>
-    <li><a href="#">组织架构</a></li>
+    <li><a href="#">社联信息</a></li>
     <li><a href="#">物资管理</a></li>
+    <li><a href="#">物资列表</a></li>
     </ul>
     </div>
     
@@ -88,7 +88,7 @@ $(document).ready(function(){
     
     </div>
 
-<FORM id="pageForm" name="customerForm" action="${pageContext.request.contextPath }/back/goodsList.do" method=post>
+<FORM id="pageForm" name="customerForm" action="${pageContext.request.contextPath }/back/goodsList.do">
     <!-- 隐藏域.当前页码 -->
     <input type="hidden" name="currentPage" id="currentPageInput" value="${page.totalPage}" />
     <!-- 隐藏域.每页显示条数 -->

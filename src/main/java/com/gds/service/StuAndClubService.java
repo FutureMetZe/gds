@@ -11,4 +11,6 @@ public interface StuAndClubService {
     void insertRelation(String stuNum, Integer club_id);
 
     List<StuAndClub> selectStudentClubByStuNum(String stu_num);
+
+    List<StuAndClub> selectBeanByClubId(Integer clubId);
 }

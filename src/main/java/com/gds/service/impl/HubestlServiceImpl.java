@@ -38,4 +38,19 @@ public class HubestlServiceImpl implements HubestlService{
     public void insertHubestl(Hubestl hubestl) {
         hubestlDao.insert(hubestl);
     }
+
+    @Override
+    public Hubestl selectUserById(Integer user_id) {
+        return hubestlDao.selectByPrimaryKey(user_id);
+    }
+
+    @Override
+    public void update(Hubestl hubestl) {
+        hubestlDao.updateByPrimaryKeySelective(hubestl);
+    }
+
+    @Override
+    public Integer selectCount() {
+        return hubestlDao.selectCount(null);
+    }
 }

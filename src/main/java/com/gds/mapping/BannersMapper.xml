@@ -132,5 +132,12 @@
     from blog_banners
     where standby001 = '是'
   </select>
+  <select id="selectCount" resultType="java.lang.Integer">
+    SELECT count(1) FROM blog_banners
+  </select>
 
+  <select id="selectListByMap" parameterType="Map" resultMap="BaseResultMap">
+    SELECT * from blog_banners
+    LIMIT #{startRow},#{size}
+  </select>
 </mapper>

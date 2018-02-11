@@ -29,15 +29,13 @@
 <div class="place">
     <span>位置：</span>
     <ul class="placeul">
-        <li><a href="#">组织架构</a></li>
-        <li><a href="#">增加社团</a></li>
+        <li><a href="#">首页配置</a></li>
+        <li><a href="#">文章管理</a></li>
+        <li><a href="#">文章发布</a></li>
     </ul>
 </div>
 
-<form action="/back/postSave.do" id="myform">
-    <!-- 作者姓名，作者账户 -->
-    <input type="hidden" name="blogAuthor" value="${blogAuthor}" />
-    <input type="hidden" name="standby001" value="${standby001}" />
+
 
     <div class="formbody">
 
@@ -45,10 +43,23 @@
         <div id="usual1" class="usual">
 
 
-            <div class="formtext">Hi，<b>admin</b>，欢迎您试用信息发布功能！</div>
+            <div class="formtext">Hi，<b><%=session.getAttribute("AdminUsername")%></b>，欢迎您试用信息发布功能！</div>
 
 
             <ul class="forminfo">
+
+                <form action="http://localhost:8080/back/imgUpload.do" method="post" enctype="multipart/form-data">
+                    <li><label>选择标题图:</label>
+                        <input name="file" type="file"  /><input type="submit" value="上传" ></li>
+
+                </form>
+
+                <form action="/back/postSave.do" id="myform">
+                    <!-- 作者姓名，作者账户 -->
+                    <input type="hidden" name="blogAuthor" value="<%=session.getAttribute("AdminName")%>" />
+                    <input type="hidden" name="standby001" value="<%=session.getAttribute("AdminUsername")%>" />
+                    <li><label>图片地址<b>*</b></label><input name="imgUrl" type="text" class="dfinput" value="${filePath}"
+                                                        style="width:350px;"/></li>
                 <li><label>文章题目<b>*</b></label><input name="blogTitle" type="text" class="dfinput" value=""
                                                       style="width:350px;"/></li>
                 <li><label>主题<b>*</b></label><input name="standby003" type="text" class="dfinput" value=""

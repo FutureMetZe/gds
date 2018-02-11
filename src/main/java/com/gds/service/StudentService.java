@@ -15,4 +15,9 @@ public interface StudentService {
     Student selectByUserId(Integer user_id);
 
     Student selectByUsernameAndPassword(String username, String password);
+
+    Integer selectCount();
+
+    //根据学号查找用户
+    Student selectByStuNum(String stuNum);
 }

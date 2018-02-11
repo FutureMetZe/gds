@@ -1,9 +1,11 @@
 package com.gds.dao;
 
+import com.gds.entity.ActivityRoom;
 import com.gds.entity.Banners;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository("BannersMapper")
 public interface BannersMapper {
@@ -20,4 +22,8 @@ public interface BannersMapper {
     int updateByPrimaryKey(Banners record);
 
     List<Banners> selectAllBanners();
+
+    Integer selectCount(Map map);
+
+    List<Banners> selectListByMap(Map map);
 }

@@ -1,8 +1,9 @@
 package com.gds.utils;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class PageBean<T> {
+public class PageBean<T> implements Serializable {
     //当前页数
     private Integer currentPage;
 

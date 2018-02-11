@@ -50,7 +50,7 @@ public class HomeController {
 
             //2,把学生所加入的社团信息传入主页
             List<Club> clubs = new ArrayList<Club>();
-            List<StuAndClub> links = stuAndClubService.selectStudentClubByStuNum(student.getStu_num());
+            List<StuAndClub> links = stuAndClubService.selectStudentClubByStuNum(student.getStuNum());
             if (links != null){
                 for (int i = 0; i < links.size() ; i++) {
                     Club club = clubService.selectClubById(links.get(i).getDictClubId());

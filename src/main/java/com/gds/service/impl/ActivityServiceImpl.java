@@ -40,4 +40,9 @@ public class ActivityServiceImpl implements ActivityService {
     public void insertSelective(Activity activity) {
         activityMapper.insertSelective(activity);
     }
+
+    @Override
+    public Integer selectCount() {
+        return activityMapper.selectCount(null);
+    }
 }

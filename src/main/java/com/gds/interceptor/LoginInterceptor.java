@@ -17,22 +17,21 @@ public class LoginInterceptor implements HandlerInterceptor {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        String requestURI = request.getRequestURI();
-        if(requestURI.indexOf("editClientIfo.action")>0){
-            //说明处在编辑的页面
-            HttpSession session = request.getSession();
-            String username = (String) session.getAttribute("username");
-            if(username.equals("admin")){
-                //登陆成功的用户
-                return true;
-            }else{
-                //没有登陆，转向登陆界面
-                request.getRequestDispatcher("/back/login.jsp").forward(request,response);
-                return false;
-            }
-        }else{
+        // 从request中获取session
+        HttpSession session = request.getSession();
+        // 从session中获取username
+        Object username = session.getAttribute("AdminUsername");
+        // 判断username是否为null
+        if (username != null) {
+            // 如果不为空则放行
             return true;
+        } else {
+            // 如果为空则跳转到登录页面
+            response.sendRedirect(request.getContextPath() + "/user/toLogin.do");
         }
+
+        return false;
+
     }
 
 

@@ -68,4 +68,9 @@ public class PostReviewServiceImpl implements PostReviewService {
     public void deleteReviewById(Integer reviewId) {
         postReviewMapper.deleteByPrimaryKey(reviewId);
     }
+
+    @Override
+    public Integer selectCount() {
+        return postReviewMapper.selectPostReviewCount(null);
+    }
 }
