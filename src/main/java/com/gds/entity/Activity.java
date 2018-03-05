@@ -1,6 +1,8 @@
 package com.gds.entity;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Activity implements Serializable {
@@ -55,16 +57,19 @@ public class Activity implements Serializable {
         this.activityType = activityType == null ? null : activityType.trim();
     }
 
-    public Date getBegintime() {
-        return begintime;
+    public String getBegintime() {
+        DateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        //lsimpleDateFormat.format(blogCreatTime);
+        return simpleDateFormat.format(begintime);
     }
 
     public void setBegintime(Date begintime) {
         this.begintime = begintime;
     }
 
-    public Date getOvertime() {
-        return overtime;
+    public String getOvertime() {
+        DateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return simpleDateFormat.format(overtime);
     }
 
     public void setOvertime(Date overtime) {

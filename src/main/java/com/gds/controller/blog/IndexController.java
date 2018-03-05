@@ -75,6 +75,13 @@ public class IndexController {
         List<Banners> banners = bannersService.selectAllBanners();
         model.addAttribute("banners",banners);
 
+        //文章数量
+        Integer postCount = blogPostService.selectCount();
+        model.addAttribute("postCount",postCount);
+
+        //用户数量
+        Integer userCount = studentService.selectCount();
+        model.addAttribute("userCount",userCount);
         return "blog/index";
     }
 
@@ -216,21 +223,40 @@ public class IndexController {
     @RequestMapping("/userLogin.do")
     public String userLogin(HttpServletRequest request, HttpServletResponse response, ModelMap model,
                             @RequestParam(value = "username", required = false)String username,
-                            @RequestParam(value = "password", required = false)String password){
+                            @RequestParam(value = "password", required = false)String password,
+                            @RequestParam(value = "loginType", required = false)String loginType ){
         String message = "";
-        Student student = studentService.selectByUsernameAndPassword(username,password);
         HttpSession session = request.getSession(true);
-        if (student != null){
-            session.setAttribute("UserName",student.getStuName());
-            session.setAttribute("Student",student);
-            //用户存在
-            return index(request,response,model);
-        }else {
-            //用户不存在
-            message = "帐号或密码不正确！";
-            model.addAttribute("message",message);
-            return "blog/login";
+        if(loginType.equals("2")){
+
+            //匹配社团帐号密码
+            Club club = clubService.selectClubByPassword(username,password);
+            if(club != null){
+                model.addAttribute("ClubAdmin",club);
+
+                return "redirect:/assets/admin-index.do";
+            }else{
+                //用户不存在
+                message = "该帐号无权限！";
+                model.addAttribute("message",message);
+                return "blog/login";
+            }
+
+        }else{
+            Student student = studentService.selectByUsernameAndPassword(username,password);
+            if (student != null){
+                session.setAttribute("UserName",student.getStuName());
+                session.setAttribute("Student",student);
+                //用户存在
+                return index(request,response,model);
+            }else {
+                //用户不存在
+                message = "帐号或密码不正确！";
+                model.addAttribute("message",message);
+                return "blog/login";
+            }
         }
+
     }
 
     /**
@@ -245,5 +271,14 @@ public class IndexController {
         return index(request,response,model);
     }
 
+
+    /**
+     * 进入管理员后台
+     * @return
+     */
+    @RequestMapping("/admin-index.do")
+    public String adminMain(){
+        return "assets/admin-index";
+    }
 
 }

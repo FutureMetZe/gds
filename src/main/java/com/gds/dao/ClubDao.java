@@ -22,4 +22,6 @@ public interface ClubDao {
     void deleteByClubId(Integer club_id);
 
     List<Club> selectClubByType(Map map);
+
+    Club selectClubByPassword(Map map);
 }

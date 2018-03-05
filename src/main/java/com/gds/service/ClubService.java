@@ -22,4 +22,6 @@ public interface ClubService {
     List<Club> selectClubByType(String club_type);
 
     Integer selectCount();
+
+    Club selectClubByPassword(String username, String password);
 }

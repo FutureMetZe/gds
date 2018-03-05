@@ -76,4 +76,12 @@ public class ClubServiceImpl implements ClubService{
         return clubDao.selectClubCount(null);
     }
 
+    @Override
+    public Club selectClubByPassword(String club_loginName, String club_loginPassword) {
+        Map map = new HashMap();
+        map.put("club_loginName",club_loginName);
+        map.put("club_loginPassword",club_loginPassword);
+        return clubDao.selectClubByPassword(map);
+    }
+
 }

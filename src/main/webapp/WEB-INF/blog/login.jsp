@@ -47,8 +47,9 @@ font {
 
 
 	<div class="container"
-		style="width: 100%; height: 460px; background: #FF2C4C url('images/loginbg.jpg') no-repeat;">
+		style="width: 100%; height: 730px; background: #FF2C4C url('images/7ada.jpg') no-repeat;">
 		<div class="row">
+
 			<div class="col-md-7">
 				<!--<img src="./image/login.jpg" width="500" height="330" alt="会员登录" title="会员登录">-->
 			</div>
@@ -72,6 +73,16 @@ font {
 							<div class="col-sm-6">
 								<input type="password" class="form-control" id="password" name="password"
 									value="">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="inputPassword3" class="col-sm-2 control-label">权限</label>
+							<div class="col-sm-6">
+							<select class="form-control" id="loginType" name="loginType">
+								<option value="1">用户</option>
+								<option value="2">社团管理员</option>
+							</select>
 							</div>
 						</div>
 
@@ -104,6 +115,7 @@ font {
 					</form>
 				</div>
 			</div>
+
 		</div>
 	</div>
 

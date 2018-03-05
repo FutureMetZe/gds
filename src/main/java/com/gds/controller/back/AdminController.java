@@ -3,6 +3,7 @@ package com.gds.controller.back;
 import com.gds.entity.Student;
 import com.gds.entity.User;
 import com.gds.service.StudentService;
+import com.sun.deploy.net.HttpResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -27,7 +29,8 @@ public class AdminController {
      * @return
      */
     @RequestMapping("/toLogin.do")
-    public String toLogin(){
+    public String toLogin(HttpSession session){
+
         return "back/login";
     }
 
@@ -46,8 +49,8 @@ public class AdminController {
         }else {
             //用户不存在
             message = "帐号或密码不正确！";
-            model.addAttribute("message",message);
-            return "redirect:/back/main.do;";
+            session.setAttribute("message",message);
+            return "redirect:/user/toLogin.do;";
         }
 
     }

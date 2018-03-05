@@ -1,6 +1,8 @@
 package com.gds.entity;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Goods implements Serializable {
@@ -36,8 +38,9 @@ public class Goods implements Serializable {
         this.goodsName = goodsName == null ? null : goodsName.trim();
     }
 
-    public Date getGoodsCreatetime() {
-        return goodsCreatetime;
+    public String getGoodsCreatetime() {
+        DateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return simpleDateFormat.format(goodsCreatetime);
     }
 
     public void setGoodsCreatetime(Date goodsCreatetime) {

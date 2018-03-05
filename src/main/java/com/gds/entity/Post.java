@@ -1,6 +1,8 @@
 package com.gds.entity;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Post implements Serializable {
@@ -63,8 +65,10 @@ public class Post implements Serializable {
         this.blogAuthor = blogAuthor == null ? null : blogAuthor.trim();
     }
 
-    public Date getBlogCreatTime() {
-        return blogCreatTime;
+    public String getBlogCreatTime() {
+        DateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        //lsimpleDateFormat.format(blogCreatTime);
+        return simpleDateFormat.format(blogCreatTime);
     }
 
     public void setBlogCreatTime(Date blogCreatTime) {

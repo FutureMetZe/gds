@@ -1,6 +1,7 @@
 package com.gds.entity;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Banners implements Serializable {
@@ -47,8 +48,8 @@ public class Banners implements Serializable {
         this.bannersImgUrl = bannersImgUrl == null ? null : bannersImgUrl.trim();
     }
 
-    public Date getBannerCreatTime() {
-        return bannerCreatTime;
+    public String getBannerCreatTime() {
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(bannerCreatTime);
     }
 
     public void setBannerCreatTime(Date bannerCreatTime) {

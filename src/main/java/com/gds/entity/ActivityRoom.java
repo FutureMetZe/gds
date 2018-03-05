@@ -1,6 +1,7 @@
 package com.gds.entity;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ActivityRoom implements Serializable {
@@ -66,16 +67,22 @@ public class ActivityRoom implements Serializable {
         this.roomUseName = roomUseName == null ? null : roomUseName.trim();
     }
 
-    public Date getRoomBeginTime() {
-        return roomBeginTime;
+    public String getRoomBeginTime() {
+        if(roomBeginTime==null){
+            return null;
+        }
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(roomBeginTime);
     }
 
     public void setRoomBeginTime(Date roomBeginTime) {
         this.roomBeginTime = roomBeginTime;
     }
 
-    public Date getRoomOverTime() {
-        return roomOverTime;
+    public String getRoomOverTime() {
+        if(roomOverTime==null){
+            return null;
+        }
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(roomOverTime);
     }
 
     public void setRoomOverTime(Date roomOverTime) {

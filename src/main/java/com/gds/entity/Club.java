@@ -24,6 +24,26 @@ public class Club implements Serializable {
     private String club_standby001;
     private String club_standby002;
 
+    //社团管理员登录帐号密码
+    private String club_loginName;
+    private String club_loginPassword;
+
+    public String getClub_loginName() {
+        return club_loginName;
+    }
+
+    public void setClub_loginName(String club_loginName) {
+        this.club_loginName = club_loginName;
+    }
+
+    public String getClub_loginPassword() {
+        return club_loginPassword;
+    }
+
+    public void setClub_loginPassword(String club_loginPassword) {
+        this.club_loginPassword = club_loginPassword;
+    }
+
     public Integer getClub_id() {
         return club_id;
     }

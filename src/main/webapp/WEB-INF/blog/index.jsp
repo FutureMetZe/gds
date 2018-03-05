@@ -168,20 +168,20 @@
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane contact active" id="notice">
                         <h2>日志总数:
-                            888篇
+                            ${postCount}篇
                         </h2>
-                        <h2>网站运行:
-                            <span id="sitetime">88天 </span></h2>
+                        <h2>已注册人数:
+                            <span id="sitetime">${userCount}人 </span></h2>
                     </div>
                     <div role="tabpanel" class="tab-pane contact" id="contact">
                         <h2>QQ:
-                            <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=577211782&amp;site=qq&amp;menu=yes"
+                            <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=513598006&amp;site=qq&amp;menu=yes"
                                target="_blank" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title=""
-                               data-original-title="QQ:577211782">577211782</a>
+                               data-original-title="QQ:513598006">513598006</a>
                         </h2>
                         <h2>Email:
-                            <a href="mailto:577211782@qq.com" target="_blank" data-toggle="tooltip" rel="nofollow"
-                               data-placement="bottom" title="" data-original-title="Email:577211782@qq.com">577211782@qq.com</a>
+                            <a href="mailto:513598006@qq.com" target="_blank" data-toggle="tooltip" rel="nofollow"
+                               data-placement="bottom" title="" data-original-title="Email:513598006@qq.com">513598006@qq.com</a>
                         </h2>
                     </div>
                 </div>

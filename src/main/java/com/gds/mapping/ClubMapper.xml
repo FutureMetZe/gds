@@ -48,12 +48,13 @@
         (
           club_id,club_status,club_name,
           club_type,club_faculty,club_createtime,
-          club_introduce,club_standby001,club_standby002
+          club_introduce,club_standby001,club_standby002,club_loginName,club_loginPassword
         )
         values
         (
           #{club_id}, #{club_status}, #{club_name},#{club_type}, #{club_faculty},
-          #{club_createtime}, #{club_introduce}, #{club_standby001},#{club_standby002}
+          #{club_createtime}, #{club_introduce}, #{club_standby001},#{club_standby002},
+          #{club_loginName},#{club_loginPassword}
         )
 
     </insert>
@@ -68,6 +69,18 @@
         <where>
             <if test="club_type != null and club_type != ''">
                 club_type like "%"#{club_type}"%"
+            </if>
+        </where>
+    </select>
+
+    <select id="selectClubByPassword" resultType="com.gds.entity.Club" parameterType="Map">
+        select * from gds_club
+        <where>
+            <if test="club_loginName != null and club_loginName != ''">
+                club_loginName = #{club_loginName}
+            </if>
+            <if test="club_loginPassword != null and club_loginPassword != ''">
+                and club_loginPassword = #{club_loginPassword}
             </if>
         </where>
     </select>

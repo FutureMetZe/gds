@@ -1,6 +1,7 @@
 package com.gds.entity;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class MyFile implements Serializable {
@@ -60,8 +61,8 @@ public class MyFile implements Serializable {
         this.uploadUsername = uploadUsername == null ? null : uploadUsername.trim();
     }
 
-    public Date getFileCreatTime() {
-        return fileCreatTime;
+    public String getFileCreatTime() {
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(fileCreatTime);
     }
 
     public void setFileCreatTime(Date fileCreatTime) {

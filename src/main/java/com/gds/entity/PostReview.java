@@ -1,6 +1,7 @@
 package com.gds.entity;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class PostReview implements Serializable {
@@ -66,8 +67,8 @@ public class PostReview implements Serializable {
         this.reviewUesrImg = reviewUesrImg == null ? null : reviewUesrImg.trim();
     }
 
-    public Date getReviewCreattime() {
-        return reviewCreattime;
+    public String getReviewCreattime() {
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(reviewCreattime);
     }
 
     public void setReviewCreattime(Date reviewCreattime) {
