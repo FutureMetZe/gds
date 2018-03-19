@@ -20,4 +20,7 @@ public interface GoodsMapper {
     Goods selectById(Integer goodsId);
 
     void updateGoods(Goods goods);
+
+    List<Goods> selectGoodByName(String clubName);
+
 }

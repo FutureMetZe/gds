@@ -13,4 +13,6 @@ public interface StuAndClubService {
     List<StuAndClub> selectStudentClubByStuNum(String stu_num);
 
     List<StuAndClub> selectBeanByClubId(Integer clubId);
+
+    Integer selectCountByNumAndId(String studentNum, Integer clubId);
 }

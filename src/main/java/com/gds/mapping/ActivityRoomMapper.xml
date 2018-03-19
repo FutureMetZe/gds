@@ -189,4 +189,13 @@
     LIMIT #{startRow},#{size}
   </select>
 
+
+  <select id="selectRoomsByClubName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from gds_activity_room
+    where room_use_name = #{clubName}
+  </select>
+
+
 </mapper>

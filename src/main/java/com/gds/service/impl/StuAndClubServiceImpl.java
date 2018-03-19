@@ -34,4 +34,20 @@ public class StuAndClubServiceImpl implements StuAndClubService{
     public List<StuAndClub> selectBeanByClubId(Integer clubId) {
         return stuAndClubDao.selectByClubId(clubId);
     }
+
+    /**
+     * 根据 学号 和 社团ID 查询学生社团映射
+     * @param studentNum
+     * @param clubId
+     * @return
+     */
+    @Override
+    public Integer selectCountByNumAndId(String studentNum, Integer clubId) {
+        HashMap map = new HashMap();
+        map.put("studentNum",studentNum);
+        map.put("clubId",clubId);
+
+
+        return stuAndClubDao.selectCountByNumAndId(map);
+    }
 }

@@ -8,15 +8,15 @@ import com.gds.service.StudentService;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
 import java.util.Map;
 
 @Controller
@@ -76,5 +76,38 @@ public class UserController {
     }
 
 
+    /**
+     * 全局404  error404
+     */
+    @RequestMapping("/error404.do")
+    public String error404(){
+        return "/blog/404";
+    }
+
+
+    /**
+     * 跳转到文本编辑器
+     */
+    @RequestMapping("/toEditor.do")
+    public String editor(){
+        return "/blog/editor";
+    }
+
+    @RequestMapping(value="/fileUpload.do",method= RequestMethod.POST)
+    public void upload(MultipartFile file, HttpServletRequest request, ModelMap model) throws IOException {
+        String path = request.getSession().getServletContext().getRealPath("upload");
+        String fileName = file.getOriginalFilename();
+        String filePath = path+"\\"+fileName;
+
+        File dir = new File(path,fileName);
+        if(!dir.exists()){
+            dir.mkdirs();
+        }
+        //MultipartFile自带的解析方法
+        file.transferTo(dir);
+        model.addAttribute("filePath",filePath);
+        model.addAttribute("fileName",fileName);
+
+    }
 
 }

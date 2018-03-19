@@ -3,6 +3,7 @@ package com.gds.controller.blog;
 import com.gds.entity.*;
 import com.gds.service.*;
 import com.gds.utils.PageBean;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,6 +41,12 @@ public class IndexController {
 
     @Resource(name = "ClubService")
     private ClubService clubService;
+
+    @Resource(name = "StudentJoinService")
+    private StudentJoinService studentJoinService;
+
+    @Resource(name = "StuAndClubService")
+    private StuAndClubService stuAndClubService;
 
     /**
      * 跳转到博客首页
@@ -217,6 +224,69 @@ public class IndexController {
     }
 
     /**
+     * 跳转到选择加入新社团页面
+     */
+    @RequestMapping("/ChooseClub.do")
+    public String ChooseClub(HttpServletRequest request, HttpServletResponse response, ModelMap model,
+                             @RequestParam(value = "studentNum", required = false)String studentNum){
+
+
+
+        //将学生学号接收到转发到页面
+        Student student = studentService.selectByStuNum(studentNum);
+
+        //把社团列表转发到页面
+        List<Club> Clubs = clubService.selectAll();
+        model.addAttribute("Clubs",Clubs);
+        model.addAttribute("Student",student);
+
+        return "blog/joinClub";
+    }
+
+    /**
+     *  发送申请
+     */
+    @RequestMapping("/sendJoin.do")
+    public String sendJoin(HttpServletRequest request, HttpServletResponse response, ModelMap model){
+
+        //接受到社团id和学生学号
+        String studentNum = request.getParameter("studentNum");
+        Integer clubId = Integer.parseInt(request.getParameter("clubId"));
+        String message = "";
+
+        //先查询是否有对应的映射
+        Integer countSAC = stuAndClubService.selectCountByNumAndId(studentNum,clubId);
+        Integer countJAC = studentJoinService.selectCountByNumAndId(studentNum,clubId);
+
+        if(clubId==null){
+            //请选择正确的社团名称
+            message = "请选择正确的社团名称";
+            request.getSession().setAttribute("joinMessage",message);
+            return ChooseClub(request,response,model,studentNum);
+        }else if(countSAC>0){
+            //如果有映射表示已经加入该社团
+            message = "您已经是该社团成员！";
+            request.getSession().setAttribute("joinMessage",message);
+            return ChooseClub(request,response,model,studentNum);
+        }else if (countJAC>0){
+            //再查询是否申请过
+            message = "您已经提交过申请了！";
+            request.getSession().setAttribute("joinMessage",message);
+            return ChooseClub(request,response,model,studentNum);
+        }
+
+        StudentJoinClub studentJoinClub = new StudentJoinClub();
+        studentJoinClub.setStudentNum(studentNum);
+        studentJoinClub.setWishClubId(clubId);
+        studentJoinClub.setApplicationTime(new Date());
+        studentJoinService.insertJoin(studentJoinClub);
+
+        return "redirect:/blog/home/goHome.do";
+    }
+
+
+
+    /**
      * 登录
      * @return
      */
@@ -224,16 +294,26 @@ public class IndexController {
     public String userLogin(HttpServletRequest request, HttpServletResponse response, ModelMap model,
                             @RequestParam(value = "username", required = false)String username,
                             @RequestParam(value = "password", required = false)String password,
+                            @RequestParam(value = "code", required = false)String code,
                             @RequestParam(value = "loginType", required = false)String loginType ){
         String message = "";
         HttpSession session = request.getSession(true);
+
+        String sessionCode = (String) session.getAttribute("code");
+        if (!StringUtils.equalsIgnoreCase(code, sessionCode)) {  //忽略验证码大小写
+            //用户不存在
+            message = "验证码错误！";
+            model.addAttribute("message",message);
+            return "blog/login";
+        }
         if(loginType.equals("2")){
 
             //匹配社团帐号密码
             Club club = clubService.selectClubByPassword(username,password);
             if(club != null){
                 model.addAttribute("ClubAdmin",club);
-
+                session.setAttribute("clubId",club.getClub_id());
+                session.setAttribute("clubName",club.getClub_name());
                 return "redirect:/assets/admin-index.do";
             }else{
                 //用户不存在

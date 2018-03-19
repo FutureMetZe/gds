@@ -34,8 +34,7 @@ pageEncoding="UTF-8"%>
   <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
 
     <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
-      <li><a href="javascript:;"><span class="am-icon-envelope-o"></span> 收件箱 <span class="am-badge am-badge-warning">5</span></a></li>
-      <li class="am-dropdown" data-am-dropdown>
+       <li class="am-dropdown" data-am-dropdown>
         <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
           <span class="am-icon-users"></span> 管理员 <span class="am-icon-caret-down"></span>
         </a>
@@ -55,16 +54,15 @@ pageEncoding="UTF-8"%>
   <div class="admin-sidebar">
     <ul class="am-list admin-sidebar-list">
       <li><a href="admin-index.do"><span class="am-icon-home"></span> 首页</a></li>
-      <li class="admin-parent">
-        <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-file"></span> 页面模块 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
-        <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
-          <li><a href="admin-user.do" class="am-cf"><span class="am-icon-check"></span> 个人资料<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
-          <li><a href="admin-help.do"><span class="am-icon-puzzle-piece"></span> 帮助页</a></li>
-        </ul>
-      </li>
-      <li><a href="admin-table.do"><span class="am-icon-table"></span> 表格</a></li>
-      <li><a href="admin-form.do"><span class="am-icon-pencil-square-o"></span> 表单</a></li>
-      <li><a href="#"><span class="am-icon-sign-out"></span> 注销</a></li>
+
+      <li><a href="admin-table.do"><span class="am-icon-table"></span> 成员列表</a></li>
+      <li><a href="admin-table.do"><span class="am-icon-sign-out"></span> 入社申请</a></li>
+      <li><a href="/assets/admin-user.do" class="am-cf"><span class="am-icon-check"></span> 新增成员 </span></a></li>
+
+      <li><a href="admin-table.do"><span class="am-icon-puzzle-piece"></span> 物资管理</a></li>
+      <li><a href="admin-table.do"><span class="am-icon-pencil-square-o"></span> 活动室管理</a></li>
+      <li><a href="admin-table.do"><span class="am-icon-sign-out"></span> 公告管理</a></li>
+
     </ul>
 
     <div class="am-panel am-panel-default admin-sidebar-panel">

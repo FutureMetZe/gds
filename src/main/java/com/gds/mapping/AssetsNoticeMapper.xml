@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gds.dao.AssetsNoticeMapper">
+  <resultMap id="BaseResultMap" type="com.gds.entity.AssetsNotice">
+    <id column="notice_id" jdbcType="INTEGER" property="noticeId" />
+    <result column="notice_content" jdbcType="VARCHAR" property="noticeContent" />
+    <result column="notice_club_name" jdbcType="VARCHAR" property="noticeClubName" />
+    <result column="notice_creat_time" jdbcType="TIMESTAMP" property="noticeCreatTime" />
+    <result column="notice_state" jdbcType="INTEGER" property="noticeState" />
+    <result column="standby001" jdbcType="VARCHAR" property="standby001" />
+    <result column="standby002" jdbcType="VARCHAR" property="standby002" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    notice_id, notice_content, notice_club_name, notice_creat_time, notice_state, standby001, 
+    standby002
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from assets_notice
+    where notice_id = #{noticeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from assets_notice
+    where notice_id = #{noticeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gds.entity.AssetsNotice">
+    insert into assets_notice (notice_id, notice_content, notice_club_name, 
+      notice_creat_time, notice_state, standby001, 
+      standby002)
+    values (#{noticeId,jdbcType=INTEGER}, #{noticeContent,jdbcType=VARCHAR}, #{noticeClubName,jdbcType=VARCHAR}, 
+      #{noticeCreatTime,jdbcType=TIMESTAMP}, #{noticeState,jdbcType=INTEGER}, #{standby001,jdbcType=VARCHAR}, 
+      #{standby002,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gds.entity.AssetsNotice">
+    insert into assets_notice
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="noticeId != null">
+        notice_id,
+      </if>
+      <if test="noticeContent != null">
+        notice_content,
+      </if>
+      <if test="noticeClubName != null">
+        notice_club_name,
+      </if>
+      <if test="noticeCreatTime != null">
+        notice_creat_time,
+      </if>
+      <if test="noticeState != null">
+        notice_state,
+      </if>
+      <if test="standby001 != null">
+        standby001,
+      </if>
+      <if test="standby002 != null">
+        standby002,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="noticeId != null">
+        #{noticeId,jdbcType=INTEGER},
+      </if>
+      <if test="noticeContent != null">
+        #{noticeContent,jdbcType=VARCHAR},
+      </if>
+      <if test="noticeClubName != null">
+        #{noticeClubName,jdbcType=VARCHAR},
+      </if>
+      <if test="noticeCreatTime != null">
+        #{noticeCreatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="noticeState != null">
+        #{noticeState,jdbcType=INTEGER},
+      </if>
+      <if test="standby001 != null">
+        #{standby001,jdbcType=VARCHAR},
+      </if>
+      <if test="standby002 != null">
+        #{standby002,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gds.entity.AssetsNotice">
+    update assets_notice
+    <set>
+      <if test="noticeContent != null">
+        notice_content = #{noticeContent,jdbcType=VARCHAR},
+      </if>
+      <if test="noticeClubName != null">
+        notice_club_name = #{noticeClubName,jdbcType=VARCHAR},
+      </if>
+      <if test="noticeCreatTime != null">
+        notice_creat_time = #{noticeCreatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="noticeState != null">
+        notice_state = #{noticeState,jdbcType=INTEGER},
+      </if>
+      <if test="standby001 != null">
+        standby001 = #{standby001,jdbcType=VARCHAR},
+      </if>
+      <if test="standby002 != null">
+        standby002 = #{standby002,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where notice_id = #{noticeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gds.entity.AssetsNotice">
+    update assets_notice
+    set notice_content = #{noticeContent,jdbcType=VARCHAR},
+      notice_club_name = #{noticeClubName,jdbcType=VARCHAR},
+      notice_creat_time = #{noticeCreatTime,jdbcType=TIMESTAMP},
+      notice_state = #{noticeState,jdbcType=INTEGER},
+      standby001 = #{standby001,jdbcType=VARCHAR},
+      standby002 = #{standby002,jdbcType=VARCHAR}
+    where notice_id = #{noticeId,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectNoticesByClubName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from assets_notice
+    where notice_club_name = #{clubName}
+  </select>
+
+  <select id="selectFirstNotice" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    from assets_notice where notice_id=(select max(notice_id) from assets_notice);
+  </select>
+
+</mapper>

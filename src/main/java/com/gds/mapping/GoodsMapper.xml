@@ -133,4 +133,7 @@
     where goods_id = #{goodsId,jdbcType=INTEGER}
   </update>
 
+  <select id="selectGoodByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select * from gds_goods where standby002 = #{clubName} ;
+  </select>
 </mapper>

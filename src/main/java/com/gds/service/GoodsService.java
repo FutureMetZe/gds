@@ -4,6 +4,8 @@ import com.gds.entity.Goods;
 import com.gds.utils.PageBean;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service("GoodsService")
 public interface GoodsService {
 
@@ -16,4 +18,6 @@ public interface GoodsService {
     void updateGoods(Goods goods);
 
     Integer selectCount();
+
+    List<Goods> selectGoodByName(String clubName);
 }

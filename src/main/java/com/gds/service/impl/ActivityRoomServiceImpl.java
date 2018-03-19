@@ -56,4 +56,10 @@ public class ActivityRoomServiceImpl implements ActivityRoomService {
     public Integer selectCount() {
         return activityRoomMapper.selectCount(null);
     }
+
+    @Override
+    public List<ActivityRoom> selectRoomsByClubName(String clubName) {
+
+        return activityRoomMapper.selectRoomsByClubName(clubName);
+    }
 }

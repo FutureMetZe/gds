@@ -4,6 +4,8 @@ import com.gds.entity.ActivityRoom;
 import com.gds.utils.PageBean;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service("ActivityRoomService")
 public interface ActivityRoomService {
     PageBean<ActivityRoom> selectRoomPageList(Integer currentPage, Integer pageSize, String roomName, String roomIsUse);
@@ -15,4 +17,6 @@ public interface ActivityRoomService {
     void deleteRoomById(Integer roomId);
 
     Integer selectCount();
+
+    List<ActivityRoom> selectRoomsByClubName(String clubName);
 }

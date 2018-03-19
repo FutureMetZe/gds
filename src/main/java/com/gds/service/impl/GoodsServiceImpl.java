@@ -51,4 +51,10 @@ public class GoodsServiceImpl implements GoodsService {
     public Integer selectCount() {
         return goodsMapper.selectCount(null);
     }
+
+    @Override
+    public List<Goods> selectGoodByName(String clubName) {
+
+        return goodsMapper.selectGoodByName(clubName);
+    }
 }

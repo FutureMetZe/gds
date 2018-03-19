@@ -102,7 +102,7 @@
                         <li></li>
                         <li></li>
                         <li></li>
-                        <li><a href="">申请加入新社团</a></li>
+                        <li><a href="/blog/ChooseClub.do?studentNum=${student.stuNum}">申请加入新社团</a></li>
                         <li><a href="">发布文章</a></li>
                     </ul>
                 </div><!--/.social-menu-container-->
@@ -121,9 +121,9 @@
 
                         <div class="fade-text transparent">
                             <!--DESCRIPTION ON HOME-->
-                            <div class="strong-text">Hello, I am <span>John Doe</span></div>
-                            <div class="focus-text"><span>Web Developer & </span><span>Web Designer</span></div>
-                            <p class="large-paragraph">I have ten years experience as a web/interface designer.I have a love of clean, elegant styling. I have lots of experience in the production of CSS and HTML for modern websites.</p>
+                            <div class="strong-text">活动通知</div>
+                            <div class="focus-text"><span>${notice.standby001} </span></div>
+                            <p class="large-paragraph">${notice.noticeContent}</p>
                             <!--DESCRIPTION ON HOME ENDS-->
                         </div>
 

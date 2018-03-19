@@ -23,4 +23,6 @@ public interface ActivityRoomMapper {
     Integer selectCount(Map map);
 
     List<ActivityRoom> selectListByMap(Map map);
+
+    List<ActivityRoom> selectRoomsByClubName(String clubName);
 }

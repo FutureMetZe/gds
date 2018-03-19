@@ -82,4 +82,10 @@
     from gds_stu_relation
     where dict_club_id = #{clubId}
   </select>
+
+  <select id="selectCountByNumAndId" resultType="java.lang.Integer" parameterType="Map">
+    select count(1) from gds_stu_relation where stu_num = #{studentNum} and dict_club_id =#{clubId};
+  </select>
+
+
 </mapper>

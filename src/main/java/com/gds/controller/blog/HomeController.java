@@ -1,10 +1,7 @@
 package com.gds.controller.blog;
 
 import com.gds.entity.*;
-import com.gds.service.BlogPostService;
-import com.gds.service.ClubService;
-import com.gds.service.PostReviewService;
-import com.gds.service.StuAndClubService;
+import com.gds.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +28,10 @@ public class HomeController {
 
     @Resource(name = "PostReviewService")
     private PostReviewService postReviewService;
+
+    @Resource(name = "NoticeService")
+    private NoticeService noticeService;
+
     /**
      * 进入用户主页
      */
@@ -77,6 +78,18 @@ public class HomeController {
             //4,把学生发布的文章ID，标题，日期，介绍，类型传入主页
             List<Post> myPosts = blogPostService.selectPostByUsername(student.getUsername());
             model.addAttribute("myPosts",myPosts);
+
+
+            //5,查找对应社团公告
+            if (clubs!=null){
+                String clubNmae = clubs.get(0).getClub_name();
+                List<AssetsNotice> notices = noticeService.selectNoticesByClubName(clubNmae);
+                if (notices!=null){
+                    AssetsNotice notice = notices.get(0);
+                    model.addAttribute("notice",notice);
+                }
+            }
+
             System.out.println("myReviews:"+myReviews);
             System.out.println("myPosts:"+myPosts);
 
@@ -85,6 +98,7 @@ public class HomeController {
             return "blog/login";
         }
     }
+
 
 
 }

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gds.dao.StudentJoinClubMapper">
+  <resultMap id="BaseResultMap" type="com.gds.entity.StudentJoinClub">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="student_num" jdbcType="VARCHAR" property="studentNum" />
+    <result column="wish_club_id" jdbcType="INTEGER" property="wishClubId" />
+    <result column="is_agree" jdbcType="VARCHAR" property="isAgree" />
+    <result column="application_time" jdbcType="TIMESTAMP" property="applicationTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, student_num, wish_club_id, is_agree, application_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from assets_student_join_club
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from assets_student_join_club
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gds.entity.StudentJoinClub">
+    insert into assets_student_join_club (id, student_num, wish_club_id, 
+      is_agree, application_time)
+    values (#{id,jdbcType=INTEGER}, #{studentNum,jdbcType=VARCHAR}, #{wishClubId,jdbcType=INTEGER}, 
+      #{isAgree,jdbcType=VARCHAR}, #{applicationTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gds.entity.StudentJoinClub">
+    insert into assets_student_join_club
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="studentNum != null">
+        student_num,
+      </if>
+      <if test="wishClubId != null">
+        wish_club_id,
+      </if>
+      <if test="isAgree != null">
+        is_agree,
+      </if>
+      <if test="applicationTime != null">
+        application_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="studentNum != null">
+        #{studentNum,jdbcType=VARCHAR},
+      </if>
+      <if test="wishClubId != null">
+        #{wishClubId,jdbcType=INTEGER},
+      </if>
+      <if test="isAgree != null">
+        #{isAgree,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationTime != null">
+        #{applicationTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gds.entity.StudentJoinClub">
+    update assets_student_join_club
+    <set>
+      <if test="studentNum != null">
+        student_num = #{studentNum,jdbcType=VARCHAR},
+      </if>
+      <if test="wishClubId != null">
+        wish_club_id = #{wishClubId,jdbcType=INTEGER},
+      </if>
+      <if test="isAgree != null">
+        is_agree = #{isAgree,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationTime != null">
+        application_time = #{applicationTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gds.entity.StudentJoinClub">
+    update assets_student_join_club
+    set student_num = #{studentNum,jdbcType=VARCHAR},
+      wish_club_id = #{wishClubId,jdbcType=INTEGER},
+      is_agree = #{isAgree,jdbcType=VARCHAR},
+      application_time = #{applicationTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectBeanByClubId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from assets_student_join_club
+    where wish_club_id = #{clubId,jdbcType=INTEGER}
+
+  </select>
+
+  <delete id="deleteStudentJoin" parameterType="Map">
+
+    delete from assets_student_join_club
+    where wish_club_id = #{clubId,jdbcType=INTEGER} AND student_num = #{stuNum}
+
+  </delete>
+
+  <!--查询是否已经申请过-->
+  <select id="selectCountByNumAndId" resultType="java.lang.Integer" parameterType="Map">
+    select count(1) from assets_student_join_club where student_num = #{studentNum} and wish_club_id =#{clubId};
+  </select>
+
+</mapper>

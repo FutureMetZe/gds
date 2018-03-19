@@ -9,7 +9,29 @@
 <link rel="stylesheet" href="heima/css/bootstrap.min.css" type="text/css" />
 <script src="heima/js/jquery-1.11.3.min.js" type="text/javascript"></script>
 <script src="heima/js/bootstrap.min.js" type="text/javascript"></script>
-<!-- 引入自定义css文件 style.css -->
+	<script type="text/javascript">
+        // 刷新图片
+        function changeImg() {
+            var imgSrc = $("#imgObj");
+            var src = imgSrc.attr("src");
+            imgSrc.attr("src", changeUrl(src));
+        }
+        //为了使每次生成图片不一致，即不让浏览器读缓存，所以需要加上时间戳
+        function changeUrl(url) {
+            var timestamp = (new Date()).valueOf();
+            var index = url.indexOf("?",url);
+            if (index > 0) {
+                url = url.substring(0, url.indexOf(url, "?"));
+            }
+            if ((url.indexOf("&") >= 0)) {
+                url = url + "×tamp=" + timestamp;
+            } else {
+                url = url + "?timestamp=" + timestamp;
+            }
+            return url;
+        }
+	</script>
+	<!-- 引入自定义css文件 style.css -->
 <link rel="stylesheet" href="heima/css/style.css" type="text/css" />
 
 <style>
@@ -89,11 +111,13 @@ font {
 						<div class="form-group">
 							<label for="inputPassword3" class="col-sm-2 control-label">验证码</label>
 							<div class="col-sm-3">
-								<input type="text" class="form-control" id="inputPassword3"
+								<input type="text" class="form-control" id="inputPassword3" name="code"
 									placeholder="请输入验证码">
 							</div>
 							<div class="col-sm-3">
-								<img src="./image/captcha.jhtml" />
+								<%--<img src="./image/captcha.jhtml" />--%>
+								<img id="imgObj" src="/article/validateCode.do" onclick="changeImg()"/>
+
 							</div>
 						</div>
 						<div class="form-group">

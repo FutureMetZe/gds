@@ -6,140 +6,66 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!doctype html>
-<html lang="zh-CN">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="utf-8">
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>404错误！很抱歉，您要找的页面不存在</title>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/nprogress.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
-    <link rel="apple-touch-icon-precomposed" href="images/icon.png">
-    <link rel="shortcut icon" href="images/favicon.ico">
-    <script src="js/jquery-2.1.4.min.js"></script>
-    <script src="js/nprogress.js"></script>
-    <script src="js/jquery.lazyload.min.js"></script>
-    <!--[if gte IE 9]>
-    <script src="js/jquery-1.11.1.min.js" type="text/javascript"></script>
-    <script src="js/html5shiv.min.js" type="text/javascript"></script>
-    <script src="js/respond.min.js" type="text/javascript"></script>
-    <script src="js/selectivizr-min.js" type="text/javascript"></script>
-    <![endif]-->
-    <!--[if lt IE 9]>
-    <script>window.location.href='upgrade-browser.html';</script>
-    <![endif]-->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="keywords" content="JS代码,其他代码,JS广告代码,JS特效代码" />
+    <meta name="description" content="漂亮的蓝天白云404错误代码下载" />
+    <meta name="author" content="www.xmoban.cn">
+    <meta name="copyright" content="Copyright    版权所有">
+    <title>404错误</title>
+    <meta http-equiv="refresh" content="60;url=http://www.xmoban.cn/">
+    <!-- content="600，即600秒后返回主页，可根据需要修改或者删除这段代码 -->
+
     <style type="text/css">
-        .panel
-        {
-            padding: 80px 20px 0px;
-            min-height: 400px;
-            cursor: default;
+
+        body, div {
+            margin: 0;
+            padding: 0;
         }
-        .text-center
-        {
+        body {
+            background: url("../images/error_bg.jpg") repeat-x scroll 0 0 #67ACE4;
+        }
+        #container {
             margin: 0 auto;
+            padding-top: 50px;
             text-align: center;
-            border-radius: 10px;
-            max-width: 900px;
-            -moz-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
-            -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
-            box-shadow: 0px 0px 5px rgba(0,0,0,.1);
+            width: 560px;
         }
-        .float-left
-        {
-            float: left !important;
+        #container img {
+            border: medium none;
+            margin-bottom: 50px;
         }
-        .float-right
-        {
-            float: right !important;
+        #container .error {
+            height: 200px;
+            position: relative;
         }
-        img
-        {
-            border: 0;
-            vertical-align: bottom;
+        #container .error img {
+            bottom: -50px;
+            position: absolute;
+            right: -50px;
         }
-        h2
-        {
-            padding-top: 20px;
-            font-size: 20px;
+        #container .msg {
+            margin-bottom: 65px;
         }
-        .padding-big
-        {
-            padding: 20px;
-        }
-        .alert
-        {
-            border-radius: 5px;
-            padding: 15px;
-            border: solid 1px #ddd;
-            background-color: #f5f5f5;
+        #cloud {
+            background: url("../images/error_cloud.png") repeat-x scroll 0 0 transparent;
+            bottom: 0;
+            height: 170px;
+            position: absolute;
+            width: 100%;
         }
     </style>
 </head>
-<body class="user-select">
-<header class="header">
-    <nav class="navbar navbar-default" id="navbar">
-        <div class="container">
-            <div class="header-topbar hidden-xs link-border">
-                <ul class="site-nav topmenu">
-                    <li><a href="${BasePath}/tags/" >标签云</a></li>
-                    <li><a href="${BasePath}/readers/" rel="nofollow" >读者墙</a></li>
-                    <li><a href="${BasePath}/rss.html" title="RSS订阅" >
-                        <i class="fa fa-rss">
-                        </i> RSS订阅
-                    </a></li>
-                </ul>
-                勤记录 懂分享 </div>
-            <div class="collapse navbar-collapse" id="header-navbar">
-                <form class="navbar-form visible-xs" action="/Search" method="post">
-                    <div class="input-group">
-                        <input type="text" name="keyword" class="form-control" placeholder="请输入关键字" maxlength="20" autocomplete="off">
-                        <span class="input-group-btn">
-            <button class="btn btn-default btn-search" name="search" type="submit">搜索</button>
-            </span> </div>
-                </form>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a data-cont="木庄网络博客" title="木庄网络博客" href="index.html">首页</a></li>
-                    <li><a data-cont="列表页" title="列表页" href="list.html">列表页</a></li>
-                    <li><a data-cont="详细页" title="详细页" href="show.html">详细页</a></li>
-                    <li><a data-cont="404" title="404" href="404.html">404</a></li>
-                    <li><a data-cont="MZ-NetBolg主题" title="MZ-NetBolg主题" href="${BasePath}/list/mznetblog/" >MZ-NetBolg主题</a></li>
-                    <li><a data-cont="IT技术笔记" title="IT技术笔记" href="${BasePath}/list/code/" >IT技术笔记</a></li>
-                    <li><a data-cont="源码分享" title="源码分享" href="${BasePath}/list/share/" >源码分享</a></li>
-                    <li><a data-cont="靠谱网赚" title="靠谱网赚" href="${BasePath}/list/money/" >靠谱网赚</a></li>
-                    <li><a data-cont="资讯分享" title="资讯分享" href="${BasePath}/list/news/" >资讯分享</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-</header>
-<section class="container">
-    <div class="panel">
-        <div class="text-center">
-            <h2><stong>404错误！很抱歉，您要找的页面不存在</stong></h2>
-            <div class="padding-big"> <a href="${BasePath}/index.html" class="btn btn-primary" >返回首页</a>
-            </div>
-            <div class="padding-big"> <a href="${BasePath}/show/269.html" title="用DTcms做一个独立博客网站（响应式模板）" >用DTcms做一个独立博客网站（响应式模板）</a>
-            </div>
-            <div class="padding-big"> <a href="${BasePath}/list/mznetblog/" title="MZ-NetBolg主题" >MZ-NetBolg主题栏目</a>
-            </div>
-        </div>
-    </div>
-</section>
-<footer class="footer">
-    <div class="container">
-        <p>本站[<a href="${BasePath}/" >木庄网络博客</a>]的部分内容来源于网络，若侵犯到您的利益，请联系站长删除！谢谢！Powered By [<a href="http://www.dtcms.net/" target="_blank" rel="nofollow" >DTcms</a>] Version 4.0</p>
-    </div>
-    <div id="gotop" style="display: block;"><a class="gotop" ></a>
-    </div>
-</footer>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery.ias.js"></script>
-<script src="js/scripts.js"></script>
+<body>
+<!-- 代码 开始 -->
+<div id="container"><img class="png" src="/blog/404img/404.png" /> <img class="png msg" src="/blog/404img/404_msg.png" />
+    <p><a href="http://localhost:8080/blog/index.do" target="_blank"><img class="png" src="/blog/404img/404_to_index.png" /></a> </p>
+</div>
+<div id="cloud" class="png"></div>
+<!-- 代码 结束 -->
+
+
 </body>
 </html>
-
