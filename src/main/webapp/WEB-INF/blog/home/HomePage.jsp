@@ -102,8 +102,8 @@
                         <li></li>
                         <li></li>
                         <li></li>
-                        <li><a href="/blog/ChooseClub.do?studentNum=${student.stuNum}">申请加入新社团</a></li>
-                        <li><a href="">发布文章</a></li>
+                        <li><a href="/blog/home/ChooseClub.do?studentNum=${student.stuNum}">申请加入新社团</a></li>
+                        <li><a href="/blog/home/studentPost.do?studentUserName=${student.username}">发布文章</a></li>
                     </ul>
                 </div><!--/.social-menu-container-->
             </div><!--#menu-container-->

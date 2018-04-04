@@ -99,12 +99,10 @@ public class IndexController {
      */
     @RequestMapping("/list.do")
     public String list(HttpServletRequest request, HttpServletResponse response, ModelMap model,
-                       @RequestParam(value = "postType", required = false)String postType ){
-
-//        System.out.println(postType);
+                       @RequestParam(value = "postType", required = false)String postType,
+                       @RequestParam(value = "search", required = false)String search ){
         //1,查询导航栏字典
         List<Dict> blogPostType = dictService.selectDiceByKey("006");
-        model.addAttribute("blogPostType",blogPostType);
 
         //2,查询最新评论列表
         String reviewnum = dictService.selectDiceByKey("007").get(0).getValue();
@@ -112,22 +110,34 @@ public class IndexController {
         if(reviewnum !=null ){
             rowNum = Integer.valueOf(reviewnum);
         }
-        model.addAttribute("postType",postType);
-//        Integer row_num = 8;
         List<PostReview> newReviews = postReviewService.selectReviewByTime(rowNum,postType);
-        model.addAttribute("newReviews",newReviews);
-
 
         //3,所属板块文章（包含分页信息）
-        PageBean<Post> pageBeans = blogPostService.selectClubPageList(null,null,null,null,postType);
-//        model.addAttribute("page",pageBeans);
+        PageBean<Post> pageBeans = blogPostService.selectClubPageList(null,null,null,null,postType);;
+
+        String PageType = "";
+        if(search!=null){
+            //模糊查询
+            PageType = "查找到与“"+postType+"”相关的如下内容";
+        }else{
+            PageType = postType;
+        }
+        //文章数量
+        Integer postCount = blogPostService.selectCount();
+        model.addAttribute("postCount",postCount);
+
+        //用户数量
+        Integer userCount = studentService.selectCount();
+        model.addAttribute("userCount",userCount);
+
         model.addAttribute("posts",pageBeans.getBeans());
+        model.addAttribute("blogPostType",blogPostType);
         model.addAttribute("postType",postType);
+        model.addAttribute("newReviews",newReviews);
+        model.addAttribute("PageType",PageType);
 
         logger.info("访问【blog/list.do】接口；返回数据为："+pageBeans.toString());
-
         return "blog/list";
-
     }
 
     /**
@@ -162,6 +172,14 @@ public class IndexController {
         //5,文章对应留言列表
         PageBean<PostReview> postReviewsList = postReviewService.selectPostReviewPageList(null,null,null,null,blogId);
         model.addAttribute("Reviews",postReviewsList.getBeans());
+
+        //文章数量
+        Integer postCount = blogPostService.selectCount();
+        model.addAttribute("postCount",postCount);
+
+        //用户数量
+        Integer userCount = studentService.selectCount();
+        model.addAttribute("userCount",userCount);
 
         return "blog/show";
     }
@@ -223,68 +241,6 @@ public class IndexController {
         return "blog/register";
     }
 
-    /**
-     * 跳转到选择加入新社团页面
-     */
-    @RequestMapping("/ChooseClub.do")
-    public String ChooseClub(HttpServletRequest request, HttpServletResponse response, ModelMap model,
-                             @RequestParam(value = "studentNum", required = false)String studentNum){
-
-
-
-        //将学生学号接收到转发到页面
-        Student student = studentService.selectByStuNum(studentNum);
-
-        //把社团列表转发到页面
-        List<Club> Clubs = clubService.selectAll();
-        model.addAttribute("Clubs",Clubs);
-        model.addAttribute("Student",student);
-
-        return "blog/joinClub";
-    }
-
-    /**
-     *  发送申请
-     */
-    @RequestMapping("/sendJoin.do")
-    public String sendJoin(HttpServletRequest request, HttpServletResponse response, ModelMap model){
-
-        //接受到社团id和学生学号
-        String studentNum = request.getParameter("studentNum");
-        Integer clubId = Integer.parseInt(request.getParameter("clubId"));
-        String message = "";
-
-        //先查询是否有对应的映射
-        Integer countSAC = stuAndClubService.selectCountByNumAndId(studentNum,clubId);
-        Integer countJAC = studentJoinService.selectCountByNumAndId(studentNum,clubId);
-
-        if(clubId==null){
-            //请选择正确的社团名称
-            message = "请选择正确的社团名称";
-            request.getSession().setAttribute("joinMessage",message);
-            return ChooseClub(request,response,model,studentNum);
-        }else if(countSAC>0){
-            //如果有映射表示已经加入该社团
-            message = "您已经是该社团成员！";
-            request.getSession().setAttribute("joinMessage",message);
-            return ChooseClub(request,response,model,studentNum);
-        }else if (countJAC>0){
-            //再查询是否申请过
-            message = "您已经提交过申请了！";
-            request.getSession().setAttribute("joinMessage",message);
-            return ChooseClub(request,response,model,studentNum);
-        }
-
-        StudentJoinClub studentJoinClub = new StudentJoinClub();
-        studentJoinClub.setStudentNum(studentNum);
-        studentJoinClub.setWishClubId(clubId);
-        studentJoinClub.setApplicationTime(new Date());
-        studentJoinService.insertJoin(studentJoinClub);
-
-        return "redirect:/blog/home/goHome.do";
-    }
-
-
 
     /**
      * 登录
@@ -324,7 +280,12 @@ public class IndexController {
 
         }else{
             Student student = studentService.selectByUsernameAndPassword(username,password);
+
+
             if (student != null){
+                //登录次数+1
+                student.setLoginCount(student.getLoginCount()==null?1:student.getLoginCount()+1);
+                studentService.updateStudent(student);
                 session.setAttribute("UserName",student.getStuName());
                 session.setAttribute("Student",student);
                 //用户存在
@@ -351,14 +312,14 @@ public class IndexController {
         return index(request,response,model);
     }
 
-
-    /**
-     * 进入管理员后台
-     * @return
-     */
-    @RequestMapping("/admin-index.do")
-    public String adminMain(){
-        return "assets/admin-index";
-    }
+//
+//    /**
+//     * 进入管理员后台
+//     * @return
+//     */
+//    @RequestMapping("/admin-index.do")
+//    public String adminMain(){
+//        return "assets/admin-index";
+//    }
 
 }

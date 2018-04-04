@@ -5,12 +5,18 @@ import com.gds.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -31,6 +37,13 @@ public class HomeController {
 
     @Resource(name = "NoticeService")
     private NoticeService noticeService;
+
+    @Resource(name = "StudentService")
+    private StudentService studentService;
+
+    @Resource(name = "StudentJoinService")
+    private StudentJoinService studentJoinService;
+
 
     /**
      * 进入用户主页
@@ -100,5 +113,118 @@ public class HomeController {
     }
 
 
+    /**
+     * 跳转到选择加入新社团页面
+     */
+    @RequestMapping("/ChooseClub.do")
+    public String ChooseClub(HttpServletRequest request, HttpServletResponse response, ModelMap model,
+                             @RequestParam(value = "studentNum", required = false)String studentNum){
+
+        //将学生学号接收到转发到页面
+        Student student = studentService.selectByStuNum(studentNum);
+
+        //把社团列表转发到页面
+        List<Club> Clubs = clubService.selectAll();
+        model.addAttribute("Clubs",Clubs);
+        model.addAttribute("Student",student);
+
+        return "blog/joinClub";
+    }
+
+    /**
+     *  发送加入社团申请
+     */
+    @RequestMapping("/sendJoin.do")
+    public String sendJoin(HttpServletRequest request, HttpServletResponse response, ModelMap model){
+
+        //接受到社团id和学生学号
+        String studentNum = request.getParameter("studentNum");
+        Integer clubId = Integer.parseInt(request.getParameter("clubId"));
+        String message = "";
+
+        //先查询是否有对应的映射
+        Integer countSAC = stuAndClubService.selectCountByNumAndId(studentNum,clubId);
+        Integer countJAC = studentJoinService.selectCountByNumAndId(studentNum,clubId);
+
+        if(clubId==null){
+            //请选择正确的社团名称
+            message = "请选择正确的社团名称";
+            request.getSession().setAttribute("joinMessage",message);
+            return ChooseClub(request,response,model,studentNum);
+        }else if(countSAC>0){
+            //如果有映射表示已经加入该社团
+            message = "您已经是该社团成员！";
+            request.getSession().setAttribute("joinMessage",message);
+            return ChooseClub(request,response,model,studentNum);
+        }else if (countJAC>0){
+            //再查询是否申请过
+            message = "您已经提交过申请了！";
+            request.getSession().setAttribute("joinMessage",message);
+            return ChooseClub(request,response,model,studentNum);
+        }
+
+        StudentJoinClub studentJoinClub = new StudentJoinClub();
+        studentJoinClub.setStudentNum(studentNum);
+        studentJoinClub.setWishClubId(clubId);
+        studentJoinClub.setApplicationTime(new Date());
+        studentJoinService.insertJoin(studentJoinClub);
+
+        return "redirect:/blog/home/goHome.do";
+    }
+
+
+    /**
+     * 跳转到学生发布文章页面
+     */
+    @RequestMapping("/studentPost.do")
+    public String studentPost(HttpServletRequest request, HttpServletResponse response, ModelMap model,
+                         @RequestParam(value = "studentUserName", required = false)String studentUserName){
+
+        //1.学生帐号非空判断
+        if(studentUserName==null || studentUserName.equals("") ){
+            //1.1.空重新登录
+            return "/blog/index";
+        }else{
+            //1.2.非空转发到发布文章页面
+            model.addAttribute("studentUserName",studentUserName);
+            return "/blog/editor";
+        }
+    }
+
+    /**
+     * 保存文章操作
+     * @param request
+     * @param model
+     * @throws IOException
+     */
+    @RequestMapping("/savePost.do")
+    public String savePost(HttpServletRequest request, HttpServletResponse response, ModelMap model,
+                           Post post){
+        post.setStatus(1);
+        post.setBlogCreatTime(new Date());
+        post.setView(1);
+        post.setBlogLevel("0");
+        blogPostService.insertPost(post);
+        return "redirect:/blog/index.do";
+    }
+
+
+
+    @RequestMapping(value="/fileUpload.do",method= RequestMethod.POST)
+    public void upload(MultipartFile file, HttpServletRequest request, ModelMap model) throws IOException {
+        String path = request.getSession().getServletContext().getRealPath("upload");
+        String fileName = file.getOriginalFilename();
+        String filePath = path+"\\"+fileName;
+
+        File dir = new File(path,fileName);
+        if(!dir.exists()){
+            dir.mkdirs();
+        }
+        //MultipartFile自带的解析方法
+        file.transferTo(dir);
+        model.addAttribute("filePath",filePath);
+        model.addAttribute("fileName",fileName);
+
+    }
 
 }

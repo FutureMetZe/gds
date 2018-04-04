@@ -20,4 +20,7 @@ public interface StudentService {
 
     //根据学号查找用户
     Student selectByStuNum(String stuNum);
+
+
+    void updateStudent(Student student);
 }

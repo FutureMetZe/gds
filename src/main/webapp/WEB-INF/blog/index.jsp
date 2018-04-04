@@ -188,9 +188,10 @@
             </div>
 
             <div class="widget widget_search">
-                <form class="navbar-form" action="/Search" method="post">
+                <form class="navbar-form" action="/blog/list.do" >
                     <div class="input-group">
-                        <input type="text" name="keyword" class="form-control" size="35" placeholder="请输入关键字"
+                        <input type="hidden" name="search" value="search">
+                        <input type="text" name="postType" class="form-control" size="35" placeholder="请输入关键字"
                                maxlength="15" autocomplete="off">
                         <span class="input-group-btn">
             <button class="btn btn-default btn-search" name="search" type="submit">搜索</button>
@@ -238,14 +239,14 @@
     </div>
     </aside>
 </section>
-<footer class="footer">
+<footer style="padding: 30px 0; line-height: 30px; text-align: center; background-color: #eee; color: #666; font-weight: 300;}
+body .layui-layout-admin .footer-demo{height: auto; padding: 15px 0; line-height: 26px;">
     <div class="container">
-        <p>本站[<a href="${BasePath}/">木庄网络博客</a>]的部分内容来源于网络，若侵犯到您的利益，请联系站长删除！谢谢！Powered By [" target="_blank"
-            rel="nofollow" >DTcms</a>] Version 4.0 &nbsp;<a href="http://www.miitbeian.gov.cn/" target="_blank"
-                                                            rel="nofollow">闽ICP备00000000号-1</a> &nbsp; <a
-                    href="${BasePath}/sitemap.xml" target="_blank" class="sitemap">网站地图</a></p>
+        <p>版权所有©湖北第二师范学院 李正杰&nbsp;
+            联系邮箱：513598006@qq.com &nbsp;
+            本系统仅供学习交流，请勿用于商业用途，谢谢！&nbsp;</p>
     </div>
-    <div id="gotop"><a class="gotop"></a></div>
+
 </footer>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery.ias.js"></script>

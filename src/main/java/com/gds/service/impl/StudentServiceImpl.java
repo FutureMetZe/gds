@@ -86,4 +86,10 @@ public class StudentServiceImpl implements StudentService {
         map.put("stuNum",stuNum);
         return studentDao.selectByStuNum(map);
     }
+
+    @Override
+    public void updateStudent(Student student) {
+        studentDao.updateByPrimaryKey(student);
+    }
+
 }

@@ -100,8 +100,8 @@
                 <td>${Activity.begintime}</td>
                 <td>${Activity.overtime}</td>
                 <td>
-                    <a href="${pageContext.request.contextPath }/back/goodEdit.do?goodsId=${Activity.activityId}" class="tablelink">修改</a>
-                    <a href="${pageContext.request.contextPath }/back/goodDelete.do?goodsId=${Activity.activityId}" class="tablelink" >删除</a>
+
+                    <a href="${pageContext.request.contextPath }/back/activityDelete.do?activityId=${Activity.activityId}" class="tablelink" >删除</a>
                 </td>
             </tr>
         </c:forEach>

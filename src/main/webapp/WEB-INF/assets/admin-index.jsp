@@ -43,7 +43,7 @@
                 <ul class="am-dropdown-content">
                     <li><a href="#"><span class="am-icon-user"></span> 资料</a></li>
                     <li><a href="#"><span class="am-icon-cog"></span> 设置</a></li>
-                    <li><a href="#"><span class="am-icon-power-off"></span> 退出</a></li>
+                    <li><a href="/blog/index.do"><span class="am-icon-power-off"></span> 退出</a></li>
                 </ul>
             </li>
             <li><a href="javascript:;" id="admin-fullscreen"><span class="am-icon-arrows-alt"></span> <span
@@ -70,15 +70,15 @@
 
         <div class="am-panel am-panel-default admin-sidebar-panel">
             <div class="am-panel-bd">
-                <p><span class="am-icon-bookmark"></span> 公告</p>
-                <p>时光静好，与君语；细水流年，与君同。—— Amaze</p>
+                <p><span class="am-icon-bookmark"></span> ${notice.standby001}</p>
+                <p>${notice.noticeContent}</p>
             </div>
         </div>
 
         <div class="am-panel am-panel-default admin-sidebar-panel">
             <div class="am-panel-bd">
-                <p><span class="am-icon-tag"></span> wiki</p>
-                <p>Welcome to the Amaze wiki!</p>
+                <p><span class="am-icon-tag"></span> ${club.club_name}</p>
+                <p>欢迎访问社团后台管理系统!</p>
             </div>
         </div>
     </div>
@@ -151,7 +151,7 @@
 
 <footer>
     <hr>
-    <p class="am-padding-left">© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
+    <p class="am-padding-left">© ${NowTime}.</p>
 </footer>
 
 <!--[if lt IE 9]>

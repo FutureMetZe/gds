@@ -123,12 +123,12 @@ font {
 			<div class="col-md-8"
 				style="background: #fff; padding: 40px 80px; margin: 30px; border: 7px solid #ccc;">
 				<font>会员注册</font>USER REGISTER
-				<form id="myForm" class="form-horizontal" action="${pageContext.request.contextPath}/blog/registUser.do" method="post" style="margin-top: 5px;">
+				<form id="myForm" class="form-horizontal" action="/blog/registerUser.do" style="margin-top: 5px;">
 					<div class="form-group">
 						<label for="username" class="col-sm-2 control-label">用户名</label>
 						<div class="col-sm-6">
 							<input type="text" class="form-control" id="username" name="username"
-								placeholder="请输入用户名">
+								placeholder="请输入用户名" value="">
 						</div>
 					</div>
 					<div class="form-group">
@@ -142,7 +142,7 @@ font {
 						<label for="repassword" class="col-sm-2 control-label">确认密码</label>
 						<div class="col-sm-6">
 							<input type="password" class="form-control" id="repassword" name="repassword"
-								placeholder="请输入确认密码">
+								placeholder="请输入确认密码" value="">
 						</div>
 					</div>
 					<div class="form-group">
@@ -179,7 +179,7 @@ font {
 						<label for="inlineRadio1" class="col-sm-2 control-label">已加入的社团：<b></b></label>
 						<div class="col-sm-6">
 							<select	class="form-control" id="clubId" name="clubId">
-								<option value="">--请选择--</option>
+								<option value="">--请选择--  (如未加入任何社团此项可不填)</option>
 								<c:forEach items="${Clubs}" var="Club">
 									<option value="${Club.club_id}">${Club.club_name}</option>
 								</c:forEach>

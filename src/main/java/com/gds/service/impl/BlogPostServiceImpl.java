@@ -93,5 +93,11 @@ public class BlogPostServiceImpl implements BlogPostService {
         return postMapper.selectPostCount(null);
     }
 
+    @Override
+    public PageBean<Post> selectPostByTitle(String postType) {
+
+        return postMapper.selectPostByTitle(postType);
+    }
+
 
 }

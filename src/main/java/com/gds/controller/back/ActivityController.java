@@ -76,4 +76,16 @@ public class ActivityController {
         activityService.insertSelective(activity);
         return clubList(request,response,model,null,null,null,activity.getPlan003(),null);
     }
+
+    /**
+     * 删除活动 activityDelete
+     */
+    @RequestMapping("/activityDelete.do")
+    public String activityDelete(Activity activity,HttpServletRequest request, HttpServletResponse response,ModelMap model,
+                       @RequestParam(value = "activityId", required = false)Integer activityId){
+
+        activityService.deleteById(activityId);
+        return clubList(request,response,model,null,null,null,activity.getPlan003(),null);
+    }
+
 }

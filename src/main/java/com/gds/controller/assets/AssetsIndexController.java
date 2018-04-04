@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -84,7 +85,7 @@ public class AssetsIndexController {
         //4.获取到最新的公告
         AssetsNotice notice = noticeService.selectFirstNotice();
         model.addAttribute("notice",notice);
-
+        model.addAttribute("NowTime",new Date());
         return "assets/admin-index";
     }
 

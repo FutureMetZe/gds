@@ -1,6 +1,7 @@
 package com.gds.controller.blog;
 
 import com.alibaba.fastjson.JSONObject;
+import com.gds.entity.Post;
 import com.gds.entity.Student;
 import com.gds.entity.User;
 import com.gds.service.StuAndClubService;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 import java.util.Map;
 
 @Controller
@@ -38,10 +40,11 @@ public class UserController {
      * @param student
      * @return
      */
-    @RequestMapping("/registUser.do")
+    @RequestMapping(value = "/registerUser.do" )
     public String registUser(HttpServletRequest request, HttpServletResponse response, ModelMap model,
                       @RequestParam(value = "clubId", required = false)Integer clubId,
                              Student student){
+        student.setRegisterTime(new Date().toString());
         studentService.insertStudent(student);
 
         //将学号与社团ID影射加入数据库
@@ -49,7 +52,7 @@ public class UserController {
             stuAndClubService.insertRelation(student.getStuNum(),clubId);
         }
 
-        return "blog/index";
+        return "redirect:blog/index.do";
     }
 
 
@@ -85,29 +88,6 @@ public class UserController {
     }
 
 
-    /**
-     * 跳转到文本编辑器
-     */
-    @RequestMapping("/toEditor.do")
-    public String editor(){
-        return "/blog/editor";
-    }
 
-    @RequestMapping(value="/fileUpload.do",method= RequestMethod.POST)
-    public void upload(MultipartFile file, HttpServletRequest request, ModelMap model) throws IOException {
-        String path = request.getSession().getServletContext().getRealPath("upload");
-        String fileName = file.getOriginalFilename();
-        String filePath = path+"\\"+fileName;
-
-        File dir = new File(path,fileName);
-        if(!dir.exists()){
-            dir.mkdirs();
-        }
-        //MultipartFile自带的解析方法
-        file.transferTo(dir);
-        model.addAttribute("filePath",filePath);
-        model.addAttribute("fileName",fileName);
-
-    }
 
 }

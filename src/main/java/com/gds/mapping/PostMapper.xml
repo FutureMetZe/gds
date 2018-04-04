@@ -264,4 +264,14 @@
     from blog_post
     WHERE standby001 = #{username}
   </select>
+
+  <!--根据题目模糊查询-->
+  <select id="selectPostByTitle" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from blog_post
+    where blog_title like "%"#{blogId}"%"
+  </select>
 </mapper>

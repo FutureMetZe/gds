@@ -12,4 +12,6 @@ public interface ActivityService {
     void insertSelective(Activity activity);
 
     Integer selectCount();
+
+    void deleteById(Integer activityId);
 }

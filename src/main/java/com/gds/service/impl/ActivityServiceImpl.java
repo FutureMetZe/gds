@@ -45,4 +45,9 @@ public class ActivityServiceImpl implements ActivityService {
     public Integer selectCount() {
         return activityMapper.selectCount(null);
     }
+
+    @Override
+    public void deleteById(Integer activityId) {
+        activityMapper.deleteByPrimaryKey(activityId);
+    }
 }

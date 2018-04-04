@@ -29,4 +29,6 @@ public interface BlogPostService {
     void deleteById(Integer blogId);
 
     Integer selectCount();
+
+    PageBean<Post> selectPostByTitle(String postType);
 }

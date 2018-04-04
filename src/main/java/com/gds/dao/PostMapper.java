@@ -1,6 +1,7 @@
 package com.gds.dao;
 
 import com.gds.entity.Post;
+import com.gds.utils.PageBean;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -37,4 +38,5 @@ public interface PostMapper {
 
     List<Post> selectPostByUsername(Map map);
 
+    PageBean<Post> selectPostByTitle(String postType);
 }
