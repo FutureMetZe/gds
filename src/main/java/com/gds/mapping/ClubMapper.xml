@@ -85,4 +85,40 @@
         </where>
     </select>
 
+    <delete id="update" parameterType="com.gds.entity.Club">
+        update gds_club
+        <set>
+            <if test="club_status != null">
+                club_status = #{club_status},
+            </if>
+            <if test="club_name != null">
+                club_name = #{club_name},
+            </if>
+            <if test="club_type != null">
+                club_type = #{club_type,jdbcType=INTEGER},
+            </if>
+            <if test="club_faculty != null">
+                club_faculty = #{club_faculty,jdbcType=VARCHAR},
+            </if>
+            <if test="club_createtime != null">
+                club_createtime = #{club_createtime,jdbcType=VARCHAR},
+            </if>
+            <if test="club_introduce != null">
+                club_introduce = #{club_introduce,jdbcType=VARCHAR},
+            </if>
+            <if test="club_standby001 != null">
+                club_standby001 = #{club_standby001,jdbcType=VARCHAR},
+            </if>
+            <if test="club_standby002 != null">
+                club_standby002 = #{club_standby002,jdbcType=VARCHAR},
+            </if>
+            <if test="club_loginName != null">
+                club_loginName = #{club_loginName,jdbcType=VARCHAR},
+            </if>
+            <if test="club_loginPassword != null">
+                club_loginPassword = #{club_loginPassword,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where club_id = #{club_id,jdbcType=INTEGER}
+    </delete>
 </mapper>

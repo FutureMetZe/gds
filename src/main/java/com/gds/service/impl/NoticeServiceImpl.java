@@ -23,4 +23,9 @@ public class NoticeServiceImpl implements NoticeService {
     public AssetsNotice selectFirstNotice() {
         return assetsNoticeMapper.selectFirstNotice();
     }
+
+    @Override
+    public void insert(AssetsNotice notice) {
+        assetsNoticeMapper.insert(notice);
+    }
 }

@@ -24,4 +24,6 @@ public interface ClubService {
     Integer selectCount();
 
     Club selectClubByPassword(String username, String password);
+
+    void update(Club club);
 }

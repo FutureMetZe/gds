@@ -197,5 +197,8 @@
     where room_use_name = #{clubName}
   </select>
 
-
+  <select id="selectRemainRoom" resultMap="BaseResultMap">
+    select   <include refid="Base_Column_List" />
+    from gds_activity_room where room_use_name is null or room_use_name = "";
+  </select>
 </mapper>

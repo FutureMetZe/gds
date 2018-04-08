@@ -32,8 +32,8 @@ public class PageBean<T> implements Serializable {
         }
 
         if(this.pageSize == null){
-            //如果每页显示条数没有指定,默认每页显示3条
-            this.pageSize = 5;
+            //如果每页显示条数没有指定,默认每页显示10条
+            this.pageSize = 10;
         }
 
         //计算总页数

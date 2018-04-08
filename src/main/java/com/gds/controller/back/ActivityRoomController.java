@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -57,7 +58,7 @@ public class ActivityRoomController {
     }
 
     /**
-     *  保存活动数据
+     *  保存活动室信息
      */
     @RequestMapping("/roomSave.do")
     public String save(ActivityRoom activityRoom,HttpServletRequest request, HttpServletResponse response,ModelMap model){
@@ -77,5 +78,42 @@ public class ActivityRoomController {
         return "back/activityRoom/add";
     }
 
+
+    /**
+     * roomAgree
+     */
+    @RequestMapping("/roomAgree.do")
+    public String roomAgree(HttpServletRequest request, HttpServletResponse response, ModelMap model,
+                             @RequestParam(value = "roomId", required = false)Integer roomId ){
+        ActivityRoom room = activityRoomService.selectRoomById(roomId);
+        room.setRoomUseName(room.getPlan01());
+        room.setPlan01("");
+        room.setRoomIsuse("使用中");
+        room.setRoomBeginTime(new Date());
+        activityRoomService.update(room);
+        return roomList(request,response,model,null,null,null,null);
+    }
+
+    /**
+     * roomEdit
+     */
+    @RequestMapping("/roomEdit.do")
+    public String roomEdit(HttpServletRequest request, HttpServletResponse response, ModelMap model,
+                             @RequestParam(value = "roomId", required = false)Integer roomId ){
+        ActivityRoom room = activityRoomService.selectRoomById(roomId);
+        model.addAttribute("room",room);
+        return "back/activityRoom/edit";
+    }
+
+    /**
+     * roomUpdate
+     */
+    @RequestMapping("/roomUpdate.do")
+    public String roomUpdate(ActivityRoom activityRoom,HttpServletRequest request, HttpServletResponse response,ModelMap model){
+
+        activityRoomService.update(activityRoom);
+
+        return roomList(request,response,model,null,null,null,null);
+    }
 
 }

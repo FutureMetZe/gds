@@ -48,7 +48,7 @@ public class HubestlController {
     }
 
     /**
-     *  跳转到新增页面
+     *  跳转到新增社联会员页面
      */
     @RequestMapping("/hubestl_add.do")
     public String add(HttpServletRequest request, HttpServletResponse response, ModelMap model ){

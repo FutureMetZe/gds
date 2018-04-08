@@ -2,6 +2,7 @@ package com.gds.controller.assets;
 
 import com.gds.entity.*;
 import com.gds.service.*;
+import com.gds.service.impl.NoticeServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -112,6 +113,13 @@ public class AssetsIndexController {
             }
         }
 
+
+
+        model.addAttribute("club",club);
+        //4.获取到最新的公告
+        AssetsNotice notice = noticeService.selectFirstNotice();
+        model.addAttribute("notice",notice);
+        model.addAttribute("NowTime",new Date());
         model.addAttribute("club",club);
         model.addAttribute("students",students);
         model.addAttribute("stuCount",students.size());
@@ -130,6 +138,7 @@ public class AssetsIndexController {
         Integer clubId = Integer.parseInt(session.getAttribute("clubId").toString());
 
         stuAndClubService.insertRelation(studentNum,clubId);
+        studentJoinService.deleteStudentJoin(clubId,studentNum);
         return studentJoinList(request,response,model);
 
     }
@@ -172,6 +181,12 @@ public class AssetsIndexController {
             }
         }
         logger.info("club:"+club);
+
+
+        //4.获取到最新的公告
+        AssetsNotice notice = noticeService.selectFirstNotice();
+        model.addAttribute("notice",notice);
+        model.addAttribute("NowTime",new Date());
         model.addAttribute("club",club);
         model.addAttribute("students",students);
         model.addAttribute("stuCount",students.size());
@@ -185,7 +200,7 @@ public class AssetsIndexController {
     @RequestMapping("/deleteStudent.do")
     public String deleteStudent(HttpServletRequest request, HttpServletResponse response, ModelMap model,
                                 @RequestParam(value = "studentId", required = false)Integer studentId) {
-      //  Integer studentId = (Integer) request.getAttribute("studentId");
+        //  Integer studentId = (Integer) request.getAttribute("studentId");
         studentService.deleteStuByUserId(studentId);
         return studentList(request,response,model);
     }
@@ -200,6 +215,19 @@ public class AssetsIndexController {
         HttpSession session = request.getSession();
         String clubName = session.getAttribute("clubName").toString();
 
+        Integer clubId = Integer.parseInt(session.getAttribute("clubId").toString());
+        if(clubId == null ){
+            return "redirect:/blog/login.do";
+        }
+
+        Club club = clubService.selectClubById(clubId);
+
+
+        //4.获取到最新的公告
+        AssetsNotice notice = noticeService.selectFirstNotice();
+        model.addAttribute("notice",notice);
+        model.addAttribute("club",club);
+
         if( clubName==null || !clubName.equals("") ){
             List<Goods> goods = goodsService.selectGoodByName(clubName);
             //System.out.println(goods);
@@ -210,6 +238,8 @@ public class AssetsIndexController {
                 return "assets/studentGoods";
             }
         }
+
+        model.addAttribute("NowTime",new Date());
         model.addAttribute("goods","");
         return "assets/studentGoods";
 
@@ -225,6 +255,19 @@ public class AssetsIndexController {
     public String studentRooms(HttpServletRequest request, HttpServletResponse response, ModelMap model) {
         HttpSession session = request.getSession();
         String clubName = session.getAttribute("clubName").toString();
+
+        Integer clubId = Integer.parseInt(session.getAttribute("clubId").toString());
+        if(clubId == null ){
+            return "redirect:/blog/login.do";
+        }
+
+        Club club = clubService.selectClubById(clubId);
+
+
+        //4.获取到最新的公告
+        AssetsNotice notice = noticeService.selectFirstNotice();
+        model.addAttribute("notice",notice);
+        model.addAttribute("club",club);
 
         if( clubName==null || !clubName.equals("") ){
             List<ActivityRoom> rooms = activityRoomService.selectRoomsByClubName(clubName);
@@ -248,6 +291,19 @@ public class AssetsIndexController {
         HttpSession session = request.getSession();
         String clubName = session.getAttribute("clubName").toString();
 
+        Integer clubId = Integer.parseInt(session.getAttribute("clubId").toString());
+        if(clubId == null ){
+            return "redirect:/blog/login.do";
+        }
+
+        Club club = clubService.selectClubById(clubId);
+
+
+        //4.获取到最新的公告
+        AssetsNotice notice = noticeService.selectFirstNotice();
+        model.addAttribute("notice",notice);
+        model.addAttribute("club",club);
+
         if( clubName==null || !clubName.equals("") ){
             List<AssetsNotice> notices = noticeService.selectNoticesByClubName(clubName);
             if (notices!=null){
@@ -262,7 +318,7 @@ public class AssetsIndexController {
     }
 
 
-        @RequestMapping("/admin-form.do")
+    @RequestMapping("/admin-form.do")
     public String form(){
         return "assets/admin-form";
     }
@@ -272,21 +328,161 @@ public class AssetsIndexController {
         return "assets/admin-help";
     }
 
-    @RequestMapping("/admin-table.do")
-    public String table(){
-        return "assets/admin-table";
+
+
+
+    /**
+     * 发布公告
+     * @return
+     */
+    @RequestMapping("/admin-user.do")
+    public String addNotice(HttpServletRequest request, HttpServletResponse response, ModelMap model){
+        HttpSession session = request.getSession();
+        String clubName = session.getAttribute("clubName").toString();
+
+        Integer clubId = Integer.parseInt(session.getAttribute("clubId").toString());
+        if(clubId == null ){
+            return "redirect:/blog/login.do";
+        }
+
+        Club club = clubService.selectClubById(clubId);
+
+
+        //4.获取到最新的公告
+        AssetsNotice notice = noticeService.selectFirstNotice();
+        model.addAttribute("notice",notice);
+        model.addAttribute("club",club);
+
+        return "assets/toAddNoticePage";
+    }
+
+
+    @RequestMapping("/saveNotice.do")
+    public String table(AssetsNotice notice,HttpServletRequest request, HttpServletResponse response, ModelMap model){
+        noticeService.insert(notice);
+        return studentNotice(request,response,model);
+    }
+
+    /**
+     * toAddGoods 跳转到接物资页面
+     */
+    @RequestMapping("/toAddGoods.do")
+    public String toAddGoods(HttpServletRequest request, HttpServletResponse response, ModelMap model){
+
+        HttpSession session = request.getSession();
+        String clubName = session.getAttribute("clubName").toString();
+        Integer clubId = Integer.parseInt(session.getAttribute("clubId").toString());
+        if(clubId == null ){
+            return "redirect:/blog/login.do";
+        }
+
+
+        Club club = clubService.selectClubById(clubId);
+        List<Goods> goods = goodsService.selectByRemain();
+
+        //4.获取到最新的公告
+        AssetsNotice notice = noticeService.selectFirstNotice();
+        model.addAttribute("notice",notice);
+        model.addAttribute("goods",goods);
+        model.addAttribute("club",club);
+        return "assets/toAddGoods";
+    }
+
+    /**
+     * submitGood
+     */
+    @RequestMapping("/submitGood.do")
+    public String submitGood(HttpServletRequest request, HttpServletResponse response, ModelMap model,
+                             @RequestParam(value = "goodsId", required = false)Integer goodsId){
+        HttpSession session = request.getSession();
+        String clubName = session.getAttribute("clubName").toString();
+        Integer clubId = Integer.parseInt(session.getAttribute("clubId").toString());
+        if(clubId == null ){
+            return "redirect:/blog/login.do";
+        }
+
+        Club club = clubService.selectClubById(clubId);
+        Goods good = goodsService.selectById(goodsId);
+        good.setStandby003(club.getClub_name());
+        goodsService.updateGoods(good);
+        return studentGoods(request,response,model);
+    }
+
+    /**
+     * returnGoods
+     */
+    @RequestMapping("/returnGoods.do")
+    public String returnGoods(HttpServletRequest request, HttpServletResponse response, ModelMap model,
+                             @RequestParam(value = "goodId", required = false)Integer goodId){
+        Goods good = goodsService.selectById(goodId);
+        good.setStandby003("");
+        good.setStandby002("");
+        goodsService.updateGoods(good);
+
+        return studentGoods(request,response,model);
     }
 
 
     /**
-     * 新增会员
-     * @return
+     * 借用新场地页面
+     * toAddRoomPage
      */
-    @RequestMapping("/admin-user.do")
-    public String addUser(){
+    @RequestMapping("/toAddRoomPage.do")
+    public String toAddRoomPage(HttpServletRequest request, HttpServletResponse response, ModelMap model){
 
+        HttpSession session = request.getSession();
+        String clubName = session.getAttribute("clubName").toString();
+        Integer clubId = Integer.parseInt(session.getAttribute("clubId").toString());
+        if(clubId == null ){
+            return "redirect:/blog/login.do";
+        }
 
-        return "assets/admin-user";
+        Club club = clubService.selectClubById(clubId);
+        //获取到最新的公告
+        AssetsNotice notice = noticeService.selectFirstNotice();
+        model.addAttribute("notice",notice);
+        model.addAttribute("club",club);
+        List<ActivityRoom> rooms = activityRoomService.selectRemainRoom();
+        model.addAttribute("rooms",rooms);
+        return "assets/toAddGoods";
+    }
+
+    /**
+     * submitRoom
+     */
+    @RequestMapping("/submitRoom.do")
+    public String submitRoom(HttpServletRequest request, HttpServletResponse response, ModelMap model,
+                             @RequestParam(value = "roomId", required = false)Integer roomId,
+                             @RequestParam(value = "plan02", required = false)String plan02
+                             ){
+        HttpSession session = request.getSession();
+        String clubName = session.getAttribute("clubName").toString();
+        Integer clubId = Integer.parseInt(session.getAttribute("clubId").toString());
+        if(clubId == null ){
+            return "redirect:/blog/login.do";
+        }
+
+        Club club = clubService.selectClubById(clubId);
+        ActivityRoom room = activityRoomService.selectRoomById(roomId);
+        room.setPlan02(plan02);
+        room.setPlan01(club.getClub_name());
+        activityRoomService.update(room);
+        return studentRooms(request,response,model);
+    }
+
+    /**
+     * returnRoom
+     */
+    @RequestMapping("/returnRoom.do")
+    public String returnRoom(HttpServletRequest request, HttpServletResponse response, ModelMap model,
+                              @RequestParam(value = "roomId", required = false)Integer roomId){
+        ActivityRoom room = activityRoomService.selectRoomById(roomId);
+        room.setPlan01("");
+        room.setRoomUseName("");
+        room.setPlan02("");
+        activityRoomService.update(room);
+
+        return studentGoods(request,response,model);
     }
 
 

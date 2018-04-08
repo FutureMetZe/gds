@@ -62,4 +62,14 @@ public class ActivityRoomServiceImpl implements ActivityRoomService {
 
         return activityRoomMapper.selectRoomsByClubName(clubName);
     }
+
+    @Override
+    public List<ActivityRoom> selectRemainRoom() {
+        return activityRoomMapper.selectRemainRoom();
+    }
+
+    @Override
+    public void update(ActivityRoom room) {
+        activityRoomMapper.updateByPrimaryKey(room);
+    }
 }

@@ -129,4 +129,33 @@ public class ClubController {
         return "back/club/introduce";
     }
 
+    /**
+     * clubEdit
+     */
+    @RequestMapping("/clubEdit.do")
+    public String clubEdit(HttpServletRequest request, HttpServletResponse response, ModelMap model,
+                                @RequestParam(value = "club_id", required = false)Integer club_id ){
+        Club club = clubService.selectClubById(club_id);
+        model.addAttribute("club",club);
+        //从字典中获取 001社团类型
+        List<Dict> clubType = dictService.selectDiceByKey("001");
+        //从字典中获取 002学院
+        List<Dict> facultys = dictService.selectDiceByKey("002");
+        model.addAttribute("clubType",clubType);
+        model.addAttribute("facultys",facultys);
+
+        return "back/club/edit";
+    }
+
+    /**
+     * clubUpdate
+     */
+    @RequestMapping("/clubUpdate.do")
+    public String clubUpdate(HttpServletRequest request, HttpServletResponse response, ModelMap model,Club club){
+
+        clubService.update(club);
+
+        return clubList(request,response,model,null,null,null,null);
+    }
+
 }

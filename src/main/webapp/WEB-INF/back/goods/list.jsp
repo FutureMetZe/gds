@@ -102,8 +102,9 @@ $(document).ready(function(){
         <th>物品名称</th>
         <th>所属部门</th>
         <th>登记时间</th>
-        <th>是否在使用</th>
         <th>备注</th>
+        <th>使用者</th>
+        <th>申请者</th>
 
         <th>操作</th>
         </tr>
@@ -117,11 +118,16 @@ $(document).ready(function(){
                 <td>${Goods.goodsDepartment}</td>
                 <td>${Goods.goodsCreatetime}</td>
                 <td>${Goods.standby001}</td>
-                <td><c:if test="${Goods.goodsState==0}">不</c:if>可以使用</td>
+                <td>${Goods.standby002}</td>
+                <td>${Goods.standby003}</td>
+                <%--<td><c:if test="${Goods.goodsState==0}">不</c:if>可以使用</td>--%>
 
                 <td>
                     <a href="${pageContext.request.contextPath }/back/goodEdit.do?goodsId=${Goods.goodsId}" class="tablelink">修改</a>
                     <a href="${pageContext.request.contextPath }/back/goodDelete.do?goodsId=${Goods.goodsId}" class="tablelink" >删除</a>
+                    <c:if test="${Goods.standby003!=null && Goods.standby003!=''}">
+                    <a href="${pageContext.request.contextPath }/back/goodAgree.do?goodsId=${Goods.goodsId}" class="tablelink" >同意申请</a>
+                    </c:if>
                 </td>
             </tr>
         </c:forEach>

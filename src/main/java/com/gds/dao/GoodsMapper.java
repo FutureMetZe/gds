@@ -23,4 +23,7 @@ public interface GoodsMapper {
 
     List<Goods> selectGoodByName(String clubName);
 
+    List<Goods> selectByRemain();
+
+    void deleteById(Integer goodsId);
 }

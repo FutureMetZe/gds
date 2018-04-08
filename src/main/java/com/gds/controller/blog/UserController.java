@@ -51,8 +51,9 @@ public class UserController {
         if (clubId !=null ){
             stuAndClubService.insertRelation(student.getStuNum(),clubId);
         }
+        model.addAttribute("message","您已注册成功！快来登陆试试吧。");
 
-        return "redirect:blog/index.do";
+        return toLoginPage(request,response,model);
     }
 
 
@@ -88,6 +89,13 @@ public class UserController {
     }
 
 
+    /**
+     * 跳转到登录页面
+     */
+    @RequestMapping("/toLoginPage.do")
+    public String toLoginPage(HttpServletRequest request, HttpServletResponse response, ModelMap model){
 
+        return "/blog/login";
+    }
 
 }

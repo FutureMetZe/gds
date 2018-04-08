@@ -1,3 +1,4 @@
+<%@ page import="java.util.Date" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -70,15 +71,15 @@
 
         <div class="am-panel am-panel-default admin-sidebar-panel">
             <div class="am-panel-bd">
-                <p><span class="am-icon-bookmark"></span> 公告</p>
-                <p>时光静好，与君语；细水流年，与君同。—— Amaze</p>
+                <p><span class="am-icon-bookmark"></span> ${notice.standby001}</p>
+                <p>${notice.noticeContent}</p>
             </div>
         </div>
 
         <div class="am-panel am-panel-default admin-sidebar-panel">
             <div class="am-panel-bd">
-                <p><span class="am-icon-tag"></span> wiki</p>
-                <p>Welcome to the Amaze</p>
+                <p><span class="am-icon-tag"></span> ${club.club_name}</p>
+                <p>欢迎访问社团后台管理系统!</p>
             </div>
         </div>
     </div>
@@ -184,7 +185,7 @@
 
 <footer>
     <hr>
-    <p class="am-padding-left">© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
+    <p class="am-padding-left">© <%= new Date()%>.</p>
 </footer>
 
 <!--[if lt IE 9]>

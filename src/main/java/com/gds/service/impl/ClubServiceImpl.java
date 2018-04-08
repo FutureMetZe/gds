@@ -84,4 +84,9 @@ public class ClubServiceImpl implements ClubService{
         return clubDao.selectClubByPassword(map);
     }
 
+    @Override
+    public void update(Club club) {
+        clubDao.update(club);
+    }
+
 }

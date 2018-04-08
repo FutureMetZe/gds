@@ -136,4 +136,12 @@
   <select id="selectGoodByName" parameterType="java.lang.String" resultMap="BaseResultMap">
     select * from gds_goods where standby002 = #{clubName} ;
   </select>
+
+  <select id="selectByRemain" resultMap="BaseResultMap">
+    select * from gds_goods where standby002 is null or standby002 = "";
+  </select>
+
+  <delete id="deleteById" parameterType="java.lang.Integer">
+    delete from gds_goods where goods_id = #{goodsId}
+  </delete>
 </mapper>

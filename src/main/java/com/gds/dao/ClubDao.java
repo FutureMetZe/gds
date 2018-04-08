@@ -24,4 +24,6 @@ public interface ClubDao {
     List<Club> selectClubByType(Map map);
 
     Club selectClubByPassword(Map map);
+
+    void update(Club club);
 }

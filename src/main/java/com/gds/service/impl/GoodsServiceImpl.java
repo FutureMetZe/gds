@@ -57,4 +57,14 @@ public class GoodsServiceImpl implements GoodsService {
 
         return goodsMapper.selectGoodByName(clubName);
     }
+
+    @Override
+    public List<Goods> selectByRemain() {
+        return goodsMapper.selectByRemain();
+    }
+
+    @Override
+    public void deleteByGoodId(Integer goodsId) {
+        goodsMapper.deleteById(goodsId);
+    }
 }

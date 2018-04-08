@@ -20,4 +20,8 @@ public interface GoodsService {
     Integer selectCount();
 
     List<Goods> selectGoodByName(String clubName);
+
+    List<Goods> selectByRemain();
+
+    void deleteByGoodId(Integer goodsId);
 }

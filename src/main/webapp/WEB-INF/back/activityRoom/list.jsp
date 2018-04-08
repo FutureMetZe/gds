@@ -80,8 +80,9 @@
         <th>地址</th>
         <th>使用状态</th>
         <th>使用者</th>
-        <th>开始时间</th>
-        <th>结束时间</th>
+        <th>申请者</th>
+
+        <th>简介</th>
 
         <th>操作</th>
         </tr>
@@ -95,11 +96,15 @@
                 <td>${ActivityRoom.roomAddr}</td>
                 <td>${ActivityRoom.roomIsuse}</td>
                 <td>${ActivityRoom.roomUseName}</td>
-                <td>${ActivityRoom.roomBeginTime}</td>
-                <td>${ActivityRoom.roomOverTime}</td>
+                <td>${ActivityRoom.plan01}</td>
+                <td>${ActivityRoom.roomIntroduce}</td>
+
                 <td>
-                    <a href="${pageContext.request.contextPath }/back/roomAdd.do?roomId=${ActivityRoom.roomId}" class="tablelink">修改</a>
+                    <a href="${pageContext.request.contextPath }/back/roomEdit.do?roomId=${ActivityRoom.roomId}" class="tablelink">修改</a>
                     <a href="${pageContext.request.contextPath }/back/roomDelete.do?roomId=${ActivityRoom.roomId}" class="tablelink" >删除</a>
+                    <c:if test="${ActivityRoom.plan01!=null && ActivityRoom.plan01!=''}">
+                        <a href="${pageContext.request.contextPath }/back/roomAgree.do?roomId=${ActivityRoom.roomId}" class="tablelink" >同意借用</a>
+                    </c:if>
                 </td>
             </tr>
         </c:forEach>

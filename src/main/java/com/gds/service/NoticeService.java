@@ -11,4 +11,6 @@ public interface NoticeService {
     List<AssetsNotice> selectNoticesByClubName(String clubName);
 
     AssetsNotice selectFirstNotice();
+
+    void insert(AssetsNotice notice);
 }

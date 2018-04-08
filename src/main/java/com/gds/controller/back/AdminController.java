@@ -30,7 +30,6 @@ public class AdminController {
     @RequestMapping(value = "/login.do")
     public String list(String username, String password, HttpSession session, Model model){
         Student Admin = studentService.selectByUsernameAndPassword(username,password);
-//        HttpSession session = request.getSession(true);
         String message = "";
         //校验登录逻辑
         if (Admin != null){

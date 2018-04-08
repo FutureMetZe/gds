@@ -1,3 +1,4 @@
+<%@ page import="java.util.Date" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -70,8 +71,15 @@
 
         <div class="am-panel am-panel-default admin-sidebar-panel">
             <div class="am-panel-bd">
-                <p><span class="am-icon-bookmark"></span> 公告</p>
-                <p>时光静好，与君语；细水流年，与君同。—— Amaze</p>
+                <p><span class="am-icon-bookmark"></span> ${notice.standby001}</p>
+                <p>${notice.noticeContent}</p>
+            </div>
+        </div>
+
+        <div class="am-panel am-panel-default admin-sidebar-panel">
+            <div class="am-panel-bd">
+                <p><span class="am-icon-tag"></span> ${club.club_name}</p>
+                <p>欢迎访问社团后台管理系统!</p>
             </div>
         </div>
 
@@ -88,7 +96,22 @@
             </div>
         </div>
 
+        <div class="am-g">
+            <div class="am-u-md-6 am-cf">
+                <div class="am-fl am-cf">
+                    <div class="am-btn-toolbar am-fl">
+                        <div class="am-btn-group am-btn-group-xs">
+                            <button type="button" class="am-btn am-btn-default"><span class="am-icon-plus"></span> <a href="/assets/toAddGoods.do" >借物资</a>
+                            </button>
 
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
 
         <div class="am-g">
             <div class="am-u-sm-12">
@@ -121,7 +144,7 @@
                                     <div class="am-btn-toolbar">
                                         <div class="am-btn-group am-btn-group-xs">
                                             <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span
-                                                    class="am-icon-pencil-square-o"></span> 归还
+                                                    class="am-icon-pencil-square-o"></span> <a href="/assets/returnGoods.do?goodId=${Good.goodsId}">归还</a>
                                             </button>
 
                                         </div>
@@ -158,7 +181,7 @@
 
 <footer>
     <hr>
-    <p class="am-padding-left">© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
+    <p class="am-padding-left">© <%= new Date()%>.</p>
 </footer>
 
 <!--[if lt IE 9]>

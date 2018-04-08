@@ -79,4 +79,28 @@ public class GoodsController {
         return list(request,response,model,null,null,null,null);
     }
 
+    /**
+     * 同意借出 goodAgree
+     */
+    @RequestMapping("/goodAgree.do")
+    public String goodAgree(HttpServletRequest request, HttpServletResponse response, ModelMap model,
+                            @RequestParam(value = "goodsId", required = false)Integer goodsId){
+        Goods good = goodsService.selectById(goodsId);
+        good.setStandby002(good.getStandby003());
+        good.setStandby003("");
+        goodsService.updateGoods(good);
+        return list(request,response,model,null,null,null,null);
+    }
+
+    /**
+     * 删除物品 goodDelete
+     */
+    @RequestMapping("/goodDelete.do")
+    public String goodDelete(HttpServletRequest request, HttpServletResponse response, ModelMap model,
+                            @RequestParam(value = "goodsId", required = false)Integer goodsId){
+
+        goodsService.deleteByGoodId(goodsId);
+        return list(request,response,model,null,null,null,null);
+    }
+
 }

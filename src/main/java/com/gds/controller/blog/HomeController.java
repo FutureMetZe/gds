@@ -77,12 +77,16 @@ public class HomeController {
             model.addAttribute("clubs",clubs);
             model.addAttribute("clubMessage",clubMessage);
 
-            //2-2查找相关类型的社团
-            List<Club> sameClub = clubService.selectClubByType(clubs.get(0).getClub_type());
-            model.addAttribute("sameClub",sameClub);
-            //2-3查找相关类型的文章
-            List<Post> samePosts = blogPostService.selectPostByTypeOrKeyword(clubs.get(0).getClub_type());
-            model.addAttribute("samePosts",samePosts);
+
+            if(clubs.size()!=0){
+                //2-2查找相关类型的社团
+                List<Club> sameClub = clubService.selectClubByType(clubs.get(0).getClub_type());
+                model.addAttribute("sameClub",sameClub);
+
+                //2-3查找相关类型的文章
+                List<Post> samePosts = blogPostService.selectPostByTypeOrKeyword(clubs.get(0).getClub_type());
+                model.addAttribute("samePosts",samePosts);
+            }
 
             //3,把学生发布的评论传入主页
             List<PostReview> myReviews = postReviewService.selectReviewByUsername(student.getUsername());
@@ -94,7 +98,7 @@ public class HomeController {
 
 
             //5,查找对应社团公告
-            if (clubs!=null){
+            if (clubs.size()!=0){
                 String clubNmae = clubs.get(0).getClub_name();
                 List<AssetsNotice> notices = noticeService.selectNoticesByClubName(clubNmae);
                 if (notices!=null){

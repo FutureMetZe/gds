@@ -25,4 +25,6 @@ public interface ActivityRoomMapper {
     List<ActivityRoom> selectListByMap(Map map);
 
     List<ActivityRoom> selectRoomsByClubName(String clubName);
+
+    List<ActivityRoom> selectRemainRoom();
 }

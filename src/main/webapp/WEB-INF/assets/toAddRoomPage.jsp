@@ -1,12 +1,13 @@
+<%@ page import="java.util.Date" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html class="no-js">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Amaze UI Admin user Examples</title>
+  <title>欢迎访问社团后台管理系统!</title>
   <meta name="description" content="这是一个 user 页面">
   <meta name="keywords" content="user">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -26,7 +27,7 @@ pageEncoding="UTF-8"%>
 
 <header class="am-topbar admin-header">
   <div class="am-topbar-brand">
-    <strong>Amaze UI</strong> <small>后台管理模板</small>
+    <strong>欢迎访问社团后台管理系统!</strong>
   </div>
 
   <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
@@ -55,26 +56,26 @@ pageEncoding="UTF-8"%>
     <ul class="am-list admin-sidebar-list">
       <li><a href="admin-index.do"><span class="am-icon-home"></span> 首页</a></li>
 
-      <li><a href="admin-table.do"><span class="am-icon-table"></span> 成员列表</a></li>
-      <li><a href="admin-table.do"><span class="am-icon-sign-out"></span> 入社申请</a></li>
-      <li><a href="/assets/admin-user.do" class="am-cf"><span class="am-icon-check"></span> 新增成员 </span></a></li>
+      <li><a href="studentList.do"><span class="am-icon-table"></span> 成员列表</a></li>
+      <li><a href="studentJoinList.do"><span class="am-icon-sign-out"></span> 入社申请</a></li>
 
-      <li><a href="admin-table.do"><span class="am-icon-puzzle-piece"></span> 物资管理</a></li>
-      <li><a href="admin-table.do"><span class="am-icon-pencil-square-o"></span> 活动室管理</a></li>
-      <li><a href="admin-table.do"><span class="am-icon-sign-out"></span> 公告管理</a></li>
+      <li><a href="studentGoods.do"><span class="am-icon-puzzle-piece"></span> 物资管理</a></li>
+
+      <li><a href="studentRooms.do"><span class="am-icon-pencil-square-o"></span> 活动室管理</a></li>
+      <li><a href="studentNotice.do"><span class="am-icon-sign-out"></span> 公告管理</a></li>
 
     </ul>
     <div class="am-panel am-panel-default admin-sidebar-panel">
       <div class="am-panel-bd">
-        <p><span class="am-icon-bookmark"></span> 公告</p>
-        <p>时光静好，与君语；细水流年，与君同。—— Amaze UI</p>
+        <p><span class="am-icon-bookmark"></span> ${notice.standby001}</p>
+        <p>${notice.noticeContent}</p>
       </div>
     </div>
 
     <div class="am-panel am-panel-default admin-sidebar-panel">
       <div class="am-panel-bd">
-        <p><span class="am-icon-tag"></span> wiki</p>
-        <p>Welcome to the Amaze UI wiki!</p>
+        <p><span class="am-icon-tag"></span> ${club.club_name}</p>
+        <p>欢迎访问社团后台管理系统!</p>
       </div>
     </div>
   </div>
@@ -83,7 +84,7 @@ pageEncoding="UTF-8"%>
   <!-- content start -->
   <div class="admin-content">
     <div class="am-cf am-padding">
-      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">个人资料</strong> / <small>Personal information</small></div>
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">物资借阅</strong> / <small>Material borrowing</small></div>
     </div>
 
     <hr/>
@@ -98,7 +99,7 @@ pageEncoding="UTF-8"%>
                 <img class="am-img-circle am-img-thumbnail" src="http://amui.qiniudn.com/bw-2014-06-19.jpg?imageView/1/w/1000/h/1000/q/80" alt=""/>
               </div>
               <div class="am-u-md-8">
-                <p>你可以使用<a href="#">gravatar.com</a>提供的头像或者使用本地上传头像。 </p>
+                <p>你可以上传与本次公告有关的电子文件以供社团成员的阅读。 </p>
                 <form class="am-form">
                   <div class="am-form-group">
                     <input type="file" id="user-pic">
@@ -114,18 +115,18 @@ pageEncoding="UTF-8"%>
         <div class="am-panel am-panel-default">
           <div class="am-panel-bd">
             <div class="user-info">
-              <p>等级信息</p>
+              <p>    </p>
               <div class="am-progress am-progress-sm">
                 <div class="am-progress-bar" style="width: 60%"></div>
               </div>
-              <p class="user-info-order">当前等级：<strong>LV8</strong> 活跃天数：<strong>587</strong> 距离下一级别：<strong>160</strong></p>
+              <p class="user-info-order">    <strong>    </strong>     <strong>    </strong>    <strong>    </strong></p>
             </div>
             <div class="user-info">
-              <p>信用信息</p>
+              <p>    </p>
               <div class="am-progress am-progress-sm">
                 <div class="am-progress-bar am-progress-bar-success" style="width: 80%"></div>
               </div>
-              <p class="user-info-order">信用等级：正常当前 信用积分：<strong>80</strong></p>
+              <p class="user-info-order">    <strong>    </strong></p>
             </div>
           </div>
         </div>
@@ -133,55 +134,34 @@ pageEncoding="UTF-8"%>
       </div>
 
       <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4">
-        <form class="am-form am-form-horizontal">
+        <form class="am-form am-form-horizontal" action="/assets/submitGood.do">
+          <input type="hidden" name="noticeClubName" value="${club.club_name}">
+          <input type="hidden" name="noticeState" value="1">
+          <input type="hidden" name="noticeCreatTime" value="<%=new Date()%>">
           <div class="am-form-group">
-            <label for="user-name" class="am-u-sm-3 am-form-label">姓名 / Name</label>
+            <label for="user-name" class="am-u-sm-3 am-form-label">选择物资：</label>
             <div class="am-u-sm-9">
-              <input type="password" id="user-name" placeholder="姓名 / Name">
-              <small>输入你的名字，让我们记住你。</small>
+
+              <select	class="form-control" id="goodsId" name="goodsId">
+                <option value="">--请选择--  </option>
+                <c:forEach items="${goods}" var="Good">
+                  <option value="${Good.goodsId}">${Good.goodsName}</option>
+                </c:forEach>
+              </select>
             </div>
           </div>
 
           <div class="am-form-group">
-            <label for="user-email" class="am-u-sm-3 am-form-label">电子邮件 / Email</label>
+            <label for="user-intro" class="am-u-sm-3 am-form-label">申请内容：</label>
             <div class="am-u-sm-9">
-              <input type="email" id="user-email" placeholder="输入你的电子邮件 / Email">
-              <small>邮箱你懂得...</small>
-            </div>
-          </div>
-
-          <div class="am-form-group">
-            <label for="user-phone" class="am-u-sm-3 am-form-label">电话 / Telephone</label>
-            <div class="am-u-sm-9">
-              <input type="email" id="user-phone" placeholder="输入你的电话号码 / Telephone">
-            </div>
-          </div>
-
-          <div class="am-form-group">
-            <label for="user-QQ" class="am-u-sm-3 am-form-label">QQ</label>
-            <div class="am-u-sm-9">
-              <input type="email" id="user-QQ" placeholder="输入你的QQ号码">
-            </div>
-          </div>
-
-          <div class="am-form-group">
-            <label for="user-weibo" class="am-u-sm-3 am-form-label">微博 / Twitter</label>
-            <div class="am-u-sm-9">
-              <input type="email" id="user-weibo" placeholder="输入你的微博 / Twitter">
-            </div>
-          </div>
-
-          <div class="am-form-group">
-            <label for="user-intro" class="am-u-sm-3 am-form-label">简介 / Intro</label>
-            <div class="am-u-sm-9">
-              <textarea class="" rows="5" id="user-intro" placeholder="输入个人简介"></textarea>
-              <small>250字以内写出你的一生...</small>
+              <textarea class="" rows="5" id="user-intro" placeholder="请写出借阅详情，包含使用时间，使用天数等..." name="noticeContent"></textarea>
+              <small>请写出借阅详情，包含使用时间，使用天数等...</small>
             </div>
           </div>
 
           <div class="am-form-group">
             <div class="am-u-sm-9 am-u-sm-push-3">
-              <button type="button" class="am-btn am-btn-primary">保存修改</button>
+              <button type="submit" class="am-btn am-btn-primary">申请</button>
             </div>
           </div>
         </form>
@@ -194,7 +174,7 @@ pageEncoding="UTF-8"%>
 
 <footer>
   <hr>
-  <p class="am-padding-left">© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
+  <p class="am-padding-left">© <%= new Date()%>.</p>
 </footer>
 
 <!--[if lt IE 9]>

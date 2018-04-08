@@ -221,13 +221,7 @@ public class IndexController {
 
     }
 
-    /**
-     * 跳转到登录页面
-     */
-    @RequestMapping("/toLoginPage.do")
-    public String toLoginPage(){
-        return "blog/login";
-    }
+
 
     /**
      * 跳转到注册页面
@@ -238,6 +232,11 @@ public class IndexController {
         //将所有社团名称、ID发出去
         List<Club> Clubs = clubService.selectAll();
         model.addAttribute("Clubs",Clubs);
+
+        //将学院名称发出去
+        List<Dict> dicts = dictService.selectDiceByKey("002");
+        model.addAttribute("Dicts",dicts);
+
         return "blog/register";
     }
 
@@ -257,7 +256,7 @@ public class IndexController {
 
         String sessionCode = (String) session.getAttribute("code");
         if (!StringUtils.equalsIgnoreCase(code, sessionCode)) {  //忽略验证码大小写
-            //用户不存在
+            //验证码错误
             message = "验证码错误！";
             model.addAttribute("message",message);
             return "blog/login";

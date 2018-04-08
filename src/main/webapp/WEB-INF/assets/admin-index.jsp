@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Amaze后台管理系统模板HTML首页 - cssmoban</title>
+    <title>欢迎访问社团后台管理系统!</title>
     <meta name="description" content="这是一个 index 页面">
     <meta name="keywords" content="index">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -95,9 +95,9 @@
 
         <ul class="am-avg-sm-1 am-avg-md-4 am-margin am-padding am-text-center admin-content-list ">
 
-            <li><a href="#" class="am-text-warning"><span class="am-icon-btn am-icon-briefcase"></span><br/>社团成员<br/>${students.size()}</a>
+            <li><a href="studentList.do" class="am-text-warning"><span class="am-icon-btn am-icon-briefcase"></span><br/>社团成员<br/>${students.size()}</a>
             </li>
-            <li><a href="#" class="am-text-danger"><span class="am-icon-btn am-icon-recycle"></span><br/>新的申请<br/>${joinSize}</a>
+            <li><a href="studentJoinList.do" class="am-text-danger"><span class="am-icon-btn am-icon-recycle"></span><br/>新的申请<br/>${joinSize}</a>
             </li>
 
         </ul>

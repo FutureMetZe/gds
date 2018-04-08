@@ -187,6 +187,18 @@ font {
 						</div>
 					</div>
 					<div class="form-group opt">
+						<label for="inlineRadio1" class="col-sm-2 control-label">所属学院：<b></b></label>
+						<div class="col-sm-6">
+							<select	class="form-control" id="standby001" name="standby001">
+								<option value="">--请选择--  </option>
+								<c:forEach items="${Dicts}" var="Dict">
+									<option value="${Dict.value}">${Dict.value}</option>
+								</c:forEach>
+							</select>
+						</div>
+					</div>
+
+					<div class="form-group opt">
 						<label for="inlineRadio1" class="col-sm-2 control-label">性别</label>
 						<div class="col-sm-6">
 							<label class="radio-inline">

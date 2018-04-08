@@ -45,7 +45,7 @@ font {
 			<div class="col-md-8"
 				style="background: #fff; padding: 40px 80px; margin: 30px; border: 7px solid #ccc;">
 				<font>申请加入新社团</font>USER REGISTER
-				<form id="myForm" class="form-horizontal" action="${pageContext.request.contextPath}/blog/sendJoin.do"  style="margin-top: 5px;">
+				<form id="myForm" class="form-horizontal" action="/blog/home/sendJoin.do"  style="margin-top: 5px;">
 
 					<input type="hidden" name="studentNum" value="${Student.stuNum}">
 
@@ -70,7 +70,7 @@ font {
 
 						</div>
 						<div class="col-sm-2">
-							<img src="./image/captcha.jhtml" />
+							<img src="/blog/image/captcha.jhtml" />
 						</div>
 
 					</div>

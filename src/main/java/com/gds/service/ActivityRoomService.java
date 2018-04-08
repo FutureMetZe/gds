@@ -19,4 +19,8 @@ public interface ActivityRoomService {
     Integer selectCount();
 
     List<ActivityRoom> selectRoomsByClubName(String clubName);
+
+    List<ActivityRoom> selectRemainRoom();
+
+    void update(ActivityRoom room);
 }

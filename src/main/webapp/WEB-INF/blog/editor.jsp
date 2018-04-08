@@ -11,7 +11,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>ueditor demo</title>
+    <title>发布文章</title>
 </head>
 <body>
 
@@ -51,6 +51,7 @@
 </script>
 <form name="addForm" id="addForm" action="/blog/home/savePost.do">
     <input type="hidden" name="standby001" value="${studentUserName}">
+    <input type="hidden" name="standby001" value="<%=request.getSession().getAttribute("UserName").toString()%>>">
     <table align="center" style="border-collapse:separate; border-spacing:0px 10px;">
         <tr>
             <td valign="top">
@@ -70,6 +71,14 @@
         </tr>
         <tr>
             <td valign="top">
+                <label>标题图地址：</label>
+            </td>
+            <td>
+                <input type="text" name="imgUrl" style="width:400px;">
+            </td>
+        </tr>
+        <tr>
+            <td valign="top">
                 <label>主题介绍：</label>
             </td>
             <td>
@@ -82,7 +91,7 @@
             </td>
             <td>
                 <!-- 第三步：用于显示UDEITOR编辑器，可以是<textarea>，也可以是<script>... -->
-                <textarea name="content" id="myeditor">默认值..</textarea>
+                <textarea name="blogContent" id="myeditor">默认值..</textarea>
             </td>
         </tr>
         <tr>
