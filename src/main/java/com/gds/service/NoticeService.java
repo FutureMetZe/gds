@@ -13,4 +13,6 @@ public interface NoticeService {
     AssetsNotice selectFirstNotice();
 
     void insert(AssetsNotice notice);
+
+    void deleteNoticeByID(Integer noticeId);
 }

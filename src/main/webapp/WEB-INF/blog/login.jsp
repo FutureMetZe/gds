@@ -82,7 +82,7 @@ font {
 					<font>会员登录</font>USER LOGIN
 					<div>&nbsp;</div>
 					<label id="message" class="error">${message}</label>
-					<form class="form-horizontal" action="/blog/userLogin.do" >
+					<form class="form-horizontal" action="/blog/userLogin.do">
 						<div class="form-group">
 							<label for="username" class="col-sm-2 control-label">用户名</label>
 							<div class="col-sm-6">

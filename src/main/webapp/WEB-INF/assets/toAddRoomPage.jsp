@@ -134,18 +134,18 @@
       </div>
 
       <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4">
-        <form class="am-form am-form-horizontal" action="/assets/submitGood.do">
+        <form class="am-form am-form-horizontal" action="/assets/submitRoom.do">
           <input type="hidden" name="noticeClubName" value="${club.club_name}">
           <input type="hidden" name="noticeState" value="1">
           <input type="hidden" name="noticeCreatTime" value="<%=new Date()%>">
           <div class="am-form-group">
-            <label for="user-name" class="am-u-sm-3 am-form-label">选择物资：</label>
+            <label for="user-name" class="am-u-sm-3 am-form-label">选择活动室：</label>
             <div class="am-u-sm-9">
 
-              <select	class="form-control" id="goodsId" name="goodsId">
+              <select	class="form-control" id="roomId" name="roomId">
                 <option value="">--请选择--  </option>
-                <c:forEach items="${goods}" var="Good">
-                  <option value="${Good.goodsId}">${Good.goodsName}</option>
+                <c:forEach items="${rooms}" var="Room">
+                  <option value="${Room.roomId}">${Room.roomName}</option>
                 </c:forEach>
               </select>
             </div>

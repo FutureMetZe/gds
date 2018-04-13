@@ -149,7 +149,7 @@
                                             </button>
 
                                             <button class="am-btn am-btn-default am-btn-xs am-text-danger"><span
-                                                    class="am-icon-trash-o"></span> 删除
+                                                    class="am-icon-trash-o"></span> <a href="/assets/deleteNotice.do?noticeId=${Notice.noticeId}" onClick="return confirm('确定删除?');">删除</a>
                                             </button>
                                         </div>
                                     </div>

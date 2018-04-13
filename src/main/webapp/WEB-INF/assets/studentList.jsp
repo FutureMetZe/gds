@@ -141,7 +141,7 @@
 
 
                                             <button class="am-btn am-btn-default am-btn-xs am-text-danger"><span
-                                                    class="am-icon-trash-o"></span><a href="/assets/deleteStudent.do?studentId=${Student.userId}"> 注销此用户</a>
+                                                    class="am-icon-trash-o"></span><a href="/assets/deleteStudent.do?stuNum=${Student.stuNum}" onClick="return confirm('确定解除此用户与社团的关联?');"> 注销此用户</a>
                                             </button>
                                         </div>
                                     </div>

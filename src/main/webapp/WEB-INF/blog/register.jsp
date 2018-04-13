@@ -227,7 +227,7 @@ font {
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
 							<input type="submit" width="100" value="注册" name="submit"
-								style="background: url('http://localhost:8080/blog/images/register.gif') no-repeat scroll 0 0 rgba(0, 0, 0, 0); height: 35px; width: 100px; color: white;">
+								style="background: url('/blog/images/register.gif') no-repeat scroll 0 0 rgba(0, 0, 0, 0); height: 35px; width: 100px; color: white;">
 						</div>
 					</div>
 				</form>

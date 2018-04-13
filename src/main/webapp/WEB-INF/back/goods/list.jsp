@@ -124,7 +124,8 @@ $(document).ready(function(){
 
                 <td>
                     <a href="${pageContext.request.contextPath }/back/goodEdit.do?goodsId=${Goods.goodsId}" class="tablelink">修改</a>
-                    <a href="${pageContext.request.contextPath }/back/goodDelete.do?goodsId=${Goods.goodsId}" class="tablelink" >删除</a>
+                    <a href="${pageContext.request.contextPath }/back/goodDelete.do?goodsId=${Goods.goodsId}" class="tablelink" onClick="return confirm('确定删除?');"
+                    >删除</a>
                     <c:if test="${Goods.standby003!=null && Goods.standby003!=''}">
                     <a href="${pageContext.request.contextPath }/back/goodAgree.do?goodsId=${Goods.goodsId}" class="tablelink" >同意申请</a>
                     </c:if>

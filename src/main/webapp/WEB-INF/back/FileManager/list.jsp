@@ -73,7 +73,8 @@
                 <td>${File.fileUrl}</td>
 
                 <td><a href="${pageContext.request.contextPath }/back/fileDown.do?fileId=${File.fileId}" class="tablelink">下载</a>
-                    <a href="${pageContext.request.contextPath }/back/fileDelete.do?fileId=${File.fileId}" class="tablelink" > 删除</a></td>
+                    <a href="${pageContext.request.contextPath }/back/fileDelete.do?fileId=${File.fileId}" class="tablelink" onClick="return confirm('确定删除?');"
+                    > 删除</a></td>
             </tr>
         </c:forEach>
         </tbody>

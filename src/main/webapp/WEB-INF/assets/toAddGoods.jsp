@@ -134,18 +134,18 @@
       </div>
 
       <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4">
-        <form class="am-form am-form-horizontal" action="/assets/submitRoom.do">
+        <form class="am-form am-form-horizontal" action="/assets/submitGood.do">
           <input type="hidden" name="noticeClubName" value="${club.club_name}">
           <input type="hidden" name="noticeState" value="1">
           <input type="hidden" name="noticeCreatTime" value="<%=new Date()%>">
           <div class="am-form-group">
-            <label for="user-name" class="am-u-sm-3 am-form-label">选择活动场地：</label>
+            <label for="user-name" class="am-u-sm-3 am-form-label">选择物资：</label>
             <div class="am-u-sm-9">
 
-              <select	class="form-control" id="roomId" name="roomId">
+              <select	class="form-control" id="goodsId" name="goodsId">
                 <option value="">--请选择--  </option>
-                <c:forEach items="${rooms}" var="Room">
-                  <option value="${Room.roomId}">${Room.roomName}</option>
+                <c:forEach items="${goods}" var="Good">
+                  <option value="${Good.goodsId}">${Good.goodsName}</option>
                 </c:forEach>
               </select>
             </div>
@@ -154,7 +154,7 @@
           <div class="am-form-group">
             <label for="user-intro" class="am-u-sm-3 am-form-label">申请内容：</label>
             <div class="am-u-sm-9">
-              <textarea class="" rows="5" id="user-intro" placeholder="请写出借阅详情，包含使用时间，使用天数等..." name="plan02"></textarea>
+              <textarea class="" rows="5" id="user-intro" placeholder="请写出借阅详情，包含使用时间，使用天数等..." name="noticeContent"></textarea>
               <small>请写出借阅详情，包含使用时间，使用天数等...</small>
             </div>
           </div>

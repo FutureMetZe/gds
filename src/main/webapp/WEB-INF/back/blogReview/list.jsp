@@ -118,7 +118,7 @@
                     <td><c:if test="${PostReview.status==0}">未</c:if>完成审核</td>
                     <td>
                         <a href="${pageContext.request.contextPath }/back/postReviewDelete.do?reviewId=${PostReview.reviewId}"
-                           class="tablelink"> 删除</a></td>
+                           class="tablelink" onClick="return confirm('确定删除?');"> 删除</a></td>
                 </tr>
             </c:forEach>
             </tbody>

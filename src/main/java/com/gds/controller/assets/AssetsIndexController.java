@@ -195,13 +195,17 @@ public class AssetsIndexController {
     }
 
     /**
-     * 注销学生 deleteStudent
+     * 注销学生与社团关联 deleteStudent
      */
     @RequestMapping("/deleteStudent.do")
     public String deleteStudent(HttpServletRequest request, HttpServletResponse response, ModelMap model,
-                                @RequestParam(value = "studentId", required = false)Integer studentId) {
-        //  Integer studentId = (Integer) request.getAttribute("studentId");
-        studentService.deleteStuByUserId(studentId);
+                                @RequestParam(value = "stuNum", required = false)String stuNum) {
+        HttpSession session = request.getSession();
+        Integer clubId = Integer.parseInt(session.getAttribute("clubId").toString());
+        if(clubId == null ){
+            return "redirect:/blog/login.do";
+        }
+        stuAndClubService.deleteSCAById(clubId,stuNum);
         return studentList(request,response,model);
     }
 
@@ -364,6 +368,16 @@ public class AssetsIndexController {
     }
 
     /**
+     * deleteNotice
+     */
+    @RequestMapping("/deleteNotice.do")
+    public String deleteNotice( HttpServletRequest request, HttpServletResponse response, ModelMap model,
+                                @RequestParam(value = "noticeId", required = false)Integer noticeId){
+        noticeService.deleteNoticeByID(noticeId);
+        return studentNotice(request,response,model);
+    }
+
+    /**
      * toAddGoods 跳转到接物资页面
      */
     @RequestMapping("/toAddGoods.do")
@@ -444,7 +458,7 @@ public class AssetsIndexController {
         model.addAttribute("club",club);
         List<ActivityRoom> rooms = activityRoomService.selectRemainRoom();
         model.addAttribute("rooms",rooms);
-        return "assets/toAddGoods";
+        return "assets/toAddRoomPage";
     }
 
     /**
@@ -480,10 +494,13 @@ public class AssetsIndexController {
         room.setPlan01("");
         room.setRoomUseName("");
         room.setPlan02("");
+        room.setRoomIsuse("");
         activityRoomService.update(room);
 
-        return studentGoods(request,response,model);
+        return studentRooms(request,response,model);
     }
+
+
 
 
 }

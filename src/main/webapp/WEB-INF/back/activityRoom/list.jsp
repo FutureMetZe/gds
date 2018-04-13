@@ -101,7 +101,7 @@
 
                 <td>
                     <a href="${pageContext.request.contextPath }/back/roomEdit.do?roomId=${ActivityRoom.roomId}" class="tablelink">修改</a>
-                    <a href="${pageContext.request.contextPath }/back/roomDelete.do?roomId=${ActivityRoom.roomId}" class="tablelink" >删除</a>
+                    <a href="${pageContext.request.contextPath }/back/roomDelete.do?roomId=${ActivityRoom.roomId}" class="tablelink" onClick="return confirm('确定删除?');">删除</a>
                     <c:if test="${ActivityRoom.plan01!=null && ActivityRoom.plan01!=''}">
                         <a href="${pageContext.request.contextPath }/back/roomAgree.do?roomId=${ActivityRoom.roomId}" class="tablelink" >同意借用</a>
                     </c:if>

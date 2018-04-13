@@ -50,4 +50,12 @@ public class StuAndClubServiceImpl implements StuAndClubService{
 
         return stuAndClubDao.selectCountByNumAndId(map);
     }
+
+    @Override
+    public void deleteSCAById(Integer clubId, String stuNum) {
+        Map map =new HashMap();
+        map.put("clubId",clubId);
+        map.put("stuNum",stuNum);
+        stuAndClubDao.deleteSCAById(map);
+    }
 }

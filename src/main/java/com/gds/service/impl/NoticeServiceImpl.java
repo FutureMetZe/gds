@@ -28,4 +28,9 @@ public class NoticeServiceImpl implements NoticeService {
     public void insert(AssetsNotice notice) {
         assetsNoticeMapper.insert(notice);
     }
+
+    @Override
+    public void deleteNoticeByID(Integer noticeId) {
+        assetsNoticeMapper.deleteByPrimaryKey(noticeId);
+    }
 }

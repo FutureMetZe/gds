@@ -122,7 +122,8 @@ $(document).ready(function(){
                 <td>
                     <a href="${pageContext.request.contextPath }/back/clubIntroduce.do?clubId=${Club.club_id}" class="tablelink" >查看详情</a>
                     <a href="${pageContext.request.contextPath }/back/clubEdit.do?club_id=${Club.club_id}" class="tablelink">修改</a>
-                    <a href="${pageContext.request.contextPath }/back/clubDelete.do?club_id=${Club.club_id}" class="tablelink" > 删除</a>
+                    <a href="${pageContext.request.contextPath }/back/clubDelete.do?club_id=${Club.club_id}" class="tablelink" onClick="return confirm('确定删除?');"
+                    > 删除</a>
                 </td>
             </tr>
         </c:forEach>

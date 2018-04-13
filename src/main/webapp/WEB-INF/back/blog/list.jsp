@@ -123,7 +123,8 @@ $(document).ready(function(){
                 <td>${Post.view}</td>
                 <td><c:if test="${Post.status==0}">未</c:if>完成审核</td>
                 <td><a href="${pageContext.request.contextPath }/back/postEdit.do?blogId=${Post.blogId}" class="tablelink">修改</a>
-                    <a href="${pageContext.request.contextPath }/back/postDelete.do?blogId=${Post.blogId}" class="tablelink" > 删除</a></td>
+                    <a href="${pageContext.request.contextPath }/back/postDelete.do?blogId=${Post.blogId}" class="tablelink" onClick="return confirm('确定删除?');"
+                    > 删除</a></td>
             </tr>
         </c:forEach>
         </tbody>

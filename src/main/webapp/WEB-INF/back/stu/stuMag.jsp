@@ -111,7 +111,7 @@
                         <a href="${pageContext.request.contextPath }/back/stuEdit.do?user_id=${Student.userId}"
                            class="tablelink">修改</a> <a
                             href="${pageContext.request.contextPath }/back/stuDelete.do?user_id=${Student.userId}"
-                            class="tablelink"> 删除</a></td>
+                            class="tablelink" onClick="return confirm('确定删除?');"> 删除</a></td>
                 </tr>
             </c:forEach>
             </tbody>

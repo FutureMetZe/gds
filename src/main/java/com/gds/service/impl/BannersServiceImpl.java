@@ -52,4 +52,9 @@ public class BannersServiceImpl implements BannersService{
     public void updateBanner(Banners banners) {
         bannersMapper.updateByPrimaryKeySelective(banners);
     }
+
+    @Override
+    public void deleteById(Integer bannersId) {
+        bannersMapper.deleteByPrimaryKey(bannersId);
+    }
 }

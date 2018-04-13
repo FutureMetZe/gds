@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository("StuAndClubMapper")
 public interface StuAndClubMapper {
@@ -25,4 +26,6 @@ public interface StuAndClubMapper {
     List<StuAndClub> selectByClubId(Integer clubId);
 
     Integer selectCountByNumAndId(HashMap map);
+
+    void deleteSCAById(Map map);
 }

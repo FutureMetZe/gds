@@ -15,4 +15,6 @@ public interface StuAndClubService {
     List<StuAndClub> selectBeanByClubId(Integer clubId);
 
     Integer selectCountByNumAndId(String studentNum, Integer clubId);
+
+    void deleteSCAById(Integer clubId, String stuNum);
 }

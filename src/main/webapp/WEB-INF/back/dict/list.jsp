@@ -73,7 +73,8 @@
                 <td>${Dict.value}</td>
 
                 <td><a href="${pageContext.request.contextPath }/back/dictToAddPage.do?dictId=${Dict.dictId}" class="tablelink">修改</a>
-                    <a href="${pageContext.request.contextPath }/back/dictDelete.do?dictId=${Dict.dictId}" class="tablelink" > 删除</a></td>
+                    <a href="${pageContext.request.contextPath }/back/dictDelete.do?dictId=${Dict.dictId}" class="tablelink" onClick="return confirm('确定删除?');"
+                    > 删除</a></td>
             </tr>
         </c:forEach>
         </tbody>

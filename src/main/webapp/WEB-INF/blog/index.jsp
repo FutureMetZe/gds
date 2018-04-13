@@ -22,6 +22,7 @@
     <link rel="stylesheet" type="text/css" href="css/nprogress.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="/blog/css/index.css" />
     <link rel="apple-touch-icon-precomposed" href="images/icon.png">
     <link rel="shortcut icon" href="images/favicon.ico">
     <script src="js/jquery-2.1.4.min.js"></script>
@@ -36,6 +37,7 @@
     <!--[if lt IE 9]>
     <script>window.location.href = 'upgrade-browser.html';</script>
     <![endif]-->
+    <script src="/blog/js/wySilder.min.js" type="text/javascript"></script>
 </head>
 <body class="user-select">
 <header class="header">
@@ -48,7 +50,7 @@
                                 "<li><a href=\"toLoginPage.do\" >登录</a></li>");
                     } else {
                         out.write("<li>欢迎你，" + session.getAttribute("UserName").toString() + "！</li>" +
-                                "<li><a href=\"home/goHome.do\" >个人主页</a></li>" +
+                                "<li><a href=\"home/goHome.do\" target=\"_blank\">个人主页</a></li>" +
                                 "<li><a href=\"userExit.do\" >退出</a></li>"
                         );
                     }
@@ -60,7 +62,7 @@
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                         data-target="#header-navbar" aria-expanded="false"><span class="sr-only"></span> <span
                         class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button>
-                <h1 class="logo hvr-bounce-in"><a href="#" title="湖北二师社团之家"><img src="/blog/image/24ea.png" height="100"
+                <h1 class="logo hvr-bounce-in"><a href="/blog/show.do?blogId=14" title="湖北二师社团之家"><img src="/blog/image/24ea.png" height="100"
                                                                                  width="100" alt="湖北二师社团之家"></a></h1>
             </div>
             <div class="collapse navbar-collapse" id="header-navbar">
@@ -81,26 +83,23 @@
     <div class="content-wrap">
         <div class="content">
             <div id="focusslide" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                    <li data-target="#focusslide" data-slide-to="0" class="active"></li>
-                    <li data-target="#focusslide" data-slide-to="1"></li>
-                </ol>
-                <div class="carousel-inner" role="listbox">
-                    <c:forEach items="${banners}" var="banner">
-                        <div class="item active">
-                            <a href="${banner.standby002}" target="_blank" title="${banner.bannersName}">
-                                <img src="/blog/image/ershi01.png" alt="${banner.bannersName}"
-                                     class="img-responsive"></a>
-                        </div>
-                    </c:forEach>
+                <div class="js-silder">
+                    <div class="silder-scroll">
+                        <div class="silder-main">
+                            <c:forEach items="${banners}" var="Banner">
+                                <div class="silder-main-img" >
+                                   <a href="${Banner.standby002}"> <img src="${Banner.bannersImgUrl}"></a>
 
+                                </div>
+                            </c:forEach>
+                            <%--<div class="silder-main-img">--%>
+                                <%--<img src="/blog/images/2-1.jpg" alt="">--%>
+                            <%--</div>--%>
+
+                        </div>
+                    </div>
                 </div>
-                <a class="left carousel-control" href="#focusslide" role="button" data-slide="prev" rel="nofollow">
-                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> <span
-                        class="sr-only">上一个</span> </a> <a class="right carousel-control" href="#focusslide"
-                                                           role="button" data-slide="next" rel="nofollow"> <span
-                    class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> <span
-                    class="sr-only">下一个</span> </a></div>
+            </div>
 
             <article class="excerpt-minic excerpt-minic-index">
                 <c:forEach items="${levelPosts}" var="Post">
@@ -229,7 +228,7 @@
         </div>
 
         <div class="widget widget_search">
-            <form class="navbar-form" action="/back/main.do" method="post">
+            <form class="navbar-form" action="/back/main.do" method="post" target="_blank">
                 <div class="input-group">
                     <span class="input-group-btn">
             <button class="btn btn-default btn-search" name="search" type="submit">管理员登录</button>
@@ -251,6 +250,19 @@ body .layui-layout-admin .footer-demo{height: auto; padding: 15px 0; line-height
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery.ias.js"></script>
 <script src="js/scripts.js"></script>
+<script>
+    $(function (){
+        $(".js-silder").silder({
+            auto: true,//自动播放，传入任何可以转化为true的值都会自动轮播
+            speed: 20,//轮播图运动速度
+            sideCtrl: true,//是否需要侧边控制按钮
+            bottomCtrl: true,//是否需要底部控制按钮
+            defaultView: 0,//默认显示的索引
+            interval: 3000,//自动轮播的时间，以毫秒为单位，默认3000毫秒
+            activeClass: "active",//小的控制按钮激活的样式，不包括作用两边，默认active
+        });
+    });
+</script>
 </body>
 </html>
 

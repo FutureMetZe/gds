@@ -91,7 +91,7 @@
                           data-original-title="浏览量：${POST.view}"><i
                             class="glyphicon glyphicon-eye-open"></i> ${POST.view}</span>
                     <span class="item article-meta-comment" data-toggle="tooltip" data-placement="bottom" title=""
-                          data-original-title="评论量"><i class="glyphicon glyphicon-comment"></i> 99999999</span></div>
+                          data-original-title="评论量"><i class="glyphicon glyphicon-comment"></i>${Reviews.size()}</span></div>
             </header>
             <article class="article-content">
                 <p><img data-original="${BasePath}/upload/201610/18/201610181557196870.jpg" src=""
@@ -141,9 +141,7 @@
                 };
                 with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
             </article>
-            <div class="article-tags">
-                标签：<a href="#" rel="tag">DTcms博客</a>
-            </div>
+
             <div class="relates">
                 <div class="title">
                     <h3>推荐文章</h3>
@@ -187,16 +185,7 @@
                         </li>
                     </c:forEach>
 
-                    <li class="comment-content"><span class="comment-f"></span>
-                        <div class="comment-main"><p><a class="address" href="${BasePath}/" rel="nofollow"
-                                                        target="_blank">木庄网络博客</a><span class="time">(2016/10/28 11:41:03)</span><br>不错的网站主题，看着相当舒服
-                        </p></div>
-                    </li>
-                    <li class="comment-content"><span class="comment-f"></span>
-                        <div class="comment-main"><p><a class="address" href="${BasePath}/" rel="nofollow"
-                                                        target="_blank">木庄网络博客</a><span class="time">(2016/10/14 21:02:39)</span><br>博客做得好漂亮哦！
-                        </p></div>
-                    </li>
+
                 </ol>
             </div>
         </div>

@@ -78,7 +78,11 @@
                 <td>${Hubestl.position}</td>
                 <td>${Hubestl.mobile}</td>
                 <td>${Hubestl.createtime}</td>
-                <td><a href="${pageContext.request.contextPath }/back/hubestlEdit.do?user_id=${Hubestl.id}" class="tablelink">修改</a>     <a href="${pageContext.request.contextPath }/back/hubestl_delete.do?user_id=${Hubestl.id}" class="tablelink" > 删除</a></td>
+                <td>
+                    <a href="${pageContext.request.contextPath }/back/hubestlEdit.do?user_id=${Hubestl.id}" class="tablelink">修改</a>
+                    <a href="${pageContext.request.contextPath }/back/hubestl_delete.do?user_id=${Hubestl.id}" class="tablelink" onClick="return confirm('确定删除?');"
+                    > 删除</a>
+                </td>
             </tr>
         </c:forEach>
         </tbody>

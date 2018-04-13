@@ -78,4 +78,14 @@ public class BannerController {
         return bannerList(request,response,model,null,null);
     }
 
+    /**
+     * bannerDelete
+     */
+    @RequestMapping("/bannerDelete.do")
+    public String bannerDelete(HttpServletRequest request, HttpServletResponse response, ModelMap model,
+                             @RequestParam(value = "bannersId", required = false)Integer bannersId){
+        bannersService.deleteById(bannersId);
+
+        return bannerList(request,response,model,null,null);
+    }
 }

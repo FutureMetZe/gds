@@ -142,7 +142,8 @@
                                     <div class="am-btn-toolbar">
                                         <div class="am-btn-group am-btn-group-xs">
                                             <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span
-                                                    class="am-icon-pencil-square-o"></span> <a href="/assets/returnRoom.do?roomId=${Room.roomId}">归还</a>
+                                                    class="am-icon-pencil-square-o"></span> <a href="/assets/returnRoom.do?roomId=${Room.roomId}" onClick="return confirm('确定归还操作?');"
+                                            >归还</a>
                                             </button>
 
                                      <%--       <button class="am-btn am-btn-default am-btn-xs am-text-danger"><span

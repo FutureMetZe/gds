@@ -61,7 +61,7 @@
 <body>
 <!-- 代码 开始 -->
 <div id="container"><img class="png" src="/blog/404img/404.png" /> <img class="png msg" src="/blog/404img/404_msg.png" />
-    <p><a href="http://localhost:8080/blog/index.do" target="_blank"><img class="png" src="/blog/404img/404_to_index.png" /></a> </p>
+    <p><a href="/blog/index.do" target="_blank"><img class="png" src="/blog/404img/404_to_index.png" /></a> </p>
 </div>
 <div id="cloud" class="png"></div>
 <!-- 代码 结束 -->

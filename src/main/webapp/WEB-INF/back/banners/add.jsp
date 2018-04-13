@@ -62,7 +62,7 @@ $(document).ready(function(e) {
     <form action="/back/bannerSave.do">
 
     <ul class="forminfo">
-        <<input type="hidden" name="bannersId" >
+        <input type="hidden" name="bannersId" >
 
     <li><label>图片名称<b>*</b></label><input name="bannersName" type="text" class="dfinput" value=""  style="width:350px;"/></li>
     <li><label>连接地址<b>*</b></label><input name="standby002" type="text" class="dfinput" value=""  style="width:350px;"/></li>

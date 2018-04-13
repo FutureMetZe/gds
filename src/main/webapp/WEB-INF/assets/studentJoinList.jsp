@@ -132,7 +132,8 @@
                                             </button>
 
                                             <button class="am-btn am-btn-default am-btn-xs am-text-danger"><span
-                                                    class="am-icon-trash-o"></span> <a href="/assets/disagreeStudent.do?studentNum=${Student.stuNum}"> 拒绝</a>
+                                                    class="am-icon-trash-o"></span> <a href="/assets/disagreeStudent.do?studentNum=${Student.stuNum}" onClick="return confirm('确定拒绝该申请?');"
+                                            > 拒绝</a>
                                             </button>
                                         </div>
                                     </div>

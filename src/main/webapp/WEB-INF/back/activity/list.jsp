@@ -101,7 +101,7 @@
                 <td>${Activity.overtime}</td>
                 <td>
 
-                    <a href="${pageContext.request.contextPath }/back/activityDelete.do?activityId=${Activity.activityId}" class="tablelink" >删除</a>
+                    <a href="${pageContext.request.contextPath }/back/activityDelete.do?activityId=${Activity.activityId}" class="tablelink" onClick="return confirm('确定删除?');">删除</a>
                 </td>
             </tr>
         </c:forEach>

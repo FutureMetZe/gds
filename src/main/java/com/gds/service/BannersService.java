@@ -18,4 +18,6 @@ public interface BannersService {
     Banners selectBannerById(Integer bannersId);
 
     void updateBanner(Banners banners);
+
+    void deleteById(Integer bannersId);
 }

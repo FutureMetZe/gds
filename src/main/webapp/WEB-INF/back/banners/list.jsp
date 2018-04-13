@@ -75,7 +75,8 @@
                 <td>${Banner.standby001}</td>
 
                 <td><a href="${pageContext.request.contextPath }/back/bannerEdit.do?bannersId=${Banner.bannersId}" class="tablelink">修改</a>
-                    <a href="${pageContext.request.contextPath }/back/bannerDelete.do?bannersId=${Banner.bannersId}" class="tablelink" > 删除</a></td>
+                    <a href="${pageContext.request.contextPath }/back/bannerDelete.do?bannersId=${Banner.bannersId}" class="tablelink" onClick="return confirm('确定删除?');"
+                    > 删除</a></td>
             </tr>
         </c:forEach>
         </tbody>

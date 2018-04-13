@@ -48,7 +48,7 @@
 
             <ul class="forminfo">
 
-                <form action="http://localhost:8080/back/imgUpload.do" method="post" enctype="multipart/form-data">
+                <form action="/back/imgUpload.do" method="post" enctype="multipart/form-data">
                     <li><label>选择标题图:</label>
                         <input name="file" type="file"  /><input type="submit" value="上传" ></li>
 

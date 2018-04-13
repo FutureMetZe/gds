@@ -87,5 +87,10 @@
     select count(1) from gds_stu_relation where stu_num = #{studentNum} and dict_club_id =#{clubId};
   </select>
 
+  <delete id="deleteSCAById" parameterType="Map">
+        delete from gds_stu_relation
+    where dict_club_id = #{clubId,jdbcType=INTEGER}
+    AND stu_num = #{stuNum}
+  </delete>
 
 </mapper>
